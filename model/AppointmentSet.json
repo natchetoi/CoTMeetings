@@ -1,0 +1,53 @@
+[{
+	"MeetingSubject": "Planning Session",
+	"Start": "9:00 AM",
+	"End": "9:30 AM",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"AltID": "1",
+	"MeetingComment": "We need to plan our Application development",
+	"Organizer": "Marco Palermo", 
+	"Attendees" : [{ "name" : "George Liu" }, { "name" : "Eugenia Bakchinova" }, { "name" : "Jacqueline Chow" }, { "name" : "Yuri Natchetoi" }]
+}, {
+	"MeetingSubject": "Usability testing",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"End": "11:30 AM",
+	"Start": "11:00 AM",
+	"AltID": "2",
+	"MeetingComment": "Let's hold UX session tomorrow",
+	"Organizer": "Eugenia",
+	"Attendees" : [ { "name" : "Eugenia Bakchinova" }, { "name" : "Jacqueline Chow" }]
+}, {
+	"MeetingSubject": "Lunch&Learn ",
+	"Start": "11:30 AM",
+	"End": "12:00 PM",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"AltID": "3",
+	"MeetingComment": "Everyone is invited to SAP UI5 Lunch& Learn session.",
+	"Organizer": "Yuri",
+	"Attendees" : [{ "name" : "George Liu" }, { "name" : "Jacqueline Chow" }, { "name" : "Yuri Natchetoi" }]
+}, {
+	"MeetingSubject": "Project Sponsor Committee",
+	"AltID": "4",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"Start": "2:00 PM",
+	"End": "3:00 PM",
+	"MeetingComment": "Mobility Project Steering Committee ",
+	"Organizer": "Asad Sultan",
+	"Attendees" : [{ "name" : "Asad Sultan" }, { "name" : "Fazal Husain" }, { "name" : "Lan Nguyen" }, { "name" : "Johan Macedo" }]
+}, {
+	"AltID": "5",
+	"MeetingSubject": "SCRUM Meeting",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"End": "3:45 PM",
+	"Start": "3:15 PM",
+	"MeetingComment": "This is our daily SCRUM meeting",
+	"Organizer": "Yuri"
+}, {
+	"AltID": "6",
+	"MeetingSubject": "App.UX Demo",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"End": "4:45 PM",
+	"Start": "4:00 PM",
+	"MeetingComment": "We will show our PoC #1 application ",
+	"Organizer": "George"
+}]

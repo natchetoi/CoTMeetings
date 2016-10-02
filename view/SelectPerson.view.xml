@@ -1,0 +1,54 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="fusion.controller.SelectPerson">
+<html:style>
+.raisedCheckBox div {
+  vertical-align: -25px;
+}
+</html:style>
+<App>
+		<pages>
+			<Page title="ATTENDEES" navButtonPress="onNavBack">
+								<content>
+				    <!-- SearchField  width="100%" placeholder="Search" id="srcField0"/ -->
+				    <Table noDataText="Select meeting attendees" id="peopleListId" items="{/AttendeeSet}">
+				        <items>
+				            <ColumnListItem counter="0" id="__item0" detailPress="addAttendees" press="addAttendees">
+				                <cells>
+				                    <CheckBox checked="{selected}" tooltip="{lastName}"  class="raisedCheckBox"  />
+				                    <Text text="{firstName} {lastName}" maxLines="1" wrapping="false" />
+				                    <Text text="{Position}"     class="raisedCheckBox" />
+				                 </cells>
+				            </ColumnListItem>
+				          </items>
+				        <columns>
+				            <Column text="Invite"  id="__column2_copy9" width="30px">
+				                <header>
+				                    <Label text="" id="__label2_copy9" class="coTbold" tooltip="{lastName}" width="25px" design="Bold"/>
+				                </header>
+				            </Column>
+				            <Column id="__column2_copy7">
+				                <header>
+				                    <Label text="Name" id="__label2_copy7" design="Bold"/>
+				                </header>
+				                
+				            </Column>
+				            <!-- Column id="__column0">
+				                <header>
+				                    <Label text="Position" id="__label0" design="Bold"/>
+				                </header>
+				            </Column -->
+				          </columns>
+				        <swipeContent>
+				            <Text xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" maxLines="0" id="__text5_copy10"/>
+				        </swipeContent></Table>
+				</content>
+		<footer>
+			<Toolbar>
+                <Button text="OK" width="100px" id="__button31" press="addAttendees" icon="sap-icon://accept" tooltip="Save and return" tap="addAttendees" type="Emphasized"/>
+                <Button text="Cancel" width="100px" id="__button41" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel and return" tap="onNavBack" type="Emphasized"/>
+			</Toolbar>
+		</footer>				
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

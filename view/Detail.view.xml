@@ -1,0 +1,64 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"  controllerName="fusion.view.Detail" id="DetailViewId" >
+	<Page navButtonPress="onNavBack" class="sapUiFioriObjectPage" title="{i18n>detailTitle}" id="DetailPageId">
+		<content>
+			<ObjectHeader title="{MeetingSubject}" number="{Start}" numberUnit="{End}" class="coT">
+				<ObjectAttribute text="{MeetingComment}"/>
+				<ObjectAttribute text="{Organizer}"/>
+			</ObjectHeader>
+ 			   
+			<IconTabBar select="onDetailSelect" id="idIconTabBar">
+				<items>
+					<IconTabFilter key="Location" text="Event Details" iconColor="Neutral" icon="sap-icon://hint">
+						<!--key="Detail" -->
+						<content>
+							<core:Fragment fragmentName="fusion.view.DetailInfoForm" type="XML"/>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="Time" count="30" icon="sap-icon://time-entry-request" iconColor="Neutral" id="__filter10">
+					    <content>
+					          <DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" valueFormat="July 28, 16" placeholder="Date" value="July 28/16"/>
+						      <sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0">
+					        		  <Label text="From:" width="50px" id="__label4"/>
+						    		  <TimePicker placeholder="h:mm a" placeholderSymbol="-" mask="h9:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker0" title="Start" name="Start" value="{Start}"/>
+					        		  <Label text="   " width="20px" id="__label41"/>
+     						          <Label text="To:" width="30px" id="__label3"/>
+						    		  <TimePicker placeholder="h:mm a" placeholderSymbol="-" mask="h9:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker1" value="{End}" title="End"/>
+						      </sap.ui.layout:HorizontalLayout>
+						      
+					    </content>
+					</IconTabFilter>
+					<IconTabFilter text="Attendees" count="5" icon="sap-icon://person-placeholder" iconColor="Neutral" id="__filter11">
+					<content>
+				    <SearchField width="100%" placeholder="Search" id="__field0"/>
+				    <Table noDataText="No attendees invited" id="__table0" items="{AttendeeSet}">
+				        <items>
+				            <ColumnListItem counter="0" id="__item0">
+				                <cells>
+				                    <Text text="{firstName} {lastName}" maxLines="0" id="__text0"/>
+				                </cells>
+				            </ColumnListItem>
+				         </items>
+				        <columns>
+				            <Column id="__column0">
+				                <header>
+				                    <Label text="First Name" id="__label0" design="Bold"/>
+				                </header>
+				            </Column>
+				          </columns>
+					  </Table>
+
+					</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Toolbar>
+			<content>
+				 <Button text="New" width="100px" id="__button0" press="addMeeting" icon="sap-icon://add-contact"  type="Emphasized" />
+			    <Button text="OK" width="100px" id="okButtonId" press="onNavBack" type="Emphasized" />
+			</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

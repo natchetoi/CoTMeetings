@@ -1,0 +1,11 @@
+{
+	"MeetingSubject": "Planning Session",
+	"Start": "9:00 AM",
+	"End": "9:30 AM",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"RoomName": "Jarvis",
+	"AltID": "1",
+	"MeetingComment": "We need to plan our Application development",
+	"Organizer": "Marco Palermo", 
+	"Attendees" : [{ "name" : "George Liu" }, { "name" : "Marco Palermo" }, { "name" : "Jacqueline Chow" }, { "name" : "Yuri Natchetoi" }]
+}

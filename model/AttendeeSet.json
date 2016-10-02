@@ -1,0 +1,36 @@
+[{
+	"PersonID": "1",
+	"selected" : true, 
+	"firstName": "Yuri",
+	"lastName": "Natchetoi",
+	"Position" : "Consultant",
+	"workEmail": "ynatche@toronto.ca"
+}, {
+	"PersonID": "2",
+	"selected" : false, 
+	"firstName": "George",
+	"lastName": "Liu",
+	"Position" : "Developer",
+	"workEmail": "gliu3@toronto.ca"
+}, {
+	"PersonID": "3",
+	"selected" : false, 
+	"firstName": "Jacqueline ",
+	"lastName": "Chow",
+	"Position" : "Term student",
+	"workEmail": "jchow8@toronto.ca"
+}, {
+	"PersonID": "4",
+	"selected" : false, 
+	"firstName": "William",
+	"lastName": "She",
+	"Position" : "QA specialist",
+	"workEmail": "wshe@toronto.ca"
+}, {
+	"PersonID": "5",
+	"selected" : false, 
+	"firstName": "Eugenia ",
+	"lastName": "Bakchinova",
+	"Position" : "UX Expert",
+	"workEmail": "ebakchi@toronto.ca"
+}]
