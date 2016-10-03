@@ -146,31 +146,25 @@
 	color: white;
 	position: fixed;
     padding: 2em;
-    left: 3%;
     top: 50%;
-	
 }
 
 .coTUserName {
 	position: fixed;
     padding: 2em;
-    left: 3%;
     top: 53%;
-	
 }
 
 .coTPasswordLabel {
 	color: white;
 	position: fixed;
     padding: 2em;
-    left: 3%;
     top: 65%;
 }
 
 .coTPassword {
 	position: fixed;
     padding: 2em;
-    left: 3%;
     top: 68%;
 }
 
@@ -185,17 +179,19 @@
 
 .coTRememberMe {
 	color: white;
-	position: fixed;
-    padding: 2em;
-    left: 40%;
-    width: "30%";
-    top: 83%;	
+	top: 77%;	
+	left:12%;
+}
+
+.coTRememberMe label
+{
+	color:white;
 }
 
 .coTLoginButton {
 	position: fixed;
     padding: 2em;
-    left: 11%;
+    left:25%;
     top: 85%;
 }
 
