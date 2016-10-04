@@ -8,122 +8,123 @@
 							<IconTabFilter text="Find" id="__filter0" iconColor="Neutral" icon="sap-icon://work-history">
 								<content>
 									<Button width="40px" id="expandButton" icon="sap-icon://expand" press="pressExpand" tap="pressExpand" visible="false"/>
+									<Label text="Show filter" id="lblShowFilter" visible="false" class="coFilterLabel" />
 									<Button width="40px" id="collapseButton" icon="sap-icon://collapse" press="pressCollapse" tap="pressCollapse"/>
-									<Panel id="RoomFilterId">
-									<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout" width="85%" id="__layout0102" class="cotFilterArea">
-										<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0" width="100%">
+									<Label text="Hide filter" id="lblHideFilter" class="coFilterLabel" />
+									<Panel id="RoomFilterId" class="cotFilterArea">
+										<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0102">
+											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0">
+												<sap.ui.layout:content>
+													<Label text="Distance:" width="110px" id="__label0"/>
+													<Text text="1 km" maxLines="0" id="proximityTextId" style="text-align: right"/>
+												</sap.ui.layout:content>
+											</sap.ui.layout:HorizontalLayout>
+											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0222" width="100%">
+												<sap.ui.layout:content>
+													<Slider id="proximitySliderId" width="200px" change="onProximityChanged" liveChange="changeProximity" max="1000" step="20" value="500" tooltip="Distance from the current location"/>
+													<Label text="1000m" width="100%" id="cotRoomDistance" style="text-align: right" textAlign="End"/>
+												</sap.ui.layout:content>
+											</sap.ui.layout:HorizontalLayout>
+											<sap.ui.layout:HorizontalLayout id="__layout0_copy" width="100%">
+												<sap.ui.layout:content>
+													<Label xmlns="sap.m" text="Capacity:" id="__label000" width="110px"/>
+													<Text xmlns:core="sap.ui.core" text="2 pers." maxLines="0" id="capacityTextId" style="text-align: right"/>
+												</sap.ui.layout:content>
+											</sap.ui.layout:HorizontalLayout>
+											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" id="__layout0111" width="100%">
+												<sap.ui.layout:content>
+													<Slider id="capacitySliderId" width="200px" change="onCapacityChanged" liveChange="changeCapacity" value="3" tooltip="Select number of Attendees"/>
+													<Label text="100pers" width="60px" id="cotRoomCapacity" style="text-align: right" textAlign="Left"/>
+												</sap.ui.layout:content>
+											</sap.ui.layout:HorizontalLayout>
 											<sap.ui.layout:content>
-												<Label text="Distance:" width="110px" id="__label0"/>
-												<Text text="1 km" maxLines="0" id="proximityTextId" style="text-align: right"/>
+												<sap.ui.layout:VerticalLayout id="__layout1_copy" width="100%">
+													<sap.ui.layout:HorizontalLayout>
+														<Label text="Conf.Equipment" width="130px" id="__label1"/>
+														<CheckBox id="chkConfEquipment" width="20px" select="onConfEquipmentSelected"/>
+													</sap.ui.layout:HorizontalLayout>
+													<sap.ui.layout:HorizontalLayout>
+														<Label text="WiFi" width="130px" id="__label1_copy2"/>
+														<CheckBox id="__box3" width="20px"/>
+													</sap.ui.layout:HorizontalLayout>
+													<sap.ui.layout:HorizontalLayout>
+														<Label text="Projector" width="130px" id="__label1_copy4"/>
+														<CheckBox id="__box4" width="20px"/>
+													</sap.ui.layout:HorizontalLayout>
+													<sap.ui.layout:HorizontalLayout>
+														<Label text="Computer" width="130px" id="__label1_copy5"/>
+														<CheckBox id="__box5" width="20px"/>
+													</sap.ui.layout:HorizontalLayout>
+												</sap.ui.layout:VerticalLayout>
 											</sap.ui.layout:content>
-										</sap.ui.layout:HorizontalLayout>
-										<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0222" width="100%">
-											<sap.ui.layout:content>
-												<Slider id="proximitySliderId" width="200px" change="changeProximity" liveChange="changeProximity" max="1000" step="20" value="500" tooltip="Distance from the current location"/>
-												<Label text="1000m" width="100%" id="cotRoomDistance" style="text-align: right" textAlign="End"/>
-											</sap.ui.layout:content>
-										</sap.ui.layout:HorizontalLayout>
-										<sap.ui.layout:HorizontalLayout id="__layout0_copy" width="100%">
-											<sap.ui.layout:content>
-												<Label xmlns="sap.m" text="Capacity:" id="__label000" width="110px"/>
-												<Text xmlns:core="sap.ui.core" text="2 pers." maxLines="0" id="capacityTextId" style="text-align: right"/>
-											</sap.ui.layout:content>
-										</sap.ui.layout:HorizontalLayout>
-										<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" id="__layout0111" width="100%">
-											<sap.ui.layout:content>
-												<Slider id="capacitySliderId" width="200px" change="changeCapacity" liveChange="changeCapacity" value="3" tooltip="Select number of Attendees"/>
-												<Label text="100pers" width="60px" id="cotRoomCapacity" style="text-align: right" textAlign="Left"/>
-											</sap.ui.layout:content>
-										</sap.ui.layout:HorizontalLayout>
-										<sap.ui.layout:content>
-											<sap.ui.layout:VerticalLayout id="__layout1_copy" width="100%">
-												<sap.ui.layout:HorizontalLayout>
-													<Label text="Conf.Equipment" width="130px" id="__label1"/>
-													<CheckBox id="__box0" width="20px"/>
-												</sap.ui.layout:HorizontalLayout>
-												<sap.ui.layout:HorizontalLayout>
-													<Label text="WiFi" width="130px" id="__label1_copy2"/>
-													<CheckBox id="__box3" width="20px"/>
-												</sap.ui.layout:HorizontalLayout>
-												<sap.ui.layout:HorizontalLayout>
-													<Label text="Projector" width="130px" id="__label1_copy4"/>
-													<CheckBox id="__box4" width="20px"/>
-												</sap.ui.layout:HorizontalLayout>
-												<sap.ui.layout:HorizontalLayout>
-													<Label text="Computer" width="130px" id="__label1_copy5"/>
-													<CheckBox id="__box5" width="20px"/>
-												</sap.ui.layout:HorizontalLayout>
-											</sap.ui.layout:VerticalLayout>
-										</sap.ui.layout:content>
-									</sap.ui.layout:VerticalLayout>
+										</sap.ui.layout:VerticalLayout>
 									</Panel>
 									<Table noDataText="Filtered meeting rooms" id="roomTable">
-									    <items>
-									        <ColumnListItem counter="0" id="__item1">
-									            <cells>
-									            	<Panel class="coTWhiteSquare" press="pressRoom11">
-													<content>
+										<items>
+											<ColumnListItem counter="0" id="__item1">
+												<cells>
+													<Panel class="coTWhiteSquare" press="pressRoom11">
+														<content>
+															<sap.ui.layout:VerticalLayout>
+																<Link text="{rooms>/1/RoomName}" press="pressRoom11" id="l1"/>
+																<Link text="Capacity: {rooms>/1/Capacity}" press="pressRoom11" id="o1"/>
+															</sap.ui.layout:VerticalLayout>
+														</content>
+													</Panel>
+													<Panel class="coTBlueSquare" press="pressRoom12">
+														<content>
+															<sap.ui.layout:VerticalLayout>
+																<Link text="{rooms>/2/RoomName}" press="pressRoom12"/>
+																<Link text="Capacity: {rooms>/2/Capacity}" press="pressRoom12"/>
+															</sap.ui.layout:VerticalLayout>
+														</content>
+													</Panel>
+												</cells>
+											</ColumnListItem>
+											<ColumnListItem counter="0" id="__item2">
+												<cells>
+													<Panel class="coTBlueSquare" press="pressRoom21">
 														<sap.ui.layout:VerticalLayout>
-													    <Link text="{rooms>/1/RoomName}" press="pressRoom11" id="l1"/>
-									              		<Link text="Capacity: {rooms>/1/Capacity}" press="pressRoom11" id="o1"/>
-									              		</sap.ui.layout:VerticalLayout>
-													</content>
+															<Link text="{rooms>/3/RoomName}" press="pressRoom21"/>
+															<Link text="Capacity: {rooms>/3/Capacity}" press="pressRoom21"/>
+														</sap.ui.layout:VerticalLayout>
 													</Panel>
-									            	<Panel class="coTBlueSquare" press="pressRoom12">
-													  <content>
-													  	<sap.ui.layout:VerticalLayout>
-									            			<Link text="{rooms>/2/RoomName}" press="pressRoom12"/>
-									            			<Link text="Capacity: {rooms>/2/Capacity}" press="pressRoom12"/>
-									            		</sap.ui.layout:VerticalLayout>
-													  </content>
-									    			</Panel>
-									           </cells>
-									        </ColumnListItem>
-									        <ColumnListItem counter="0" id="__item2">
-									            <cells>
-									            	<Panel class="coTBlueSquare" press="pressRoom21">
-									            		<sap.ui.layout:VerticalLayout>
-									              			<Link text="{rooms>/3/RoomName}" press="pressRoom21"/>
-									              			<Link text="Capacity: {rooms>/3/Capacity}" press="pressRoom21"/>
-									              		</sap.ui.layout:VerticalLayout>
+													<Panel class="coTWhiteSquare" press="pressRoom22">
+														<sap.ui.layout:VerticalLayout>
+															<Link text="{rooms>/4/RoomName}" press="pressRoom22"/>
+															<Link text="Capacity: {rooms>/4/Capacity}" press="pressRoom22"/>
+														</sap.ui.layout:VerticalLayout>
 													</Panel>
-									            	<Panel class="coTWhiteSquare" press="pressRoom22">
-									            		<sap.ui.layout:VerticalLayout>
-									              			<Link text="{rooms>/4/RoomName}" press="pressRoom22"/>
-									              			<Link text="Capacity: {rooms>/4/Capacity}" press="pressRoom22"/>
-									              		</sap.ui.layout:VerticalLayout>
-													</Panel>
-									             </cells>
-									        </ColumnListItem>
-									        </items>
-									    <columns>
-									        <Column id="__column0" width="150px" resizable="false" flexible="false">
-									            <header>
-									                <Label text="" id="__label5" height="1px"/>
-									            </header>
-									        </Column>
-									        <Column id="__column3" width="150px" resizable="false" flexible="false">
-									            <header>
-									                <Label text="" id="__label6" height="1px"/>
-									            </header>
-									        </Column>
-									        <Column id="__column4">
-									        </Column></columns></Table>
+												</cells>
+											</ColumnListItem>
+										</items>
+										<columns>
+											<Column id="__column0" width="150px" resizable="false" flexible="false">
+												<header>
+													<Label text="" id="__label5" height="1px"/>
+												</header>
+											</Column>
+											<Column id="__column3" width="150px" resizable="false" flexible="false">
+												<header>
+													<Label text="" id="__label6" height="1px"/>
+												</header>
+											</Column>
+											<Column id="__column4"/>
+										</columns>
+									</Table>
 								</content>
 							</IconTabFilter>
 							<IconTabFilter text="Location" iconColor="Neutral" icon="sap-icon://map-2" id="__filter5">
 								<content>
-			  	                  <Carousel activePage="__image0" showBusyIndicator="false" id="__carousel0" pages="rooms&gt;/1/">
-				                    <pages>
-                                        <Panel id="addressImage" 
-                                           headerText="{i18n>panelImageTitle}"  visible="true">
-                                            <Image  src= "http://maps.googleapis.com/maps/api/staticmap?center=Toronto,+Canada,&amp;zoom=13&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;key=AIzaSyCqifMn0_bk8Vp_QXyfRSiS7GJcvhRwdm4&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C,55+John+Toronto+ON+Canada55" height="300px"/>
-          								</Panel>
-				                    	
-									   <Image width="100%" height="100%" id="__image1" src="Images/MH15.png"/>
-									   <sap.ui.vbm:GeoMap xmlns:sap.ui.vbm="sap.ui.vbm" id="__map0" initialPosition="43.6460466;-79.3909029;2"/>
-								    </pages>
-								  </Carousel>
+									<Carousel activePage="__image0" showBusyIndicator="false" id="__carousel0" pages="rooms&gt;/1/">
+										<pages>
+											<Panel id="addressImage" headerText="{i18n>panelImageTitle}" visible="true">
+												<Image src="http://maps.googleapis.com/maps/api/staticmap?center=Toronto,+Canada,&amp;zoom=13&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;key=AIzaSyCqifMn0_bk8Vp_QXyfRSiS7GJcvhRwdm4&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C,55+John+Toronto+ON+Canada55" height="300px"/>
+											</Panel>
+											<Image width="100%" height="100%" id="__image1" src="Images/MH15.png"/>
+											<sap.ui.vbm:GeoMap xmlns:sap.ui.vbm="sap.ui.vbm" id="__map0" initialPosition="43.6460466;-79.3909029;2"/>
+										</pages>
+									</Carousel>
 								</content>
 							</IconTabFilter>
 							<IconTabFilter text="Favorites" iconColor="Neutral" icon="sap-icon://favorite-list" id="__filter2">

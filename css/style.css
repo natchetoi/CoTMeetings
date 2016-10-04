@@ -1,260 +1,230 @@
 .spacerTop {
     margin-top: 2rem;
 }
-
-.sapUiBody {
-
+.sapUiBody {} .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected > .sapMITBText {
+    color: #fff;
+    font-weight: bold;
 }
-.sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected > .sapMITBText {     color: #fff ;     font-weight: bold ; }  
-.sapMITBContent {     background-color: rgba(255,255,255,0.0);     padding: 1rem;     position: relative; }  
-
+.sapMITBContent {
+    background-color: rgba(255, 255, 255, 0.0);
+    padding: 1rem;
+    position: relative;
+}
 .sapMLabel {
-  vertical-align: -17px;	
+    vertical-align: -17px;
 }
-
 .sapMBar {
-	  height: 62px;
+    height: 62px;
 }
-
-.sapMPage>.sapMPageHeader + section, .sapMPage>.sapMPageSubHeader + section, .sapMPage>.sapMPageHeader + .sapUiHiddenPlaceholder + section {
-	top: 62px;
+.sapMPage>.sapMPageHeader + section,
+.sapMPage>.sapMPageSubHeader + section,
+.sapMPage>.sapMPageHeader + .sapUiHiddenPlaceholder + section {
+    top: 62px;
 }
-
 .sapMBarPH {
-	  background-image: url("../Images/Header3.png");  
-	  background-repeat:no-repeat;
-	  background-color: transparent !important;
-	  background-position: right; 
-  	  background-size: 100% 100%;
-	  color: white;
-	  height: 62px;
+    background-image: url("../Images/Header3.png");
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-position: right;
+    background-size: 100% 100%;
+    color: white;
+    height: 62px;
 }
-
-.sapMBarRight, .sapMBarLeft, .sapMBarPH {
-	  background-color: transparent !important;
+.sapMBarRight,
+.sapMBarLeft,
+.sapMBarPH {
+    background-color: transparent !important;
 }
-
 .sapMBarRight {
-  	background-color:	#498BCA !important;
-/*	display: none; */
+    background-color: #498BCA !important;
+    /*	display: none; */
 }
-
 .sapMBtnInner {
-	border-radius: 0.5rem;
+    border-radius: 0.5rem;
 }
-
 .sapUiTableTr>td {
-              border-right: 1px solid #cccccc !important;
+    border-right: 1px solid #cccccc !important;
 }
-
 .sapMHeader-CTX {
-/*	  background-image: url("../Images/TopHeader.png"); */
-	  background-repeat:no-repeat;
-	  background-size: contain;
-  	  background-color: transparent;
-	  background-position: right; 
-	  color: white;
+    /*	  background-image: url("../Images/TopHeader.png"); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    background-position: right;
+    color: white;
 }
-
 .sapMIBar-CTX .sapMTitle {
-	color: white;
+    color: white;
     text-shadow: none;
 }
-
 .sapMTitle span {
-	color: white;
-	position: fixed;
+    color: white;
+    position: fixed;
     left: 60%;
     top: 10px;
-    width: 120px	
+    width: 120px
 }
-
 .sapBackgroundColor {
-	    background-color: #498BCA;
+    background-color: #498BCA;
 }
-
 .sapUiGlobalBackgroundColor {
-	    background-color: #a9dcff;
-	    background-image: linear-gradient(to bottom, #ffffff 0, #a9dcff 100%); /* linear-gradient(to bottom,#dff2f3 0,#dcecf0 50%,#dde4eb 100%); */
+    background-color: #a9dcff;
+    background-image: linear-gradient(to bottom, #ffffff 0, #a9dcff 100%);
+    /* linear-gradient(to bottom,#dff2f3 0,#dcecf0 50%,#dde4eb 100%); */
 }
-
 .sapMITBSelected .sapMITBFilterDefault {
     background: #a9dcff;
     color: #ffffff;
 }
-
 .sapMGlobalBackgroundColor {
-	    background-color: #a9dcff;
-	    background-image: linear-gradient(to bottom, #ffffff 0, #a9dcff 100%); /* linear-gradient(to bottom,#dff2f3 0,#dcecf0 50%,#dde4eb 100%); */
+    background-color: #a9dcff;
+    background-image: linear-gradient(to bottom, #ffffff 0, #a9dcff 100%);
+    /* linear-gradient(to bottom,#dff2f3 0,#dcecf0 50%,#dde4eb 100%); */
 }
-
 .sapUIGlobalBackgroundImage {
-	  background-image: url("../Images/cityHall1.png");
+    background-image: url("../Images/cityHall1.png");
 }
-
-
 /****************************************************************/
+
 .coTbold {
-	 font-weight: bold
+    font-weight: bold
 }
-
 .coTPage {
-	  background-repeat:no-repeat;
-	  background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
 .coTRounded {
     border-radius: 25px;
     border: 2px solid #73AD21;
-    padding: 20px; 
+    padding: 20px;
     width: 200px;
-    height: 150px; 
+    height: 150px;
 }
-
 .coThidden {
-	display: none;
+    display: none;
 }
 .coTLoginView {
-	  background-image: url("../Images/login2.png");
-	  background-repeat:no-repeat;
-	  background-size: contain;
-	  background-size: 100% 100%;
+    background-image: url("../Images/login2.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 100% 100%;
 }
-
 .coTMyMeetings {
-/*	  background-image: url("../Images/MyMeetingsHeader.png");  */
-	  background-repeat:no-repeat;
-	  background-size: 100% 100%;	
+    /*	  background-image: url("../Images/MyMeetingsHeader.png");  */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
-
 .coTnewMeeting #newMeetingHeader #__bar0 {
-      height: "118px";
-      background-image: url("../Images/NewMeetingHeader.png"); 
-	  background-repeat:no-repeat;
-	  background-size: 480px 118px;	
+    height: "118px";
+    background-image: url("../Images/NewMeetingHeader.png");
+    background-repeat: no-repeat;
+    background-size: 480px 118px;
 }
-
-
-.sapMIBar  {
-  	  background-color: transparent;
+.sapMIBar {
+    background-color: transparent;
 }
-
-.coTFindRoom {
-}
-
-.coTUserNameLabel {
-	color: white;
-	position: fixed;
+.coTFindRoom {} .coTUserNameLabel {
+    color: white;
+    position: fixed;
     padding: 2em;
     top: 50%;
 }
-
 .coTUserName {
-	position: fixed;
+    position: fixed;
     padding: 2em;
     top: 53%;
 }
-
 .coTPasswordLabel {
-	color: white;
-	position: fixed;
+    color: white;
+    position: fixed;
     padding: 2em;
     top: 65%;
 }
-
 .coTPassword {
-	position: fixed;
+    position: fixed;
     padding: 2em;
     top: 68%;
 }
-
 .coTRememberMeLabel {
-	color: white;
-	position: fixed;
+    color: white;
+    position: fixed;
     padding: 2em;
     left: 3%;
     width: "40%";
-    top: 80%;	
+    top: 80%;
 }
-
 .coTRememberMe {
-	color: white;
-	position:fixed;
-	top: 79%;	
-	left:5%;
+    color: white;
+    position: fixed;
+    top: 79%;
+    left: 5%;
 }
-
-.coTRememberMe label
-{
-	color:white;
-	top:77%;
+.coTRememberMe label {
+    color: white;
+    top: 77%;
 }
-
 .coTLoginButton {
-	position: fixed;
+    position: fixed;
     padding: 2em;
-    left:25%;
+    left: 25%;
     top: 85%;
 }
-
 .cotWhiteLabel {
-	color: white;
+    color: white;
 }
-
 .cotFilterArea {
-    border-radius: 25px;
-    border: 2px solid blue;
-    padding: 20px;
-    width: 60%;
-    color : blue ;
+    border-radius: 20px;
+    border: 1px solid blue;
+    margin: 3px;
+    color: blue;
 }
 
+.coFilterLabel
+{
+	margin-left:10px;
+}
 .coTWhiteCell {
-	 background-image: "../Images/WhiteButton.png";
-	 color: "#498bca";
+    background-image: "../Images/WhiteButton.png";
+    color: "#498bca";
 }
-
 .coTBlueCell {
-	 background-image: "../Images/BlueButton.png";
-	 color: "white";
+    background-image: "../Images/BlueButton.png";
+    color: "white";
 }
-
 .coTshifted {
-/*  background-image: "../Images/Blue-Button.png";	 */
-  color: "white";
-  position: relative;
-  left: "40px";
-  top: "60px";
+    /*  background-image: "../Images/Blue-Button.png";	 */
+    color: "white";
+    position: relative;
+    left: "40px";
+    top: "60px";
 }
-
 .coTshiftedBlue {
-/*  background-image: "../Images/White-Button.png";	*/
-  color: "blue";
-  position: relative;
-  left: "40px";
-  top: "60px";
+    /*  background-image: "../Images/White-Button.png";	*/
+    color: "blue";
+    position: relative;
+    left: "40px";
+    top: "60px";
 }
-
 .coTBlueSquare {
     border-radius: 25px;
-    background: #275b8b  !important; /* #498bca; */
-    border: 2px solid  #16598a;
+    background: #275b8b !important;
+    /* #498bca; */
+    border: 2px solid #16598a;
     width: 120px;
-    height: 150px; 
+    height: 150px;
 }
-
 .coTWhiteSquare {
     border-radius: 25px;
-    background:  white;
-    border: 2px solid  #16598a;
+    background: white;
+    border: 2px solid #16598a;
     width: 120px;
-    height: 150px; 
+    height: 150px;
 }
-
 .coTSmallBlueSquare {
     border-radius: 25px;
-    background: #275b8b  !important; /* #498bca; */
-    border: 2px solid  #16598a;
+    background: #275b8b !important;
+    /* #498bca; */
+    border: 2px solid #16598a;
     width: 120px;
-    height: 150px; 
+    height: 150px;
 }

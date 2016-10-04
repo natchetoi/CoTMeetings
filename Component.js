@@ -38,66 +38,66 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 				targetAggregation: "masterPages",
 				targetControl: "idAppControl",
 				subroutes: [{
-				pattern: "Master",
-				name: "main",
-				view: "Master",
-				viewLevel: "1",
-				targetAggregation: "masterPages"
-				},{
-				pattern: "myMeetings",
-				name: "mymeetings",
-				view: "myMeetings",
-				viewLevel: "2",
-				targetAggregation: "detailPages"
-				},{
-				pattern: "NewMeeting",
-				name: "NewMeeting",
-				view: "NewMeeting",
-				viewLevel: "3",
-				targetAggregation: "detailPages"
-				},{
-				pattern: "FindRoom",
-				name: "FindRoom",
-				view: "FindRoom",
-				viewLevel: "4",
-				targetAggregation: "detailPages"
-				},{
-				pattern: "RoomDetails/{room}",
-				name: "RoomDetails",
-				view: "RoomDetails",
-				viewLevel: "5",
-				targetAggregation: "detailPages"
-				},{
-				pattern: "FloorPlan3d",
-				name: "FloorPlan3d",
-				view: "FloorPlan3d",
-				viewLevel: "5",
-				targetAggregation: "detailPages"
-				},{
-				pattern: "SelectPerson",
-				name: "SelectPerson",
-				view: "SelectPerson",
-				viewLevel: "4",
-				targetAggregation: "detailPages"
-				},{
-				pattern: "Calendar",
-				name: "Calendar",
-				view: "Calendar",
-				viewLevel: "4",
-				targetAggregation: "detailPages"
-				},{
-				pattern: "Scheduler",
-				name: "Scheduler",
-				view: "Scheduler",
-				viewLevel: "4",
-				targetAggregation: "detailPages"
-//				targetControl: "idAppControl"
-				},{
+					pattern: "Master",
+					name: "main",
+					view: "Master",
+					viewLevel: "1",
+					targetAggregation: "masterPages"
+				}, {
+					pattern: "myMeetings",
+					name: "mymeetings",
+					view: "myMeetings",
+					viewLevel: "2",
+					targetAggregation: "detailPages"
+				}, {
+					pattern: "NewMeeting",
+					name: "NewMeeting",
+					view: "NewMeeting",
+					viewLevel: "3",
+					targetAggregation: "detailPages"
+				}, {
+					pattern: "FindRoom",
+					name: "FindRoom",
+					view: "FindRoom",
+					viewLevel: "4",
+					targetAggregation: "detailPages"
+				}, {
+					pattern: "RoomDetails/{room}",
+					name: "RoomDetails",
+					view: "RoomDetails",
+					viewLevel: "5",
+					targetAggregation: "detailPages"
+				}, {
+					pattern: "FloorPlan3d",
+					name: "FloorPlan3d",
+					view: "FloorPlan3d",
+					viewLevel: "5",
+					targetAggregation: "detailPages"
+				}, {
+					pattern: "SelectPerson",
+					name: "SelectPerson",
+					view: "SelectPerson",
+					viewLevel: "4",
+					targetAggregation: "detailPages"
+				}, {
+					pattern: "Calendar",
+					name: "Calendar",
+					view: "Calendar",
+					viewLevel: "4",
+					targetAggregation: "detailPages"
+				}, {
+					pattern: "Scheduler",
+					name: "Scheduler",
+					view: "Scheduler",
+					viewLevel: "4",
+					targetAggregation: "detailPages"
+						//				targetControl: "idAppControl"
+				}, {
 					pattern: "{entity}/:tab:",
 					name: "detail",
 					view: "Detail"
 				}]
-			},{ 
+			}, {
 				pattern: "LoginView",
 				name: "LoginView",
 				view: "LoginView",
@@ -110,7 +110,7 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 					viewLevel: "1",
 					targetAggregation: "masterPages"
 				}]
-			},{
+			}, {
 				name: "catchallMaster",
 				view: "Master",
 				targetAggregation: "masterPages",
@@ -126,17 +126,17 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 						viewName: "App",
 						viewId: "mymeetings",
 						viewLevel: "1"
-					}, 
+					},
 					loginview: {
 						viewName: "LoginView",
 						viewId: "loginview",
-						viewLevel: "1"						
-					}, 
+						viewLevel: "1"
+					},
 					NewMeeting: {
 						viewName: "NewMeeting",
 						viewId: "NewMeeting",
-						viewLevel: "1"						
-					} 
+						viewLevel: "1"
+					}
 				}
 			}]
 		}
@@ -177,8 +177,8 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 				oHeader.Authorization = "Basic " + btoa(appContext.registrationContext.user + ":" + appContext.registrationContext.password);
 			}
 			oModel = new sap.ui.model.odata.ODataModel(url, true, null, null, oHeader);
-			oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);  // Editable
-			
+			oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay); // Editable
+
 			this._setModel(oModel);
 		} else {
 			var sServiceUrl = mConfig.serviceConfig.serviceUrl;
@@ -338,13 +338,13 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 	 */
 	_setModel: function(oModel) {
 		this.setModel(oModel);
-		
+
 		this.createMeeting();
-		 
-        var oRoomsModel = new sap.ui.model.json.JSONModel('model/API_Rooms.json');
-        this.setModel(oRoomsModel, "rooms");	
-        
-        this.createMeeting();
+
+		var oRoomsModel = new sap.ui.model.json.JSONModel('model/API_Rooms.json');
+		this.setModel(oRoomsModel, "rooms");
+
+		this.createMeeting();
 
 		// set device model
 		var oDeviceModel = new sap.ui.model.json.JSONModel({
@@ -360,128 +360,129 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 
 		this.getRouter().initialize();
 	},
-	
+
 	createMeeting: function() {
-			var d = new Date();
-			var start = d.getHours() + 1;
-			var end   = d.getHours() + 2;
-			start = start + ":00";
-			end = end + ":00";
-			var today = d.getMonth() + "/" + d.getDate()+ "/" + d.getFullYear();
-			
-			var meeting = {
-				"MeetingSubject": "",
-				"Start": start,
-				"End": end,
-				"Date": today,
-				"RoomName": "",
-				"AltID": "1",
-				"MeetingComment": "",
-				"Organizer": "Yuri Natchetoi", 
-				"Attendees" : []
+		var d = new Date();
+		var start = d.getHours() + 1;
+		var end = d.getHours() + 2;
+		start = start + ":00";
+		end = end + ":00";
+		var today = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
-			};
-			
-			var oModel = new sap.ui.model.json.JSONModel();
-            oModel.setData(meeting);  
-           // sap.ui.getCore()
-            this.setModel(oModel, "new");
-            
-            var attendees = {"AttendeeSet": [{
-                PersonID: "1",
-                selected: true,
-                firstName: "Yuri",
-                lastName: "Natchetoi",
-				Position : "Mobility Consultant",
-				workEmail: "ynatche@toronto.ca"                
-            }]};
-            
-			var oAttendeesModel = new sap.ui.model.json.JSONModel();
-			oAttendeesModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay); 
-            oAttendeesModel.setData(attendees);  
-            this.setModel(oAttendeesModel, "att");
+		var meeting = {
+			"MeetingSubject": "",
+			"Start": start,
+			"End": end,
+			"Date": today,
+			"RoomName": "",
+			"AltID": "1",
+			"MeetingComment": "",
+			"Organizer": "Yuri Natchetoi",
+			"Attendees": []
 
+		};
+
+		var oModel = new sap.ui.model.json.JSONModel();
+		oModel.setData(meeting);
+		// sap.ui.getCore()
+		this.setModel(oModel, "new");
+
+		var attendees = {
+			"AttendeeSet": [{
+				PersonID: "1",
+				selected: true,
+				firstName: "Yuri",
+				lastName: "Natchetoi",
+				Position: "Mobility Consultant",
+				workEmail: "ynatche@toronto.ca"
+			}]
+		};
+
+		var oAttendeesModel = new sap.ui.model.json.JSONModel();
+		oAttendeesModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+		oAttendeesModel.setData(attendees);
+		this.setModel(oAttendeesModel, "att");
 
 	},
-	
-	_getRoomsJSON: function() {
-	    var url = "http://fusionrv.corp.toronto.ca//Fusion/APIService/rooms";	
-// Content-Type: application/json
 
-		
+	_getRoomsJSON: function() {
+		var url = "http://fusionrv.corp.toronto.ca//Fusion/APIService/rooms";
+		// Content-Type: application/json
+
 	},
 
 	_getAppointmentsJSON: function() {
-		var url = "http://fusionrv.corp.toronto.ca//Fusion/APIService/appointments/?Start=7/27/2016%203:30%20PM&room=860ae2ee-2620-4035-b36b-c4ff67d1124a&duration=30";
-		
-// Content-Type: application/json
+		var url =
+			"http://fusionrv.corp.toronto.ca//Fusion/APIService/appointments/?Start=7/27/2016%203:30%20PM&room=860ae2ee-2620-4035-b36b-c4ff67d1124a&duration=30";
+
+		// Content-Type: application/json
 
 	},
-	
+
 	_getRoomsXML: function() {
-        var aData = jQuery.ajax({
-                 url: "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/",  
-                 //url: "http://s248551470.onlinehome.us/rooms.json",
-                  type : "GET",
-            	  //data: param,
-                  dataType: "xml",
-                  //dateType: "json",
-                  //dataType: 'jsonp',
-				  //contentType : "application/json",
-                  async: true, 
-                  crossDomain : true,
-            success: function(data, textStatus, jqXHR) { 
-        
-                jQuery.sap.require("sap.m.MessageBox");
-              //sap.m.MessageBox.show("Hello from sap messagebox" + data);
-                        
-                var rooms = [];   
-                var list = $(data).find('API_Rooms');
+		var aData = jQuery.ajax({
+			url: "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/",
+			//url: "http://s248551470.onlinehome.us/rooms.json",
+			type: "GET",
+			//data: param,
+			dataType: "xml",
+			//dateType: "json",
+			//dataType: 'jsonp',
+			//contentType : "application/json",
+			async: true,
+			crossDomain: true,
+			success: function(data, textStatus, jqXHR) {
 
-                var api_rooms = list[0];
-                var roomList = api_rooms.childNodes;
-                var n = roomList.length;
-                  
-                var room = {};
-                var roomValue;
-                var roomTag;
-                  for(var i = 0; i< n; i++) {
-                        room = roomList[i];
-                      var roomObject = {};
+				jQuery.sap.require("sap.m.MessageBox");
+				//sap.m.MessageBox.show("Hello from sap messagebox" + data);
 
-                      var descr = room.childNodes[0].textContent;
-                      var id = room.childNodes[1].textContent;
-                      var name = room.childNodes[2].textContent;
-                      var roomObject =  {
-                        "MeetingSubject" : descr,
-                        "Start" : id,
-                        "RoomName" : name
-                      };
-                        rooms.push(roomObject);
-                 } 
-                  
- //                var appSet = { "AppointmentSet" : rooms };     
-                        
-                var oModel = new sap.ui.model.json.JSONModel();
-                oModel.setData(rooms);
-                sap.ui.getCore().setModel(oModel, "rooms");  
-                
- //             oModel.setData(data);  // fill the received data into the JSONModel
-//               sap.ui.getCore().setModel(oModel, "glRooms");  // Store in the Model
-                  
-//                var testStr = oModel.getProperty("/API_Rooms");
-//                alert("attr value OF ROOM NAME is: "+testStr);
-      /*          if(appC.restrictions === undefined) {
-                        appC.restrictions = new Array();
-                  } */		
-            },
-            error: function(data, textStatus, jqXHR) {
-                    alert("Error occured"+data.statusText + textStatus);
-//                     sap.m.MessageBox.show("Error");
-            }
-        });
+				var rooms = [];
+				var list = $(data).find('API_Rooms');
+
+				var api_rooms = list[0];
+				var roomList = api_rooms.childNodes;
+				var n = roomList.length;
+
+				var room = {};
+				var roomValue;
+				var roomTag;
+				for (var i = 0; i < n; i++) {
+					room = roomList[i];
+					var roomObject = {};
+
+					var descr = room.childNodes[0].textContent;
+					var id = room.childNodes[1].textContent;
+					var name = room.childNodes[2].textContent;
+					var roomObject = {
+						"MeetingSubject": descr,
+						"Start": id,
+						"RoomName": name
+					};
+					rooms.push(roomObject);
+				}
+
+				//                var appSet = { "AppointmentSet" : rooms };     
+
+				var oModel = new sap.ui.model.json.JSONModel();
+				oModel.setData(rooms);
+				sap.ui.getCore().setModel(oModel, "rooms");
+
+				//             oModel.setData(data);  // fill the received data into the JSONModel
+				//               sap.ui.getCore().setModel(oModel, "glRooms");  // Store in the Model
+
+				//                var testStr = oModel.getProperty("/API_Rooms");
+				//                alert("attr value OF ROOM NAME is: "+testStr);
+				/*          if(appC.restrictions === undefined) {
+				                  appC.restrictions = new Array();
+				            } */
+			},
+			error: function(data, textStatus, jqXHR) {
+				alert("Error occured" + data.statusText + textStatus);
+				//                     sap.m.MessageBox.show("Error");
+			}
+		});
 	},
-	
+
 	/**
 	 * start application mock server
 	 * param{String} sServiceUrl mock server url
