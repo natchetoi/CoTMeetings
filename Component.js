@@ -344,6 +344,10 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 		var oRoomsModel = new sap.ui.model.json.JSONModel('model/API_Rooms.json');
 		this.setModel(oRoomsModel, "rooms");
 
+		var oRoomsModel2 = new sap.ui.model.json.JSONModel('model/API_Rooms.json');
+		this.setModel(oRoomsModel2, "all_rooms");
+
+
 		this.createMeeting();
 
 		// set device model
@@ -465,7 +469,11 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 
 				var oModel = new sap.ui.model.json.JSONModel();
 				oModel.setData(rooms);
-				sap.ui.getCore().setModel(oModel, "rooms");
+				sap.ui.getCore().setModel(oModel, "all_rooms");
+
+				var oModel2 = new sap.ui.model.json.JSONModel();
+				oModel2.setData(rooms);
+				sap.ui.getCore().setModel(oModel2, "rooms");
 
 				//             oModel.setData(data);  // fill the received data into the JSONModel
 				//               sap.ui.getCore().setModel(oModel, "glRooms");  // Store in the Model

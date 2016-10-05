@@ -44,6 +44,7 @@ sap.ui.define([
 					loginButton.focus();
 				}
 			});
+			
 			jQuery.sap.delayedCall(500, this, function() {
 				loginButton.focus();
 			});
@@ -120,7 +121,7 @@ sap.ui.define([
 		onLogin: function(oEvent) {
 			var self = this;
 			sap.m.MessageToast.show("Logging in..", {
-				duration: "2000",
+				duration: "200",
 				width: "15em",
 				my: "center top",
 				at: "center top",

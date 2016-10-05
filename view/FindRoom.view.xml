@@ -122,7 +122,8 @@
 												<Image src="http://maps.googleapis.com/maps/api/staticmap?center=Toronto,+Canada,&amp;zoom=13&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;key=AIzaSyCqifMn0_bk8Vp_QXyfRSiS7GJcvhRwdm4&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C,55+John+Toronto+ON+Canada55" height="300px"/>
 											</Panel>
 											<Image width="100%" height="100%" id="__image1" src="Images/MH15.png"/>
-											<sap.ui.vbm:GeoMap xmlns:sap.ui.vbm="sap.ui.vbm" id="__map0" initialPosition="43.6460466;-79.3909029;2"/>
+											<html:iframe src="http://map.toronto.ca/maps/map.jsp?app=TorontoMaps_v2" width="100%" height="300px" />
+											<!-- sap.ui.vbm:GeoMap xmlns:sap.ui.vbm="sap.ui.vbm" id="__map0" initialPosition="43.6460466;-79.3909029;2"/ -->
 										</pages>
 									</Carousel>
 								</content>

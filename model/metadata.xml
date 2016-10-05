@@ -15,6 +15,7 @@
                 <Property Name="Capacity" Type="Edm.Int16"/>
                 <Property Name="x" Type="Edm.Int16"/>
                 <Property Name="y" Type="Edm.Int16"/>
+                <Property Name="Distance" Type="Edm.Int16"/>
                 <Property Name="Image" Type="Edm.String"/>
                 <Property Name="Building" Type="Edm.String"/>
                 <Property Name="Floor" Type="Edm.Int16"/>
@@ -46,6 +47,7 @@
                 <Property Name="MeetingSubject" Type="Edm.String"/>
                 <Property Name="MeetingComment" Type="Edm.String"/>
                 <Property Name="RoomID" Type="Edm.String"/>
+                <Property Name="Date" Type="Edm.String"/>
                 <Property Name="End" Type="Edm.String"/>
                 <Property Name="Start" Type="Edm.String"/>
                 <Property Name="TmeZoneId" Type="Edm.String"/>

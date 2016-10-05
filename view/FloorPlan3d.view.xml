@@ -1,14 +1,4 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="fusion.controller.FloorPlan3d">
-<html:style>
-#__xmlview9--Floor3dPageId-title-inner {
-	color: white;
-	position: fixed;
-    left: 190px;
-    top: 10px;
-    width: 120px
-}
-</html:style>	
-	
 	<App>
 		<pages>
 			<Page title="MH 15 floor" id="Floor3dPageId" >

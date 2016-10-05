@@ -9,9 +9,22 @@ sap.ui.define([
 	//, formatter
 ) {
 	"use strict";
+	
+	var filter = {};
 
 	return Controller.extend("fusion.controller.FindRoom", {
 		//        formatter : formatter,
+		
+		FilterConfig: {
+			distance: 500,
+			capacity: 1,
+			equipment: false,
+			wifi: false,
+			projector: false,
+			computer: false
+		},
+		
+
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -30,14 +43,6 @@ sap.ui.define([
 		//
 		//	},
 
-		FilterConfig: {
-			distance: 100,
-			capacity: 100,
-			equipment: false,
-			wifi: false,
-			projector: false,
-			computer: false
-		},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
@@ -182,6 +187,47 @@ sap.ui.define([
 			}
 
 		},
+				
+		onQuickFilter: function(oEvent) {
+		   var sKey = oEvent.getParameter("key"),
+					oFilter = this._mFilters[sKey],
+					oTable = this.byId("table"),
+					oBinding = oTable.getBinding("items");
+				if (oFilter) {
+					oBinding.filter(oFilter);
+				} else {
+					oBinding.filter([]);	
+				}
+
+		},
+		
+		required: function(req, has) {
+			if(req && !has)	{ return false; }
+			else { return true; }
+		},
+		
+		findRooms: function() {
+		    var shortList = [];
+		    var roomModel = 	this.getView().getModel("all_rooms");
+		    var longList = roomModel.getData();
+		    
+		    for(var i=0; i<longList.length; i++) {
+		    	var room = longList[i];
+		    	if((room.Capacity >= this.FilterConfig.capacity) &&
+		    	   (room >= this.FilterConfig.distance) &&
+		    	   this.required(room.Conference, this.FilterConfig.equipment) &&
+		    	   this.required(room.WiFi, this.FilterConfig.wifi) &&
+		    	   this.required(room.Projector, this.FilterConfig.projector) &&
+		    	   this.required(room.Computer, this.FilterConfig.computer)) {
+		    		  shortList[i] = room; 
+		    	}
+		    }
+			
+			var oModel = new sap.ui.model.json.JSONModel();
+			oModel.setData(shortList);
+			this.getView().setModel(oModel, "rooms");
+
+		},
 
 		createImageMap: function() {
 			/*       	var oMap = new sap.ui.commons.ImageMap();
@@ -279,11 +325,8 @@ sap.ui.define([
 				"room": roomId,
 				"RoomName": window.coTShared.att
 			}, true);
-		},
-
-		findRooms: function() {
-
 		}
+
 	});
 
 });
