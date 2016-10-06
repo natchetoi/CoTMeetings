@@ -63,59 +63,12 @@
 											</sap.ui.layout:content>
 										</sap.ui.layout:VerticalLayout>
 									</Panel>
-									<Table noDataText="Filtered meeting rooms" id="roomTable">
+									<List headerText="Found rooms" noDataText="No rooms found" id="listFilteredRooms" items="{rooms>/}" mode="SingleSelectLeft" includeItemInSelection="true"
+										growingScrollToLoad="true" growingThreshold="5" growing="true" selectionChange="onFilteredRoomsSelectionChanged">
 										<items>
-											<ColumnListItem counter="0" id="__item1">
-												<cells>
-													<Panel class="coTWhiteSquare" press="pressRoom11">
-														<content>
-															<sap.ui.layout:VerticalLayout>
-																<Link text="{rooms>/1/RoomName}" press="pressRoom11" id="l1"/>
-																<Link text="Capacity: {rooms>/1/Capacity}" press="pressRoom11" id="o1"/>
-															</sap.ui.layout:VerticalLayout>
-														</content>
-													</Panel>
-													<Panel class="coTBlueSquare" press="pressRoom12">
-														<content>
-															<sap.ui.layout:VerticalLayout>
-																<Link text="{rooms>/2/RoomName}" press="pressRoom12"/>
-																<Link text="Capacity: {rooms>/2/Capacity}" press="pressRoom12"/>
-															</sap.ui.layout:VerticalLayout>
-														</content>
-													</Panel>
-												</cells>
-											</ColumnListItem>
-											<ColumnListItem counter="0" id="__item2">
-												<cells>
-													<Panel class="coTBlueSquare" press="pressRoom21">
-														<sap.ui.layout:VerticalLayout>
-															<Link text="{rooms>/3/RoomName}" press="pressRoom21"/>
-															<Link text="Capacity: {rooms>/3/Capacity}" press="pressRoom21"/>
-														</sap.ui.layout:VerticalLayout>
-													</Panel>
-													<Panel class="coTWhiteSquare" press="pressRoom22">
-														<sap.ui.layout:VerticalLayout>
-															<Link text="{rooms>/4/RoomName}" press="pressRoom22"/>
-															<Link text="Capacity: {rooms>/4/Capacity}" press="pressRoom22"/>
-														</sap.ui.layout:VerticalLayout>
-													</Panel>
-												</cells>
-											</ColumnListItem>
+											<StandardListItem title="{rooms>RoomName}" description="Capacity: {rooms>Capacity}" />
 										</items>
-										<columns>
-											<Column id="__column0" width="150px" resizable="false" flexible="false">
-												<header>
-													<Label text="" id="__label5" height="1px"/>
-												</header>
-											</Column>
-											<Column id="__column3" width="150px" resizable="false" flexible="false">
-												<header>
-													<Label text="" id="__label6" height="1px"/>
-												</header>
-											</Column>
-											<Column id="__column4"/>
-										</columns>
-									</Table>
+									</List>
 								</content>
 							</IconTabFilter>
 							<IconTabFilter text="Location" iconColor="Neutral" icon="sap-icon://map-2" id="__filter5">
@@ -136,8 +89,7 @@
 							</IconTabFilter>
 							<IconTabFilter text="Favorites" iconColor="Neutral" icon="sap-icon://favorite-list" id="__filter2">
 								<content>
-									<List noDataText="Drop list items here" id="_listFavorites" 
-										mode="SingleSelectLeft" includeItemInSelection="true"
+									<List noDataText="Drop list items here" id="_listFavorites" mode="SingleSelectLeft" includeItemInSelection="true"
 										selectionChange="onFavoritesSelectionChanged">
 										<items>
 											<StandardListItem type="Active" counter="0" title="Simcoe 14 seats" description="Projector, conference calls" icon="sap-icon://projector"

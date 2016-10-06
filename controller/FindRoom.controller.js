@@ -208,18 +208,30 @@ sap.ui.define([
 				this.findRooms();
 			}
 		},
-		
-		onFavoritesSelectionChanged : function(oControlEvent){
+
+		onFavoritesSelectionChanged: function(oControlEvent) {
 			var oList = oControlEvent.getSource();
 			var selectedRoom = oList.getSelectedItem().getTitle();
-			if(window.coTShared === undefined){
+			if (window.coTShared === undefined) {
 				window.coTShared = {};
 			}
-			if(window.coTShared.meeting === undefined){
+			if (window.coTShared.meeting === undefined) {
 				window.coTShared.meeting = {};
 			}
-			window.coTShared.meeting.favoriteRoom = selectedRoom;
-		},          
+			window.coTShared.meeting.room = selectedRoom;
+		},
+
+		onFilteredRoomsSelectionChanged: function(oControlEvent) {
+			var oList = oControlEvent.getSource();
+			var selectedRoom = oList.getSelectedItem().getTitle();
+			if (window.coTShared === undefined) {
+				window.coTShared = {};
+			}
+			if (window.coTShared.meeting === undefined) {
+				window.coTShared.meeting = {};
+			}
+			window.coTShared.meeting.room = selectedRoom;
+		},
 
 		onQuickFilter: function(oEvent) {
 			var sKey = oEvent.getParameter("key"),
@@ -249,13 +261,15 @@ sap.ui.define([
 
 			for (var i = 0; i < longList.length; i++) {
 				var room = longList[i];
-				if ((room.Capacity >= this.FilterConfig.capacity) &&
-					(room >= this.FilterConfig.distance) &&
-					this.required(room.Conference, this.FilterConfig.equipment) &&
-					this.required(room.WiFi, this.FilterConfig.wifi) &&
-					this.required(room.Projector, this.FilterConfig.projector) &&
-					this.required(room.Computer, this.FilterConfig.computer)) {
-					shortList[i] = room;
+				var capacity = room.Capacity >= this.FilterConfig.capacity;
+				var distance = room.Distance <= this.FilterConfig.distance;
+				var equipment = this.required(this.FilterConfig.equipment, room.Conference);
+				var wifi = this.required(this.FilterConfig.wifi, room.WiFi);
+				var projector = this.required(this.FilterConfig.projector, room.Projector);
+				var computer = this.required(this.FilterConfig.computer, room.Computer);
+
+				if (capacity && distance && equipment && wifi && projector && computer) {
+					shortList.push(room);
 				}
 			}
 
