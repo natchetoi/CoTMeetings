@@ -202,23 +202,50 @@ sap.ui.define([
 		},
 
 		loadMeetings: function() {
-			var oModel = new sap.ui.model.json.JSONModel("model/AppointmentSet.json");
-			this.getView().setModel(oModel, "meetings");
+			var meetModel = this.getView().getModel("all_meetings");
+			var longList = meetModel.getData();
+
+			var calendarModel = new sap.ui.model.json.JSONModel();
+			calendarModel.setData({
+				startDate: new Date("2016", "10", "1"),
+				meetings: longList,
+				people: [{
+					name: "Me",
+					appointments: longList,
+					headers: longList
+				}]
+			});
+
+			this.getView().setModel(calendarModel);
+		},
+
+		buildDate: function(oTime, oDate) {
+			var result = new Date(Date.parse(oDate + " " + oTime));
+			return result;
 		},
 
 		onMeetingSelected: function(oEvent) {
 			var selectedMeet = oEvent.getSource().getBindingContext("meetings").getObject();
-			
-			var bReplace = jQuery.device.is.phone ? false : true;
-
 			var id = selectedMeet.AltID;
+			this.navigateToMeetingView(id);
+		},
+
+		onAppointmentSelect: function(oEvent) {
+			var oAppointment = oEvent.getParameter("appointment").getBindingContext().getObject();
+			var id = oAppointment.AltID;
+			this.navigateToMeetingView(id);
+		},
+
+		navigateToMeetingView: function(id) {
+			var bReplace = jQuery.device.is.phone ? false : true;
 			var path = "AppointmentSet('" + id + "')";
-			
+
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			router.navTo("detail", {
 				from: "master",
 				entity: path
 			}, bReplace);
 		}
+
 	});
 });

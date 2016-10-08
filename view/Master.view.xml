@@ -1,4 +1,5 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" displayBlock="true" controllerName="fusion.controller.Master">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" xmlns:unified="sap.ui.unified"
+	displayBlock="true" controllerName="fusion.controller.Master">
 	<Page id="page" title="MY MEETINGS" class="coTMyMeetings">
 		<!-- subHeader>
 			<Bar id="searchBar">
@@ -13,15 +14,45 @@
 				<items>
 					<IconTabFilter text="List" icon="sap-icon://list" iconColor="Neutral">
 						<content>
-							<List id="listMeetings" noDataText="No meetings" items="{meetings>/}" selectionChange="onMeetingSelected">
+							<List id="listMeetings" noDataText="No meetings" items="{/meetings}" selectionChange="onMeetingSelected">
 								<items>
-									<ObjectListItem title="{meetings>MeetingSubject}" type="Active" press="onMeetingSelected" number="{meetings>Start}" numberUnit="{meetings>Date}" icon="sap-icon://appointment">
+									<ObjectListItem title="{MeetingSubject}" type="Active" press="onMeetingSelected" number="{Start}" numberUnit="{Date}"
+										icon="sap-icon://appointment">
 										<attributes>
-											<ObjectAttribute text="{meetings>MeetingComment}"/>
+											<ObjectAttribute text="{MeetingComment}"/>
 										</attributes>
 									</ObjectListItem>
 								</items>
 							</List>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="Calendar" icon="sap-icon://calendar" iconColor="Neutral">
+						<content>
+							<PlanningCalendar id="planningCalendar" showRowHeaders="false" viewKey="D" startDate="{/startDate}" rows="{/people}" appointmentSelect="onAppointmentSelect">
+								<toolbarContent>
+									<Title text="Title" titleStyle="H4"/>
+								</toolbarContent>
+								<views>
+									<PlanningCalendarView key="A" intervalType="Hour" description="hours view" intervalsS="2" intervalsM="4" intervalsL="6"
+										showSubIntervals="true"></PlanningCalendarView>
+									<PlanningCalendarView key="D" intervalType="Day" description="days view" intervalsS="1" intervalsM="3" intervalsL="5"
+										showSubIntervals="true"></PlanningCalendarView>
+									<PlanningCalendarView key="M" intervalType="Month" description="months view" intervalsS="1" intervalsM="2" intervalsL="3"
+										showSubIntervals="true"></PlanningCalendarView>
+								</views>
+								<rows>
+									<PlanningCalendarRow appointments="{appointments}">
+										<appointments>
+											<unified:CalendarAppointment startDate="{ parts: ['Start', 'Date'], formatter: '.buildDate'}"
+												endDate="{ parts: ['End', 'Date'], formatter: '.buildDate'}" title="{MeetingSubject}" text="{MeetingComment}"></unified:CalendarAppointment>
+										</appointments>
+										<intervalHeaders>
+											<unified:CalendarAppointment startDate="{ parts: ['Start', 'Date'], formatter: '.buildDate'}"
+												endDate="{ parts: ['End', 'Date'], formatter: '.buildDate'}" title="{MeetingSubject}"></unified:CalendarAppointment>
+										</intervalHeaders>
+									</PlanningCalendarRow>
+								</rows>
+							</PlanningCalendar>
 						</content>
 					</IconTabFilter>
 				</items>
@@ -29,7 +60,8 @@
 		</content>
 		<footer>
 			<Toolbar>
-				<Button text="Calendar" width="110px" id="__button3" press="calendar" icon="sap-icon://calendar" tooltip="My Calendar View" css="background-color:#498bca" type="Emphasized"/>
+				<Button text="Calendar" width="110px" id="__button3" press="calendar" icon="sap-icon://calendar" tooltip="My Calendar View"
+					css="background-color:#498bca" type="Emphasized"/>
 				<Button text="New" width="100px" id="newButtonId" press="addMeeting" icon="sap-icon://add-contact" type="Emphasized"/>
 			</Toolbar>
 		</footer>
