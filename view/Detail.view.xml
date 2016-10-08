@@ -1,4 +1,4 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"  controllerName="fusion.view.Detail" id="DetailViewId" >
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"  controllerName="fusion.controller.Detail" id="DetailViewId" >
 	<Page navButtonPress="onNavBack" class="sapUiFioriObjectPage" title="{i18n>detailTitle}" id="DetailPageId">
 		<content>
 			<ObjectHeader title="{MeetingSubject}" number="{Start}" numberUnit="{End}" class="coT">

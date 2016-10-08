@@ -29,7 +29,10 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 				viewPath: "fusion.view",
 				targetAggregation: "detailPages",
 				clearTarget: false,
-				transition: "flip"
+				transition: "flip",
+				bypassed: {
+					target: "NewMeeting"
+				}
 			},
 			routes: [{
 				pattern: "",
@@ -346,7 +349,7 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 
 		var oRoomsModel2 = new sap.ui.model.json.JSONModel('model/API_Rooms.json');
 		this.setModel(oRoomsModel2, "all_rooms");
-
+		
 
 		this.createMeeting();
 
