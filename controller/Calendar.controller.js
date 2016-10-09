@@ -5,7 +5,6 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("fusion.controller.Calendar", {
-
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -64,7 +63,12 @@ sap.ui.define([
 
 		loadMeetings: function() {
 			var meetModel = this.getView().getModel("all_meetings");
-			var longList = meetModel.getData();
+
+			var longList = Enumerable.From(meetModel.getData())
+				.Where(function(x) {
+					return x.Organizer === "Yuri" || Enumerable.From(x.Attendees).Any(function(y){return y.Name === "Yuri";});
+				})
+				.ToArray();
 
 			var calendarModel = new sap.ui.model.json.JSONModel();
 			calendarModel.setData({

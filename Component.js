@@ -2,11 +2,13 @@ jQuery.sap.declare("fusion.Component");
 jQuery.sap.require("fusion.dev.devapp");
 jQuery.sap.require("fusion.MyRouter");
 
+jQuery.sap.registerModulePath("js", "/js/");
+
 sap.ui.core.UIComponent.extend("fusion.Component", {
 	metadata: {
 		name: "Meeting planning App",
 		version: "1.0",
-		includes: [],
+		includes: ["js/linq.min.js"],
 		dependencies: {
 			libs: ["sap.m", "sap.ui.layout"],
 			components: []
