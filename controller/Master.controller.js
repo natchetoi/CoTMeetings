@@ -11,27 +11,27 @@ sap.ui.define([
 		 * It sets up the event handling for the master/detail communication and other lifecycle tasks.
 		 */
 		onInit: function() {
-			// this.oInitialLoadFinishedDeferred = jQuery.Deferred();
+			 this.oInitialLoadFinishedDeferred = jQuery.Deferred();
 
-			// this.getView().byId("list").attachEventOnce("updateFinished", function() {
-			// 	this.oInitialLoadFinishedDeferred.resolve();
-			// 	oEventBus.publish("Master", "InitialLoadFinished", {
-			// 		oListItem: this.getView().byId("list").getItems()[0]
-			// 	});
-			// }, this);
+			 this.getView().byId("list").attachEventOnce("updateFinished", function() {
+			 	this.oInitialLoadFinishedDeferred.resolve();
+			 	oEventBus.publish("Master", "InitialLoadFinished", {
+			 		oListItem: this.getView().byId("list").getItems()[0]
+			 	});
+			 }, this);
 
-			// var oEventBus = this.getEventBus();
-			// oEventBus.subscribe("Detail", "TabChanged", this.onDetailTabChanged, this);
+			 var oEventBus = this.getEventBus();
+			 oEventBus.subscribe("Detail", "TabChanged", this.onDetailTabChanged, this);
 
-			// //on phones, we will not have to select anything in the list so we don't need to attach to events
-			// if (sap.ui.Device.system.phone) {
-			// 	return;
-			// }
+			 //on phones, we will not have to select anything in the list so we don't need to attach to events
+			 if (sap.ui.Device.system.phone) {
+			 	return;
+			 }
 
-			// this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
+			 this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
 
-			// oEventBus.subscribe("Detail", "Changed", this.onDetailChanged, this);
-			// oEventBus.subscribe("Detail", "NotFound", this.onNotFound, this);
+			 oEventBus.subscribe("Detail", "Changed", this.onDetailChanged, this);
+			 oEventBus.subscribe("Detail", "NotFound", this.onNotFound, this);
 		},
 
 		onAfterRendering: function() {

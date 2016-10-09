@@ -63,6 +63,35 @@ sap.ui.define([
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
 
+		loadRooms: function () {
+		
+			var url = "model/rooms.json"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
+			var param = { "Content-Type": "application/json" };
+			var aData = jQuery.ajax({
+				              url: url,  
+			                  type : "GET",
+			            	  data: param,
+			                  dateType: "json",
+				              contentType : "application/json",
+			                  async: true, 
+			                  crossDomain : true,
+			            success: function(data, textStatus, jqXHR) { // callback called when data is 
+
+		                  var rooms = [];   
+
+			                  for(var i = 0; i< 3; i++) {
+			                    var room = {};
+			                    var roomName = room.childNodes[0].text;
+			                    rooms.push(roomName);
+			                 } 
+			            },
+			           error: function(data, textStatus, jqXHR) {
+			                    alert("Error occured"+data.statusText + textStatus);
+			                 }
+			            });		                 
+			
+	
+		}, 
 		loadData: function() {
 
 			var url = "model/API_Rooms.xml"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
@@ -136,6 +165,10 @@ sap.ui.define([
 
 			//	   	  this.getRouter().navTo("mymeetings", {}, true );
 
+		}, 
+		
+		getRooms: function() {
+			
 		}
 	});
 
