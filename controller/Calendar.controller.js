@@ -61,27 +61,98 @@ sap.ui.define([
 			}, true);
 		},
 
+		onSelectedDateChanged: function(oEvent) {
+			var selectedDate = oEvent.getParameter("value");
+			this.showDayliMeetings(new Date(selectedDate));
+		},
+
 		loadMeetings: function() {
-			var meetModel = this.getView().getModel("all_meetings");
-
-			var longList = Enumerable.From(meetModel.getData())
-				.Where(function(x) {
-					return x.Organizer === "Yuri" || Enumerable.From(x.Attendees).Any(function(y){return y.Name === "Yuri";});
-				})
-				.ToArray();
-
+			var myMeetings = this.getMyMeetings();
 			var calendarModel = new sap.ui.model.json.JSONModel();
 			calendarModel.setData({
-				startDate: new Date("2016", "10", "1"),
-				meetings: longList,
+				today: (new Date()).toLocaleDateString(),
+				meetings: myMeetings,
 				people: [{
 					name: "Me",
-					appointments: longList,
-					headers: longList
+					appointments: myMeetings,
+					headers: myMeetings
 				}]
 			});
 
 			this.getView().setModel(calendarModel);
+
+			var date = new Date(2016, 9, 5);
+			date.setHours(0, 0, 0, 0);
+			this.showDayliMeetings(date);
+		},
+
+		onMeetingSelected: function(oEvent) {
+			var bindingContext = oEvent.getSource().getBindingContext();
+			if (bindingContext === undefined) {
+				bindingContext = oEvent.getSource().getBindingContext("dayMeetings");
+			}
+			var selectedMeet = bindingContext.getObject();
+			var id = selectedMeet.AltID;
+			this.navigateToMeetingView(id);
+		},
+
+		navigateToMeetingView: function(id) {
+			var bReplace = jQuery.device.is.phone ? false : true;
+			var path = "AppointmentSet('" + id + "')";
+
+			var router = sap.ui.core.UIComponent.getRouterFor(this);
+			router.navTo("detail", {
+				from: "master",
+				entity: path
+			}, bReplace);
+		},
+
+		showDayliMeetings: function(date) {
+			var myMeetings = this.getMyMeetings();
+
+			var dateMeetings = Enumerable
+				.From(myMeetings)
+				.Where(function(x) {
+					var d1 = new Date(x.Date);
+					return d1.getFullYear() === date.getFullYear() && d1.getMonth() === date.getMonth() && d1.getDate() === date.getDate();
+				})
+				.ToArray();
+
+			var dayModel = new sap.ui.model.json.JSONModel();
+			var daysData = Enumerable
+				.RangeTo(7, 23, 1)
+				.Select(function(x) {
+					var result = date;
+					result.setHours(x, 0, 0);
+					return {
+						"Date": result.toLocaleDateString(),
+						"Start": result.toLocaleTimeString()
+					};
+				})
+				.Union(dateMeetings)
+				.OrderBy(function(x) {
+					return new Date(Date.parse(x.Date + " " + x.Start));
+				})
+				.ToArray();
+			dayModel.setData(daysData);
+			this.getView().setModel(dayModel, "dayMeetings");
+		},
+
+		getMyMeetings: function() {
+			var meetModel = this.getView().getModel("all_meetings");
+
+			var myMeetings = Enumerable.From(meetModel.getData())
+				.Where(function(x) {
+					return x.Organizer === "Yuri" || Enumerable.From(x.Attendees).Any(function(y) {
+						return y.Name === "Yuri";
+					});
+				})
+				.OrderBy(function(x) {
+					return new Date(Date.parse(x.Date + " " + x.Start));
+				})
+				.ToArray();
+
+			return myMeetings;
 		}
 
 	});

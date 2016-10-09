@@ -25,18 +25,11 @@
 							</IconTabFilter>
 							<IconTabFilter text="Daily" iconColor="Neutral" icon="sap-icon://time-entry-request" id="__filter1">
 								<content>
-									<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{new>/Date}"/>
-									<List noDataText="No data" id="__list0_copy">
+									<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{/today}" change="onSelectedDateChanged" />
+									<List noDataText="No data" id="_lstDayMeetings" items="{dayMeetings>/}" selectionChange="onMeetingSelected">
 										<items>
-											<StandardListItem counter="0" title="08:00" id="__item2_copy9"/>
-											<StandardListItem counter="0" title="09:00" id="__item0_copy"/>
-											<StandardListItem counter="0" title="10:00 Planning meeting" id="__item1_copy"/>
-											<StandardListItem counter="0" title="11:00" id="__item2_copy"/>
-											<StandardListItem counter="0" title="12:00 Lunch with colleagues" id="__item2_copy4"/>
-											<StandardListItem counter="0" title="01:00" id="__item2_copy5"/>
-											<StandardListItem counter="0" title="02:00 Mobile application demo" id="__item2_copy6"/>
-											<StandardListItem counter="0" title="03:00 SCRUM Meeting" id="__item2_copy7"/>
-											<StandardListItem counter="0" title="04:00" id="__item2_copy8"/>
+											<ObjectListItem title="{dayMeetings>Start} {dayMeetings>MeetingSubject}" type="Active" press="onMeetingSelected">
+											</ObjectListItem>
 										</items>
 									</List>
 								</content>
