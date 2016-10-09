@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
-], function (Controller, History) {
+	"sap/ui/core/routing/History"
+], function(Controller, History) {
 	"use strict";
 
 	return Controller.extend("fusion.controller.Calendar", {
@@ -29,9 +29,9 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf fusion.view.Calendar
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+		onAfterRendering: function() {
+			this.loadMeetings();
+		},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -40,26 +40,46 @@ sap.ui.define([
 		//	onExit: function() {
 		//
 		//	}
-		
-		getRouter : function () {
+
+		getRouter: function() {
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
-		
-		onNavBack: function (oEvent) {
+
+		onNavBack: function(oEvent) {
 			// var oHistory, sPreviousHash;
 			// oHistory = History.getInstance();
 			// sPreviousHash = oHistory.getPreviousHash();
 			// if (sPreviousHash !== undefined) {
 			// 	window.history.go(-1);
 			// } else {
-				this.getRouter().navTo("NewMeeting", {}, true );
+			this.getRouter().navTo("NewMeeting", {}, true);
 			// }
-		}, 		
-		
-		drillDown: function (oEvent) {
-			this.getRouter().navTo("Detail", { ID:"1" }, true );
+		},
+
+		drillDown: function(oEvent) {
+			this.getRouter().navTo("Detail", {
+				ID: "1"
+			}, true);
+		},
+
+		loadMeetings: function() {
+			var meetModel = this.getView().getModel("all_meetings");
+			var longList = meetModel.getData();
+
+			var calendarModel = new sap.ui.model.json.JSONModel();
+			calendarModel.setData({
+				startDate: new Date("2016", "10", "1"),
+				meetings: longList,
+				people: [{
+					name: "Me",
+					appointments: longList,
+					headers: longList
+				}]
+			});
+
+			this.getView().setModel(calendarModel);
 		}
-	
+
 	});
 
 });
