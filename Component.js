@@ -8,7 +8,7 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 	metadata: {
 		name: "Meeting planning App",
 		version: "1.0",
-		includes: ["js/linq.min.js"],
+		includes: ["js/linq.min.js", "js/date.js", "js/en-US.js"],
 		dependencies: {
 			libs: ["sap.m", "sap.ui.layout"],
 			components: []

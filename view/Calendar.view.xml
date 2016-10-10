@@ -1,5 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="fusion.controller.Calendar">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" controllerName="fusion.controller.Calendar">
 	<html:style>
 		#__xmlview5--CalendarPageId-title-inner { color: white; position: fixed; left: 190px; top: 10px; width: 120px }
 	</html:style>
@@ -13,8 +12,7 @@
 								<content>
 									<List id="listMeetings" noDataText="No meetings" items="{/meetings}" selectionChange="onMeetingSelected">
 										<items>
-											<ObjectListItem title="{MeetingSubject}" type="Active" press="onMeetingSelected" number="{Start}" numberUnit="{Date}"
-												icon="sap-icon://appointment">
+											<ObjectListItem title="{MeetingSubject}" type="Active" press="onMeetingSelected" number="{Start}" numberUnit="{Date}" icon="sap-icon://appointment">
 												<attributes>
 													<ObjectAttribute text="{MeetingComment}"/>
 												</attributes>
@@ -25,84 +23,62 @@
 							</IconTabFilter>
 							<IconTabFilter text="Daily" iconColor="Neutral" icon="sap-icon://time-entry-request" id="__filter1">
 								<content>
-									<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{/today}" change="onSelectedDateChanged" />
+									<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{/today}" change="onSelectedDateChanged"/>
 									<List noDataText="No data" id="_lstDayMeetings" items="{dayMeetings>/}" selectionChange="onMeetingSelected">
 										<items>
-											<ObjectListItem title="{dayMeetings>Start} {dayMeetings>MeetingSubject}" type="Active" press="onMeetingSelected">
-											</ObjectListItem>
+											<ObjectListItem title="{dayMeetings>Start} {dayMeetings&gt;MeetingSubject}" type="Active" press="onMeetingSelected"/>
 										</items>
 									</List>
 								</content>
 							</IconTabFilter>
 							<IconTabFilter text="Weekly" iconColor="Neutral" icon="sap-icon://create-entry-time" id="__filter2">
 								<content>
-									<Table noDataText="Drop column list items here and columns in the area above" id="__table0">
-										<items>
-											<ColumnListItem counter="0" id="__item3">
-												<cells>
-													<Link press="drilDown" text="" id="__text0"/>
-													<Link press="drilDown" text="" id="__text1"/>
-													<Link press="drilDown" text="SC." id="__text2"/>
-													<Link press="drilDown" text="" id="__text2_copy"/>
-													<Link press="drilDown" text="Pe." id="__text2_copy2"/>
-													<Link press="drilDown" text="" id="__text2_copy3"/>
-													<Link press="drilDown" text="" id="__text2_copy4"/></cells>
-											</ColumnListItem>
-											<ColumnListItem counter="0" id="__item4">
-												<cells>
-													<Link press="drilDown" text="" id="__text3"/>
-													<Link press="drilDown" text="" id="__text4"/>
-													<Link press="drilDown" text="SC." id="__text5"/>
-													<Link press="drilDown" text="" id="__text2_copy5"/>
-													<Link press="drilDown" text="UI." id="__text2_copy6"/>
-													<Link press="drilDown" text="" id="__text2_copy7"/>
-													<Link press="drilDown" text="" id="__text2_copy8"/>
-												</cells>
-											</ColumnListItem>
-										</items>
-										<columns>
-											<Column id="__column0">
-												<header>
-													<Label text="Su" id="__label011"/>
-												</header>
-											</Column>
-											<Column id="__column1">
-												<header>
-													<Label text="Mo" id="__label1"/>
-												</header>
-											</Column>
-											<Column id="__column2">
-												<header>
-													<Label text="Tu" id="__label2"/>
-												</header>
-											</Column>
-											<Column id="__column83">
-												<header>
-													<Label text="We" id="83"/>
-												</header>
-											</Column>
-											<Column id="__column84">
-												<header>
-													<Label text="Th" id="__label84"/>
-												</header>
-											</Column>
-											<Column id="__column85">
-												<header>
-													<Label text="Fr" id="__label85"/>
-												</header>
-											</Column>
-											<Column id="__column86">
-												<header>
-													<Label text="Sa" id="__label86"/>
-												</header>
-											</Column>
-										</columns>
-									</Table>
+									<u:CalendarDateInterval id="calendar" days="7" width="100%" startDateChange="onCalendarSelected" startDate="{weekMeetings>/today}"/>
+									<t:Table noDataText="Drop column list items here and columns in the area above" selectionMode="None"
+										id="weeklyTable" class="weeklyTable" rows="{weekMeetings>/rows}" columnHeaderVisible="false" cellClick="onMeetingCellSelected">
+										<t:columns>
+											<t:Column>
+												<t:template>
+													<Text text="{weekMeetings>rows/0/MeetingSubject}"/>
+												</t:template>
+											</t:Column>
+											<t:Column>
+												<t:template>
+													<Text text="{weekMeetings>1/MeetingSubject}"/>
+												</t:template>
+											</t:Column>
+											<t:Column>
+												<t:template>
+													<Text text="{weekMeetings>2/MeetingSubject}"/>
+												</t:template>
+											</t:Column>
+											<t:Column>
+												<t:template>
+													<Text text="{weekMeetings>3/MeetingSubject}"/>
+												</t:template>
+											</t:Column>
+											<t:Column>
+												<t:template>
+													<Text text="{weekMeetings>4/MeetingSubject}"/>
+												</t:template>
+											</t:Column>
+											<t:Column>
+												<t:template>
+													<Text text="{weekMeetings>5/MeetingSubject}"/>
+												</t:template>
+											</t:Column>
+											<t:Column>
+												<t:template>
+													<Text text="{weekMeetings>6/MeetingSubject}"/>
+												</t:template>
+											</t:Column>
+										</t:columns>
+									</t:Table>
 								</content>
 							</IconTabFilter>
 							<IconTabFilter text="Monthly" iconColor="Neutral" icon="sap-icon://calendar" id="__filter3">
 								<content>
-									<Table noDataText="Drop column list items here and columns in the area above" id="__table1">
+									<Table noDataText="Drop column list items here and columns in the area above" id="__table1" headerDesign="Plain">
 										<items>
 											<ColumnListItem counter="0" id="__item5">
 												<cells>
@@ -303,10 +279,8 @@
 				</content>
 				<footer>
 					<Toolbar>
-						<Button text="OK" width="100px" id="__button3" press="onNavBack" icon="sap-icon://accept" tooltip="Calendar View" tap="onNavBack"
-							type="Emphasized"/>
-						<Button text="Cancel" width="100px" id="__button4" press="onNavBack" icon="sap-icon://decline" tooltip="Calendar View" tap="onNavBack"
-							type="Emphasized"/>
+						<Button text="OK" width="100px" id="__button3" press="onNavBack" icon="sap-icon://accept" tooltip="Calendar View" tap="onNavBack" type="Emphasized"/>
+						<Button text="Cancel" width="100px" id="__button4" press="onNavBack" icon="sap-icon://decline" tooltip="Calendar View" tap="onNavBack" type="Emphasized"/>
 					</Toolbar>
 				</footer>
 			</Page>

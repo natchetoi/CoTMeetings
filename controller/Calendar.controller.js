@@ -66,6 +66,12 @@ sap.ui.define([
 			this.showDayliMeetings(new Date(selectedDate));
 		},
 
+		onCalendarSelected: function(oEvent) {
+			var oCalendar = oEvent.oSource;
+			var startDate = oCalendar.getStartDate();
+			this.showWeekMeetings(startDate);
+		},
+
 		loadMeetings: function() {
 			var myMeetings = this.getMyMeetings();
 			var calendarModel = new sap.ui.model.json.JSONModel();
@@ -81,9 +87,9 @@ sap.ui.define([
 
 			this.getView().setModel(calendarModel);
 
-			var date = new Date(2016, 9, 5);
-			date.setHours(0, 0, 0, 0);
+			var date = Date.today();
 			this.showDayliMeetings(date);
+			this.showWeekMeetings(date);
 		},
 
 		onMeetingSelected: function(oEvent) {
@@ -92,6 +98,13 @@ sap.ui.define([
 				bindingContext = oEvent.getSource().getBindingContext("dayMeetings");
 			}
 			var selectedMeet = bindingContext.getObject();
+			var id = selectedMeet.AltID;
+			this.navigateToMeetingView(id);
+		},
+
+		onMeetingCellSelected: function(oEvent) {
+			var selectedRow = oEvent.getParameters().rowBindingContext.getObject();
+			var selectedMeet = selectedRow[oEvent.getParameters().columnIndex];
 			var id = selectedMeet.AltID;
 			this.navigateToMeetingView(id);
 		},
@@ -136,6 +149,57 @@ sap.ui.define([
 				.ToArray();
 			dayModel.setData(daysData);
 			this.getView().setModel(dayModel, "dayMeetings");
+		},
+
+		showWeekMeetings: function(date) {
+			var weekMeetings =
+				Enumerable.From(this.getMyMeetings())
+				.Where(function(x) {
+					var d1 = Date.parse(x.Date);
+					var from = new Date(date);
+					var to = new Date(date).add({
+						days: 7
+					});
+					return d1.between(from, to);
+				})
+				.ToArray();
+			var groupedWeekMeetings = Enumerable
+				.From(weekMeetings)
+				.GroupBy("x => x.Date");
+			var maxDsyMeetsCount = 0;
+			if (groupedWeekMeetings.Any()) {
+				maxDsyMeetsCount = groupedWeekMeetings.Max("x => x.Count()");
+			}
+
+			var rows = [];
+			for (var i = 0; i < maxDsyMeetsCount; i++) {
+				var row = {};
+				for (var j = 0; j < 7; j++) {
+					var d = (new Date(date).add(j).days()).toString("MM/dd/yy");
+					var currentDayMeeting = groupedWeekMeetings
+						.Where(function(x) {
+							return x.Key() == d;
+						})
+						.FirstOrDefault();
+					if (currentDayMeeting !== undefined) {
+						var meet = currentDayMeeting.ElementAtOrDefault(i);
+						if (meet !== undefined) {
+							row[j] = meet;
+						} else {
+							row[j] = {};
+						}
+
+					} else {
+						row[j] = {};
+					}
+				}
+				rows[i] = row;
+			}
+
+			var weeklyMeetingsModel = new sap.ui.model.json.JSONModel();
+			weeklyMeetingsModel.setData({rows: rows, today:date});
+			this.getView().setModel(weeklyMeetingsModel, "weekMeetings");
+			this.byId("weeklyTable").setProperty("visibleRowCount", rows.length);
 		},
 
 		getMyMeetings: function() {
