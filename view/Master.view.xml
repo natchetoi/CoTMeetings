@@ -1,5 +1,5 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" xmlns:unified="sap.ui.unified"
-	displayBlock="true" controllerName="fusion.controller.Master">
+	xmlns:t="sap.ui.table" displayBlock="true" controllerName="fusion.controller.Master">
 	<Page id="page" title="MY MEETINGS" class="coTMyMeetings">
 		<!-- subHeader>
 			<Bar id="searchBar">
@@ -8,110 +8,44 @@
 						tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>
 				</contentMiddle>
 			</Bar>
-		</subHeader -->		
+		</subHeader -->
 		<content>
-			<Table noDataText="My Meetings" id="myMeetingsListId">
-			    <items>
-			        <ColumnListItem>
-			            <cells>
-			            	<Panel class="coTWhiteSquare" >
+			<ObjectHeader title="Upcoming meetings">
+			</ObjectHeader>
+			<t:Table noDataText="My Meetings" id="myMeetingsListId" rows="{/rows}" selectionMode="None" columnHeaderVisible="false"
+				visibleRowCount="{/rowsCount}" cellClick="onMeetingCellSelected">
+				<t:columns>
+					<t:Column resizable="false" flexible="false">
+						<t:template>
+							<Panel class="coTBlueSquare">
 								<content>
 									<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-									<Link text="{/AppointmentSet('1')/MeetingSubject}" press="showMeeting" id="l1" />
-									<Link text="{/AppointmentSet('1')/Start}-{/AppointmentSet('1')/End}" press="showMeeting" id="s1" />
+										<Text text="{0/MeetingSubject}"/>
+										<Text text="{0/Start}"/>
 									</sap.ui.layout:VerticalLayout>
 								</content>
 							</Panel>
-			            	<Panel class="coTBlueSquare" bind="{/AppointmentSet('2')}">
-							  <content>
-							  	<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-			            		<Link text="{/AppointmentSet('2')/MeetingSubject}" press="showMeeting" id="l2" />
-			            		<Link text="{/AppointmentSet('2')/Start}-{/AppointmentSet('2')/End}" press="showMeeting" id="s2" />
-			            		</sap.ui.layout:VerticalLayout>
-							  </content>
-			    			</Panel>
-			           </cells>
-			        </ColumnListItem>
-			        <ColumnListItem>
-			            <cells>
-			            	<Panel class="coTBlueSquare" bind="{/AppointmentSet('3')}" >
-			            		<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-			              		<Link text="{/AppointmentSet('3')/MeetingSubject}" press="showMeeting" id="l3" />
-			              		<Link text="{/AppointmentSet('3')/Start}-{/AppointmentSet('3')/End}" press="showMeeting" id="s3" />
-			              		</sap.ui.layout:VerticalLayout>
-							</Panel>
-			            	<Panel class="coTWhiteSquare">
-			            		<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-			              		<Link text="{/AppointmentSet('4')/MeetingSubject}" press="showMeeting"  id="l4" />
-			              		<Link text="{/AppointmentSet('4')/Start}-{/AppointmentSet('4')/End}" press="showMeeting" id="s4" />
-			              		</sap.ui.layout:VerticalLayout>
-							</Panel>
-			             </cells>
-			        </ColumnListItem>
-			        <ColumnListItem>
-			            <cells>
-			            	<Panel class="coTWhiteSquare">
+						</t:template>
+					</t:Column>
+					<t:Column resizable="false" flexible="false">
+						<t:template>
+							<Panel class="coTBlueSquare">
 								<content>
 									<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-									<Link text="{/AppointmentSet('5')/MeetingSubject}" press="showMeeting"/>
-									<Link text="{/AppointmentSet('5')/Start}" press="showMeeting"/>
+										<Text text="{1/MeetingSubject}"/>
+										<Text text="{1/Start}"/>
 									</sap.ui.layout:VerticalLayout>
 								</content>
 							</Panel>
-			            	<Panel class="coTBlueSquare">
-							  <content>
-							  	<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-			            		<Link text="{/AppointmentSet('6')/MeetingSubject}" press="showMeeting"/>
-			            		<Link text="{/AppointmentSet('6')/Start}" press="showMeeting"/>
-			            		</sap.ui.layout:VerticalLayout>
-							  </content>
-			    			</Panel>
-			           </cells>
-			        </ColumnListItem>
-			        <ColumnListItem>
-			            <cells>
-			            	<Panel class="coTBlueSquare">
-								<content>
-									<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-									<Link text="{/AppointmentSet('7')/MeetingSubject}" press="showMeeting"/>
-									<Link text="{/AppointmentSet('7')/Start}" press="showMeeting"/>
-									</sap.ui.layout:VerticalLayout>
-								</content>
-							</Panel>
-			            	<Panel class="coTWhiteSquare">
-							  <content>
-							  	<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
-			            		<Link text="{/AppointmentSet('8')/MeetingSubject}" press="showMeeting"/>
-			            		<Link text="{/AppointmentSet('8')/Start}" press="showMeeting"/>
-			            		</sap.ui.layout:VerticalLayout>
-							  </content>
-			    			</Panel>
-			           </cells>
-			        </ColumnListItem>
-			        </items>
-			    <columns>
-			        <Column width="150px" resizable="false" flexible="false">
-			            <header>
-			                <Label text="" height="1px"/>
-			            </header>
-			        </Column>
-			        <Column width="150px" resizable="false" flexible="false">
-			            <header>
-			                <Label text="" height="1px"/>
-			            </header>
-			        </Column>
-				</columns>
-			  </Table>		
-			<List id="list" items="{/AppointmentSet}" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" select="onSelect" growing="true" growingScrollToLoad="true">
-				<items>
-					<ObjectListItem type="{device>/listItemType}" press="onSelect" title="{MeetingSubject}" number="{Start}" numberUnit="" visible="false"/>
-				</items>
-			</List>
-			  
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
 		</content>
 		<footer>
 			<Toolbar>
-                <Button text="Calendar" width="110px" id="__button3" press="calendar" icon="sap-icon://calendar" tooltip="My Calendar View" css="background-color:#498bca" type="Emphasized"/>
+				<Button text="Calendar" width="110px" id="__button3" press="calendar" icon="sap-icon://calendar" tooltip="My Calendar View"
+					css="background-color:#498bca" type="Emphasized"/>
 				<Button text="New" width="100px" id="newButtonId" press="addMeeting" icon="sap-icon://add-contact" type="Emphasized"/>
 			</Toolbar>
 		</footer>

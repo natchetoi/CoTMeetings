@@ -210,15 +210,15 @@
     background: #275b8b !important;
     /* #498bca; */
     border: 2px solid #16598a;
-    width: 120px;
     height: 150px;
+    margin-top:5px;
 }
 .coTWhiteSquare {
     border-radius: 25px;
     background: white;
     border: 2px solid #16598a;
-    width: 120px;
     height: 150px;
+    margin-top:5px;
 }
 .coTSmallBlueSquare {
     border-radius: 25px;

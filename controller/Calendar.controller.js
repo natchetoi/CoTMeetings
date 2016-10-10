@@ -111,7 +111,7 @@ sap.ui.define([
 
 		navigateToMeetingView: function(id) {
 			var bReplace = jQuery.device.is.phone ? false : true;
-			var path = "AppointmentSet('" + id + "')";
+			var path = id;
 
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			router.navTo("detail", {

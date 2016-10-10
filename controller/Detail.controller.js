@@ -18,8 +18,7 @@ sap.ui.define([
 			// 	this.getEventBus().subscribe("Master", "InitialLoadFinished", this.onMasterLoaded, this);
 			// }
 
-			// this.getRouter().attachRouteMatched(this.onRouteMatched, this);
-
+			sap.ui.core.UIComponent.getRouterFor(this).attachRouteMatched(this.onRouteMatched, this);
 		},
 
 		/**
@@ -41,35 +40,23 @@ sap.ui.define([
 		 * @param{sap.ui.base.Event} oEvent router pattern matched event object
 		 */
 		onRouteMatched: function(oEvent) {
-			var oParameters = oEvent.getParameters();
+			var meetId = oEvent.getParameter("arguments").entity;
+			this.loadMeet(meetId);
+		},
 
-			jQuery.when(this.oInitialLoadFinishedDeferred).then(jQuery.proxy(function() {
-				var oView = this.getView();
-
-				// when detail navigation occurs, update the binding context
-				if (oParameters.name !== "detail") {
-					return;
-				}
-
-				var sEntityPath = "/" + oParameters.arguments.entity;
-				this.bindView(sEntityPath);
-
-				var oIconTabBar = oView.byId("idIconTabBar");
-				oIconTabBar.getItems().forEach(function(oItem) {
-					oItem.bindElement(fusion.util.Formatter.uppercaseFirstChar(oItem.getKey()));
-				});
-
-				// Which tab?
-				var sTabKey = oParameters.arguments.tab;
-				this.getEventBus().publish("Detail", "TabChanged", {
-					sTabKey: sTabKey
-				});
-
-				if (oIconTabBar.getSelectedKey() !== sTabKey) {
-					oIconTabBar.setSelectedKey(sTabKey);
-				}
-			}, this));
-
+		loadMeet: function(meetId) {
+			var meetModel = this.getView().getModel("all_meetings");
+			var meet = Enumerable
+				.From(meetModel.getData())
+				.Where(function(x) {
+					return x.AltID === meetId;
+				})
+				.FirstOrDefault();
+			if (meet !== undefined) {
+				var model = new sap.ui.model.json.JSONModel();
+				model.setData(meet);
+				this.getView().setModel(model);
+			}
 		},
 
 		/**

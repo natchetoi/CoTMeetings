@@ -6,36 +6,12 @@ sap.ui.define([
 ], function(Controller) {
 	"use strict";
 	return Controller.extend("fusion.controller.Master", {
-		/**
-		 * Called when the master list controller is instantiated. 
-		 * It sets up the event handling for the master/detail communication and other lifecycle tasks.
-		 */
 		onInit: function() {
-			 this.oInitialLoadFinishedDeferred = jQuery.Deferred();
-
-			 this.getView().byId("list").attachEventOnce("updateFinished", function() {
-			 	this.oInitialLoadFinishedDeferred.resolve();
-			 	oEventBus.publish("Master", "InitialLoadFinished", {
-			 		oListItem: this.getView().byId("list").getItems()[0]
-			 	});
-			 }, this);
-
-			 var oEventBus = this.getEventBus();
-			 oEventBus.subscribe("Detail", "TabChanged", this.onDetailTabChanged, this);
-
-			 //on phones, we will not have to select anything in the list so we don't need to attach to events
-			 if (sap.ui.Device.system.phone) {
-			 	return;
-			 }
-
-			 this.getRouter().attachRoutePatternMatched(this.onRouteMatched, this);
-
-			 oEventBus.subscribe("Detail", "Changed", this.onDetailChanged, this);
-			 oEventBus.subscribe("Detail", "NotFound", this.onNotFound, this);
+			sap.ui.core.UIComponent.getRouterFor(this).attachRouteMatched(this.onRouteMatched, this);
 		},
 
 		onAfterRendering: function() {
-			this.loadMeetings();
+
 		},
 
 		/**
@@ -43,27 +19,27 @@ sap.ui.define([
 		 * @param{sap.ui.base.Event} oEvent router pattern matched event object
 		 */
 		onRouteMatched: function(oEvent) {
-			var sName = oEvent.getParameter("name");
+			// var sName = oEvent.getParameter("name");
 
-			if (sName !== "main") {
-				return;
-			}
+			// if (sName !== "main") {
+			// 	return;
+			// }
 
-			//Load the detail view in desktop
-			this.getRouter().myNavToWithoutHash({
-				currentView: this.getView(),
-				targetViewName: "fusion.view.Detail",
-				targetViewType: "XML"
-			});
+			// //Load the detail view in desktop
+			// sap.ui.core.UIComponent.getRouterFor(this).myNavToWithoutHash({
+			// 	currentView: this.getView(),
+			// 	targetViewName: "fusion.view.Detail",
+			// 	targetViewType: "XML"
+			// });
 
-			//Wait for the list to be loaded once
-			this.waitForInitialListLoading(function() {
+			// //Wait for the list to be loaded once
+			// this.waitForInitialListLoading(function() {
 
-				//On the empty hash select the first item
-				this.selectFirstItem();
+			// 	//On the empty hash select the first item
+			// 	this.selectFirstItem();
 
-			});
-
+			// });
+			this.loadMeetings();
 		},
 
 		/**
@@ -203,20 +179,39 @@ sap.ui.define([
 
 		loadMeetings: function() {
 			var meetModel = this.getView().getModel("all_meetings");
-			var longList = meetModel.getData();
 
-			var calendarModel = new sap.ui.model.json.JSONModel();
-			calendarModel.setData({
-				startDate: new Date("2016", "10", "1"),
-				meetings: longList,
-				people: [{
-					name: "Me",
-					appointments: longList,
-					headers: longList
-				}]
+			var currentDate = Date.today().add(-20).days();
+			var pendingMeetings = Enumerable
+				.From(meetModel.getData())
+				.Where(function(x) {
+					return Date.parse(x.Date).compareTo(currentDate) >= 0;
+				})
+				.OrderBy(function(x) {
+					return Date.parse(x.Date + " " + x.Start);
+				});
+
+			var pendingMeetingsPairsCount = pendingMeetings.ToArray().length / 2;
+			if (pendingMeetings.ToArray().length - pendingMeetingsPairsCount * 2 > 0) {
+				pendingMeetingsPairsCount += 1;
+			}
+
+			var pendingMeetingsPairs = [];
+			for (var i = 0; i < pendingMeetingsPairsCount; i++) {
+				var pair = {
+					"0": pendingMeetings.ElementAtOrDefault(i * 2),
+					"1": pendingMeetings.ElementAtOrDefault(i * 2 + 1),
+					"css1": i % 2 === 0 ? "coTBlueSquare" : "coTWhiteSquare",
+					"css2": i % 2 !== 0 ? "coTWhiteSquare" : "coTBlueSquare"
+				};
+				pendingMeetingsPairs[i] = pair;
+			}
+
+			var model = new sap.ui.model.json.JSONModel();
+			model.setData({
+				rows: pendingMeetingsPairs,
+				rowsCount: pendingMeetingsPairsCount
 			});
-
-			this.getView().setModel(calendarModel);
+			this.getView().setModel(model);
 		},
 
 		buildDate: function(oTime, oDate) {
@@ -236,9 +231,16 @@ sap.ui.define([
 			this.navigateToMeetingView(id);
 		},
 
+		onMeetingCellSelected: function(oEvent) {
+			var selectedRow = oEvent.getParameters().rowBindingContext.getObject();
+			var selectedMeet = selectedRow[oEvent.getParameters().columnIndex];
+			var id = selectedMeet.AltID;
+			this.navigateToMeetingView(id);
+		},
+
 		navigateToMeetingView: function(id) {
 			var bReplace = jQuery.device.is.phone ? false : true;
-			var path = "AppointmentSet('" + id + "')";
+			var path = id;
 
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			router.navTo("detail", {
@@ -246,6 +248,5 @@ sap.ui.define([
 				entity: path
 			}, bReplace);
 		}
-
 	});
 });
