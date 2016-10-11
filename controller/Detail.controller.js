@@ -1,6 +1,7 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History"
+], function(Controller, History) {
 	"use strict";
 	return Controller.extend("fusion.controller.Detail", {
 
@@ -121,8 +122,15 @@ sap.ui.define([
 		 * Navigates back to main view
 		 */
 		onNavBack: function() {
-			// This is only relevant when running on phone devices
-			this.getRouter().myNavBack("main");
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("main", true);
+			}
 		},
 
 		/**

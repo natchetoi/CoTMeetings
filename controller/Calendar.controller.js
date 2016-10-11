@@ -45,14 +45,8 @@ sap.ui.define([
 		},
 
 		onNavBack: function(oEvent) {
-			// var oHistory, sPreviousHash;
-			// oHistory = History.getInstance();
-			// sPreviousHash = oHistory.getPreviousHash();
-			// if (sPreviousHash !== undefined) {
-			// 	window.history.go(-1);
-			// } else {
-			this.getRouter().navTo("NewMeeting", {}, true);
-			// }
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("main", true);
 		},
 
 		drillDown: function(oEvent) {
@@ -197,7 +191,10 @@ sap.ui.define([
 			}
 
 			var weeklyMeetingsModel = new sap.ui.model.json.JSONModel();
-			weeklyMeetingsModel.setData({rows: rows, today:date});
+			weeklyMeetingsModel.setData({
+				rows: rows,
+				today: date
+			});
 			this.getView().setModel(weeklyMeetingsModel, "weekMeetings");
 			this.byId("weeklyTable").setProperty("visibleRowCount", rows.length);
 		},
