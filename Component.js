@@ -381,24 +381,6 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 		end = end + ":00";
 		var today = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
-		var meeting = {
-			"MeetingSubject": "",
-			"Start": start,
-			"End": end,
-			"Date": today,
-			"RoomName": "",
-			"AltID": "1",
-			"MeetingComment": "",
-			"Organizer": "Yuri Natchetoi",
-			"Attendees": []
-
-		};
-
-		var oModel = new sap.ui.model.json.JSONModel();
-		oModel.setData(meeting);
-		// sap.ui.getCore()
-		this.setModel(oModel, "new");
-
 		var attendees = {
 			"AttendeeSet": [{
 				PersonID: "1",
@@ -409,6 +391,32 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 				workEmail: "ynatche@toronto.ca"
 			}]
 		};
+
+		var meeting = {
+			"MeetingSubject": "",
+			"Start": start,
+			"End": end,
+			"Date": today,
+			"RoomName": "Adelaide",
+			"AltID": "1",
+			"MeetingComment": "",
+			"Organizer": "Yuri Natchetoi",
+			"Attendees": [{
+				PersonID: "1",
+				selected: true,
+				firstName: "Yuri",
+				lastName: "Natchetoi",
+				Position: "Mobility Consultant",
+				workEmail: "ynatche@toronto.ca"
+			}]
+
+		};
+
+		var oModel = new sap.ui.model.json.JSONModel();
+		oModel.setData(meeting);
+		// sap.ui.getCore()
+		this.setModel(oModel, "new");
+
 
 		var oAttendeesModel = new sap.ui.model.json.JSONModel();
 		oAttendeesModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);

@@ -23,6 +23,8 @@ sap.ui.define([
 			projector: false,
 			computer: false
 		},
+		
+		selectedRoom: { RoomName: "Simcoe" },
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -121,13 +123,16 @@ sap.ui.define([
 		},
 
 		bookRoom: function(oEvent) {
-			var roomName = "Adelaide"; //  oEvent.
+//			var tabBar = this.getView().byId("findRoomTabBar");
+//			var selectedKey = tabBar.selectedKey;
+
+			var roomName = this.selectedRoom.RoomName;
 			var meeting = {};
 			try {
 				meeting = this.getMeeting();
-				meeting.setProperty("RoomName", roomName);
+				meeting.RoomName = roomName;
 			} catch (err) {
-				roomName = "Adelaide";
+				meeting.RoomName = "Adelaide";
 			}
 			var router = this.getRouter();
 			router.navTo("NewMeeting", {}, true);
@@ -218,6 +223,7 @@ sap.ui.define([
 			if (window.coTShared.meeting === undefined) {
 				window.coTShared.meeting = {};
 			}
+			this.selectedRoom.RoomName = selectedRoom; 
 			window.coTShared.meeting.room = selectedRoom;
 		},
 
@@ -230,6 +236,7 @@ sap.ui.define([
 			if (window.coTShared.meeting === undefined) {
 				window.coTShared.meeting = {};
 			}
+			this.selectedRoom.RoomName = selectedRoom; 
 			window.coTShared.meeting.room = selectedRoom;
 		},
 

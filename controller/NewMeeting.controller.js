@@ -54,15 +54,58 @@ sap.ui.define([
 		},
 
 		createMeeting: function() {
-			
-			var meeting = this.getMeeting();
+			var d = new Date();
+			var start = d.getHours() + 1;
+			var end = d.getHours() + 2;
+			start = start + ":00";
+			end = end + ":00";
+			var today = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
 
-//			var startTime = this.byId("__picker0"); 
-//			var   endTime = this.byId("__picker1"); 
-//			startTime.setMinutesStep(15);
-//			  endTime.setMinutesStep(15);	
-		},
-		
+			var attendees = {
+			"AttendeeSet": [{
+				PersonID: "1",
+				selected: true,
+				firstName: "Yuri",
+				lastName: "Natchetoi",
+				Position: "Mobility Consultant",
+				workEmail: "ynatche@toronto.ca"
+			}]
+		};
+
+		var meeting = {
+			"MeetingSubject": "",
+			"Start": start,
+			"End": end,
+			"Date": today,
+			"RoomName": "Adelaide",
+			"AltID": "1",
+			"MeetingComment": "",
+			"Organizer": "Yuri Natchetoi",
+			"Attendees": [{
+				PersonID: "1",
+				selected: true,
+				firstName: "Yuri",
+				lastName: "Natchetoi",
+				Position: "Mobility Consultant",
+				workEmail: "ynatche@toronto.ca"
+			}]
+
+		};
+
+		var oModel = new sap.ui.model.json.JSONModel();
+		oModel.setData(meeting);
+		// sap.ui.getCore()
+		this.setModel(oModel, "new");
+
+
+		var oAttendeesModel = new sap.ui.model.json.JSONModel();
+		oAttendeesModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+		oAttendeesModel.setData(attendees);
+		this.setModel(oAttendeesModel, "att");
+
+	},
+	
+
 		_onObjectMatched: function(oEvent) {
 			var attendees = window.coTShared.att;
 			if(attendees !== undefined &&  attendees.length > 0)  {

@@ -61,7 +61,7 @@ sap.ui.define([
 			var oModel = view.getModel();
 		    var list = "";
 			var checks = $("input[type='CheckBox']");
-			var n = checks.length - 1;
+			var n = checks.length;
 			for(var i = 0; i<n; i++) {
 				var checkBox = checks[i];
 				var selected = checkBox.checked;

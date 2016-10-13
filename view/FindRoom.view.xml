@@ -4,9 +4,9 @@
 		<pages>
 			<Page title="FIND A ROOM" navButtonPress="onNavBack" navButtonTap="onNavBack" id="FindRoomPageId">
 				<content>
-					<IconTabBar selectedKey="__xmlview0--__filter0" id="__bar0">
+					<IconTabBar selectedKey="findFIlter" id="findRoomTabBar">
 						<items>
-							<IconTabFilter text="Find" id="__filter0" iconColor="Neutral" icon="sap-icon://work-history">
+							<IconTabFilter text="Find" id="findFIlter" iconColor="Neutral" icon="sap-icon://work-history">
 								<content>
 									<Button width="40px" id="expandButton" icon="sap-icon://expand" press="pressExpand" tap="pressExpand" visible="false"/>
 									<Label text="Show filter" id="lblShowFilter" visible="false" class="coFilterLabel"/>
@@ -36,9 +36,9 @@
 											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 												xmlns:html="http://www.w3.org/1999/xhtml" id="__layout0111" width="100%">
 												<sap.ui.layout:content>
-													<Slider id="capacitySliderId" width="200px" change="onCapacityChanged" liveChange="changeCapacity" value="3"
+													<Slider id="capacitySliderId" width="200px" change="onCapacityChanged" liveChange="changeCapacity" value="3" max="20" step="1" 
 														tooltip="Select number of Attendees"/>
-													<Label text="100pers" width="60px" id="cotRoomCapacity" style="text-align: right" textAlign="Left"/>
+													<Label text="20 pers" width="60px" id="cotRoomCapacity" style="text-align: right" textAlign="Left"/>
 												</sap.ui.layout:content>
 											</sap.ui.layout:HorizontalLayout>
 											<sap.ui.layout:content>
@@ -71,7 +71,7 @@
 									</List>
 								</content>
 							</IconTabFilter>
-							<IconTabFilter text="Location" iconColor="Neutral" icon="sap-icon://map-2" id="__filter5">
+							<IconTabFilter text="Location" iconColor="Neutral" icon="sap-icon://map-2" id="locationFilter">
 								<content>
 									<Carousel activePage="__image0" showBusyIndicator="false" id="__carousel0" pages="rooms&gt;/1/">
 										<pages>
@@ -87,17 +87,17 @@
 									</Carousel>
 								</content>
 							</IconTabFilter>
-							<IconTabFilter text="Favorites" iconColor="Neutral" icon="sap-icon://favorite-list" id="__filter2">
+							<IconTabFilter text="Favorites" iconColor="Neutral" icon="sap-icon://favorite-list" id="favoritesFilter">
 								<content>
-									<List noDataText="Drop list items here" id="_listFavorites" mode="SingleSelectLeft" includeItemInSelection="true"
+									<List noDataText="Favorites" id="_listFavorites" mode="SingleSelectLeft" includeItemInSelection="true"
 										selectionChange="onFavoritesSelectionChanged">
 										<items>
-											<StandardListItem type="Active" counter="0" title="Simcoe 14 seats" description="Projector, conference calls" icon="sap-icon://projector"
+											<StandardListItem type="Active" counter="0" title="Simcoe" description="14 seats, Projector, conference calls" icon="sap-icon://projector"
 												id="__item0"/>
 											<StandardListItem xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" type="Active"
-												counter="0" title="Adelaide 5 seats" description="Big screen TV, Conference calls" icon="sap-icon://microphone" id="__item1_copy2"/>
+												counter="0" title="Adelaide" description="5 seats, Big screen TV, Conference calls" icon="sap-icon://microphone" id="__item1_copy2"/>
 											<StandardListItem xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" counter="0"
-												title="Jarvis 4 seats" description="computer, TV" icon="sap-icon://laptop" id="__item1_copy" type="Active"/></items>
+												title="Jarvis" description="4 seats, Computer, TV" icon="sap-icon://laptop" id="__item1_copy" type="Active"/></items>
 									</List>
 								</content>
 							</IconTabFilter>
