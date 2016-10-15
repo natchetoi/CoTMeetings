@@ -43,6 +43,8 @@ sap.ui.define([
 		onRouteMatched: function(oEvent) {
 			var meetId = oEvent.getParameter("arguments").entity;
 			this.loadMeet(meetId);
+
+			this.byId("idIconTabBar").setSelectedKey("tabDetails");
 		},
 
 		loadMeet: function(meetId) {
@@ -58,6 +60,42 @@ sap.ui.define([
 				model.setData(meet);
 				this.getView().setModel(model);
 			}
+		},
+
+		getRoomName: function(roomId) {
+			var roomsModel = this.getView().getModel("all_rooms");
+			var room = Enumerable
+				.From(roomsModel.getData())
+				.Where(function(x) {
+					return x.RoomID === roomId;
+				})
+				.FirstOrDefault();
+
+			return room !== undefined ? room.RoomName : "-";
+		},
+
+		getRoomImage: function(roomId) {
+			var roomsModel = this.getView().getModel("all_rooms");
+			var room = Enumerable
+				.From(roomsModel.getData())
+				.Where(function(x) {
+					return x.RoomID === roomId;
+				})
+				.FirstOrDefault();
+
+			return room !== undefined ? room.Image : "-";
+		},
+
+		getRoomPath: function(roomId) {
+			var roomsModel = this.getView().getModel("all_rooms");
+			var room = Enumerable
+				.From(roomsModel.getData())
+				.Where(function(x) {
+					return x.RoomID === roomId;
+				})
+				.FirstOrDefault();
+
+			return room !== undefined ? room.Path2Room : "-";
 		},
 
 		/**

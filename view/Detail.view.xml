@@ -1,52 +1,46 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="fusion.controller.Detail" id="DetailViewId">
+	xmlns:f="sap.ui.layout.form" controllerName="fusion.controller.Detail" id="DetailViewId">
 	<Page navButtonPress="onNavBack" title="{i18n>detailTitle}" id="DetailPageId">
 		<content>
 			<ObjectHeader title="{/MeetingSubject}" number="{/Start}" numberUnit="{/End}">
-				<ObjectAttribute text="{/MeetingComment}"/>
-				<ObjectAttribute text="{/Organizer}"/>
+				<statuses>
+					<ObjectStatus text="{/Date}" icon="sap-icon://date-time"/>
+				</statuses>
 			</ObjectHeader>
 			<IconTabBar id="idIconTabBar">
 				<items>
-					<IconTabFilter key="Location" text="Event Details" iconColor="Neutral" icon="sap-icon://hint">
-						<!--key="Detail" -->
-						<content>
-							<core:Fragment fragmentName="fusion.view.DetailInfoForm" type="XML"/>
-						</content>
+					<IconTabFilter text="Event Details" iconColor="Neutral" icon="sap-icon://hint" key="tabDetails">
+						<VBox class="sapUiSmallMargin">
+							<f:SimpleForm id="SimpleFormDisplay354" maxContainerCols="2" editable="false" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+								columnsL="1" columnsM="1">
+								<f:content>
+									<Label text="Meeting comment" design="Bold"/>
+									<Text text="{/MeetingComment}"/>
+									<Label text="Organizer" design="Bold"/>
+									<Text text="{/Organizer}"/>
+									<Label text="Room" design="Bold"/>
+									<Text text="{parts: ['/RoomID'], formatter:'.getRoomName'}"/>
+								</f:content>
+							</f:SimpleForm>
+						</VBox>
 					</IconTabFilter>
-					<IconTabFilter text="Time" count="30" icon="sap-icon://time-entry-request" iconColor="Neutral" id="__filter10">
+					<IconTabFilter text="Attendees" count="{= ${/Attendees}.length}" icon="sap-icon://person-placeholder" iconColor="Neutral" id="__filter11">
 						<content>
-							<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" valueFormat="July 28, 16" placeholder="Date" value="July 28/16"/>
-							<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0">
-								<Label text="From:" width="50px" id="__label4"/>
-								<TimePicker placeholder="h:mm a" placeholderSymbol="-" mask="h9:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker0" title="Start"
-									name="Start" value="{/Start}"/>
-								<Label text=" " width="20px" id="__label41"/>
-								<Label text="To:" width="30px" id="__label3"/>
-								<TimePicker placeholder="h:mm a" placeholderSymbol="-" mask="h9:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker1" value="{/End}"
-									title="End"/>
-							</sap.ui.layout:HorizontalLayout>
-						</content>
-					</IconTabFilter>
-					<IconTabFilter text="Attendees" count="5" icon="sap-icon://person-placeholder" iconColor="Neutral" id="__filter11">
-						<content>
-							<SearchField width="100%" placeholder="Search" id="__field0"/>
-							<Table noDataText="No attendees invited" id="__table0" items="{/Attendees}">
+							<List items="{/Attendees}">
 								<items>
-									<ColumnListItem counter="0" id="__item0">
-										<cells>
-											<Text text="{/name}" maxLines="0" id="__text0"/>
-										</cells>
-									</ColumnListItem>
+									<StandardListItem title="{name}" icon="sap-icon://person-placeholder"/>
 								</items>
-								<columns>
-									<Column id="__column0">
-										<header>
-											<Label text="Name" id="__label0" design="Bold"/>
-										</header>
-									</Column>
-								</columns>
-							</Table>
+							</List>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="Room details" icon="sap-icon://meeting-room" iconColor="Neutral" id="__filter2">
+						<content>
+							<Carousel activePage="addressImage" showBusyIndicator="false" id="carouselRoomDetails">
+								<pages>
+									<Image width="100%" height="100%" id="imgRoom" src="{parts: ['/RoomID'], formatter:'.getRoomImage'}"/>
+									<Image width="100%" height="100%" id="imgRoomPath" src="{parts: ['/RoomID'], formatter:'.getRoomPath'}"/>
+								</pages>
+							</Carousel>
 						</content>
 					</IconTabFilter>
 				</items>
@@ -55,7 +49,6 @@
 		<footer>
 			<Toolbar>
 				<content>
-					<Button text="New" width="100px" id="__button0" press="addMeeting" icon="sap-icon://add-contact" type="Emphasized"/>
 					<Button text="OK" width="100px" id="okButtonId" press="onNavBack" type="Emphasized"/>
 				</content>
 			</Toolbar>
