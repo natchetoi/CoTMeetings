@@ -154,14 +154,26 @@ sap.ui.define([
 		postMeeting: function() {
 		
 		var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/appointments/";  
-                
+
+
+		var payload = { 
+    		"AltID": "String content7056",
+    		"MeetingSubject": "talk about mobile",
+    		"MeetingComment": "test сomment",
+    		"RoomID":"860ae2ee-2620-4035-b36b-c4ff67d1124a",
+    		"End":"\/Date(1476327600000)\/", 
+    		"Start":"\/Date(1476324000000)\/",
+    		"TimeZoneId": "Eastern Daylight Time",
+    		"Attendees" : "George liu, Yuri Natchetoi",
+    		"Organizer": "ynatche@toronto.ca"
+		};
   
 		var param ={"LastModified":1473969772,"MeetingSubject":"talk about mobile","Start":1473962572,"Preset":[{"Enabled":false,"PresetFields":""}],"GWMeetingID":[{"xsi:nil":true,"xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance"}],"End":1473969772,"RoomID":"860ae2ee-2620-4035-b36b-c4ff67d1124a","IsPrivate":false,"RVMeetingID":[{"xsi:nil":true,"xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance"}]};
 
          var aData = jQuery.ajax({
                   url: url,  
                   type : "POST",
-                  data: param,
+                  data: payload,
                   dataType: "json",
                   contentType : "application/json",
                   async: true, 

@@ -1,127 +1,127 @@
 {
-"API_Appointments": [6]
-0:  {
-"AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2Bhw5AAA="
-"Attendees": ""Anika Harford" <aharfor@toronto.ca>,"Kem Raj" <Kem.Raj@toronto.ca>,"Deivanai Ramanathan" <dramana@toronto.ca>,"Priscilla Lai" <PLai@toronto.ca>,"Jennifer de Barros" <Jennifer.deBarros@toronto.ca>,"Bola Otaraki" <botarak@toronto.ca>,"Karly Rodriguez" <Karly.Rodriguez@toronto.ca>,"Zak Khan" <zkhan2@toronto.ca>|| "
-"End": "/Date(1469633400000)/"
-"EventOrMeeting": 1
-"GW_MeetingID": "040000008200E00074C5B7101A82E00800000000409C34D04AE7D1010000000000000000100000003CDB4C7B17110D43916632F67092BD6F"
-"IsPrivate": false
-"LastModified": "/Date(-62135578800000-0500)/"
-"Location": "MH15F Wellington Meeting Room (8 Seats)"
-"MeetingComment": ""
-"MeetingSubject": "Anika Harford "
-"MeetingType": 1
-"NotifyAction": 0
-"Organizer": ""Anika Harford" <aharfor@toronto.ca>"
-"RRule": ""
-"RV_MeetingID": "54386A51-D472-460F-81DF-76F7A905F309"
-"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a"
-"Start": "/Date(1469629800000)/"
-"TimeZoneId": "Eastern Standard Time"
-}-
-1:  {
-"AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2BhxCAAA="
-"Attendees": ""Ali Alaswad" <Ali.Alaswad@toronto.ca>,"David Neil" <David.Neil@toronto.ca>,"Elwy El-Gazzar" <Elwy.El-Gazzar@toronto.ca>,"MH15F Wellington Meeting Room (8 Seats)" <MH15F_Wellington_MRoom@toronto.ca>|| "
-"End": "/Date(1469642400000)/"
-"EventOrMeeting": 1
-"GW_MeetingID": "040000008200E00074C5B7101A82E0080000000010740B6D06E8D101000000000000000010000000082F9FD68805204CACA1DD74C73EEE44"
-"IsPrivate": false
-"LastModified": "/Date(-62135578800000-0500)/"
-"Location": "MH15F Wellington Meeting Room"
-"MeetingComment": ""
-"MeetingSubject": "Ali Alaswad "
-"MeetingType": 1
-"NotifyAction": 0
-"Organizer": ""Ali Alaswad" <aalaswa@toronto.ca>"
-"RRule": ""
-"RV_MeetingID": "E7EF2240-2383-484B-82B4-839BC8E4F4BA"
-"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a"
-"Start": "/Date(1469640600000)/"
-"TimeZoneId": "Eastern Standard Time"
-}-
-2:  {
-"AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgFRAAgI07Ww8+NAAEYAAAAA2gBNDCjtDk2IGbzpkgGqawcAQhTY8SX4pUue9e2V0bkN+gAAAAABDQAAQhTY8SX4pUue9e2V0bkN+gAASKB+lwAAEA=="
-"Attendees": ""Asad Sultan" <Asad.Sultan@toronto.ca>|| "
-"End": "/Date(1469646000000)/"
-"EventOrMeeting": 1
-"GW_MeetingID": "040000008200E00074C5B7101A82E00800000000E00E4C98CCC8D1010000000000000000100000008668CF6327477048A6278AA4474DA062"
-"IsPrivate": false
-"LastModified": "/Date(-62135578800000-0500)/"
-"Location": "MH15F Wellington Meeting Room (8 Seats)"
-"MeetingComment": ""
-"MeetingSubject": "Asad Sultan "
-"MeetingType": 3
-"NotifyAction": 0
-"Organizer": ""Asad Sultan" <asultan@toronto.ca>"
-"RRule": "FREQ=WEEKLY;INTERVAL=1;BYDAY=WE;WKST=SU;UNTIL=20170503T040000Z"
-"RV_MeetingID": "725A4A87-76FE-40B6-BE78-1DB5A2725101"
-"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a"
-"Start": "/Date(1469642400000)/"
-"TimeZoneId": "Eastern Standard Time"
-}-
-3:  {
-"AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2BhxEAAA="
-"Attendees": ""
-"End": "/Date(1469649600000)/"
-"EventOrMeeting": 1
-"GW_MeetingID": "040000008200E00074C5B7101A82E00800000000CFE432E83BE8D1010000000000000000100000004BC027F4BDEB564A835902C23306F498"
-"IsPrivate": false
-"LastModified": "/Date(-62135578800000-0500)/"
-"Location": ""
-"MeetingComment": ""
-"MeetingSubject": "testMeetingBook"
-"MeetingType": 1
-"NotifyAction": 0
-"Organizer": ""dev" <jbunsto@toronto.ca>"
-"RRule": ""
-"RV_MeetingID": "5084E43E-0D6F-4C79-BF79-D5C9712281A0"
-"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a"
-"Start": "/Date(1469647800000)/"
-"TimeZoneId": "Eastern Standard Time"
-}-
-4:  {
-"AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AABx/UV1AAA="
-"Attendees": ""Jackson Sychingho" <Jackson.Sychingho@toronto.ca>,"Linda Tran" <Linda.Tran@toronto.ca>,"Vanessa Valdez" <Vanessa.Valdez@toronto.ca>,"Karen Nguyen" <Karen.Nguyen@toronto.ca>,"Wendy So" <Wendy.So@toronto.ca>,"Jinglu Han" <Jinglu.Han@toronto.ca>,"Emerson Feniak" <Emerson.Feniak@toronto.ca>,"Beth Rogalewicz" <Beth.Rogalewicz@toronto.ca>,"Elizabeth Araujo" <Elizabeth.Araujo@toronto.ca>,"Susie Mahendran" <Susie.Mahendran@toronto.ca>,"Sameera Hasmani" <Sameera.Hasmani@toronto.ca>|| "
-"End": "/Date(1469721600000)/"
-"EventOrMeeting": 1
-"GW_MeetingID": "040000008200E00074C5B7101A82E00800000000108BD4AB2A6ED101000000000000000010000000421412DCA013E14AB8552A5B54CD2BCC"
-"IsPrivate": false
-"LastModified": "/Date(-62135578800000-0500)/"
-"Location": "MH15F Wellington Meeting Room (8 Seats)"
-"MeetingComment": ""
-"MeetingSubject": "Jackson Sychingho "
-"MeetingType": 1
-"NotifyAction": 0
-"Organizer": ""Jackson Sychingho" <jsychin@toronto.ca>"
-"RRule": "Recurring"
-"RV_MeetingID": "DB91D220-DEF8-437F-B02B-99D40986C72E"
-"RoomID": "28cb401b-2ddc-4dec-84c4-70e425460e10,860ae2ee-2620-4035-b36b-c4ff67d1124a,cab41bd6-a74e-4bde-acf8-cb38295c0b64"
-"Start": "/Date(1469716200000)/"
-"TimeZoneId": "Eastern Standard Time"
-}-
-5:  {
-"AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2BhxKAAA="
-"Attendees": ""Nora MacGregor" <Nora.MacGregor@toronto.ca>|| "
-"End": "/Date(1469734200000)/"
-"EventOrMeeting": 1
-"GW_MeetingID": "040000008200E00074C5B7101A82E008000000008078BCE7DDE8D10100000000000000001000000069048543A05F4940A35F615ACE4344AA"
-"IsPrivate": false
-"LastModified": "/Date(-62135578800000-0500)/"
-"Location": "MH15F Wellington Meeting Room (8 Seats)"
-"MeetingComment": ""
-"MeetingSubject": "Nora MacGregor "
-"MeetingType": 1
-"NotifyAction": 0
-"Organizer": ""Nora MacGregor" <nmacgre@toronto.ca>"
-"RRule": ""
-"RV_MeetingID": "454E4390-5912-41C3-8D02-29F537AB0D1B"
-"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a"
-"Start": "/Date(1469730600000)/"
-"TimeZoneId": "Eastern Standard Time"
-}-
--
-"PageNumber": 1
-"Status": "Success"
-"TotalRecords": 6
+  "API_Appointments": [
+    {
+      "AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2Bhw5AAA=",
+      "Attendees": "\"Anika Harford\" <aharfor@toronto.ca>,\"Kem Raj\" <Kem.Raj@toronto.ca>,\"Deivanai Ramanathan\" <dramana@toronto.ca>,\"Priscilla Lai\" <PLai@toronto.ca>,\"Jennifer de Barros\" <Jennifer.deBarros@toronto.ca>,\"Bola Otaraki\" <botarak@toronto.ca>,\"Karly Rodriguez\" <Karly.Rodriguez@toronto.ca>,\"Zak Khan\" <zkhan2@toronto.ca>|| ",
+      "End": "/Date(1469633400000)/",
+      "EventOrMeeting": 1,
+      "GW_MeetingID": "040000008200E00074C5B7101A82E00800000000409C34D04AE7D1010000000000000000100000003CDB4C7B17110D43916632F67092BD6F",
+      "IsPrivate": false,
+      "LastModified": "/Date(-62135578800000-0500)/",
+      "Location": "MH15F Wellington Meeting Room (8 Seats)",
+      "MeetingComment": "",
+      "MeetingSubject": "Anika Harford ",
+      "MeetingType": 1,
+      "NotifyAction": 0,
+      "Organizer": "\"Anika Harford\" <aharfor@toronto.ca>",
+      "RRule": "",
+      "RV_MeetingID": "54386A51-D472-460F-81DF-76F7A905F309",
+      "RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
+      "Start": "/Date(1469629800000)/",
+      "TimeZoneId": "Eastern Standard Time"
+    },
+    {
+      "AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2BhxCAAA=",
+      "Attendees": "\"Ali Alaswad\" <Ali.Alaswad@toronto.ca>,\"David Neil\" <David.Neil@toronto.ca>,\"Elwy El-Gazzar\" <Elwy.El-Gazzar@toronto.ca>,\"MH15F Wellington Meeting Room (8 Seats)\" <MH15F_Wellington_MRoom@toronto.ca>|| ",
+      "End": "/Date(1469642400000)/",
+      "EventOrMeeting": 1,
+      "GW_MeetingID": "040000008200E00074C5B7101A82E0080000000010740B6D06E8D101000000000000000010000000082F9FD68805204CACA1DD74C73EEE44",
+      "IsPrivate": false,
+      "LastModified": "/Date(-62135578800000-0500)/",
+      "Location": "MH15F Wellington Meeting Room",
+      "MeetingComment": "",
+      "MeetingSubject": "Ali Alaswad ",
+      "MeetingType": 1,
+      "NotifyAction": 0,
+      "Organizer": "\"Ali Alaswad\" <aalaswa@toronto.ca>",
+      "RRule": "",
+      "RV_MeetingID": "E7EF2240-2383-484B-82B4-839BC8E4F4BA",
+      "RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
+      "Start": "/Date(1469640600000)/",
+      "TimeZoneId": "Eastern Standard Time"
+    },
+    {
+      "AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgFRAAgI07Ww8+NAAEYAAAAA2gBNDCjtDk2IGbzpkgGqawcAQhTY8SX4pUue9e2V0bkN+gAAAAABDQAAQhTY8SX4pUue9e2V0bkN+gAASKB+lwAAEA==",
+      "Attendees": "\"Asad Sultan\" <Asad.Sultan@toronto.ca>|| ",
+      "End": "/Date(1469646000000)/",
+      "EventOrMeeting": 1,
+      "GW_MeetingID": "040000008200E00074C5B7101A82E00800000000E00E4C98CCC8D1010000000000000000100000008668CF6327477048A6278AA4474DA062",
+      "IsPrivate": false,
+      "LastModified": "/Date(-62135578800000-0500)/",
+      "Location": "MH15F Wellington Meeting Room (8 Seats)",
+      "MeetingComment": "",
+      "MeetingSubject": "Asad Sultan ",
+      "MeetingType": 3,
+      "NotifyAction": 0,
+      "Organizer": "\"Asad Sultan\" <asultan@toronto.ca>",
+      "RRule": "FREQ=WEEKLY;INTERVAL=1;BYDAY=WE;WKST=SU;UNTIL=20170503T040000Z",
+      "RV_MeetingID": "725A4A87-76FE-40B6-BE78-1DB5A2725101",
+      "RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
+      "Start": "/Date(1469642400000)/",
+      "TimeZoneId": "Eastern Standard Time"
+    },
+    {
+      "AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2BhxEAAA=",
+      "Attendees": "",
+      "End": "/Date(1469649600000)/",
+      "EventOrMeeting": 1,
+      "GW_MeetingID": "040000008200E00074C5B7101A82E00800000000CFE432E83BE8D1010000000000000000100000004BC027F4BDEB564A835902C23306F498",
+      "IsPrivate": false,
+      "LastModified": "/Date(-62135578800000-0500)/",
+      "Location": "",
+      "MeetingComment": "",
+      "MeetingSubject": "testMeetingBook",
+      "MeetingType": 1,
+      "NotifyAction": 0,
+      "Organizer": "\"dev\" <jbunsto@toronto.ca>",
+      "RRule": "",
+      "RV_MeetingID": "5084E43E-0D6F-4C79-BF79-D5C9712281A0",
+      "RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
+      "Start": "/Date(1469647800000)/",
+      "TimeZoneId": "Eastern Standard Time"
+    },
+    {
+      "AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AABx/UV1AAA=",
+      "Attendees": "\"Jackson Sychingho\" <Jackson.Sychingho@toronto.ca>,\"Linda Tran\" <Linda.Tran@toronto.ca>,\"Vanessa Valdez\" <Vanessa.Valdez@toronto.ca>,\"Karen Nguyen\" <Karen.Nguyen@toronto.ca>,\"Wendy So\" <Wendy.So@toronto.ca>,\"Jinglu Han\" <Jinglu.Han@toronto.ca>,\"Emerson Feniak\" <Emerson.Feniak@toronto.ca>,\"Beth Rogalewicz\" <Beth.Rogalewicz@toronto.ca>,\"Elizabeth Araujo\" <Elizabeth.Araujo@toronto.ca>,\"Susie Mahendran\" <Susie.Mahendran@toronto.ca>,\"Sameera Hasmani\" <Sameera.Hasmani@toronto.ca>|| ",
+      "End": "/Date(1469721600000)/",
+      "EventOrMeeting": 1,
+      "GW_MeetingID": "040000008200E00074C5B7101A82E00800000000108BD4AB2A6ED101000000000000000010000000421412DCA013E14AB8552A5B54CD2BCC",
+      "IsPrivate": false,
+      "LastModified": "/Date(-62135578800000-0500)/",
+      "Location": "MH15F Wellington Meeting Room (8 Seats)",
+      "MeetingComment": "",
+      "MeetingSubject": "Jackson Sychingho ",
+      "MeetingType": 1,
+      "NotifyAction": 0,
+      "Organizer": "\"Jackson Sychingho\" <jsychin@toronto.ca>",
+      "RRule": "Recurring",
+      "RV_MeetingID": "DB91D220-DEF8-437F-B02B-99D40986C72E",
+      "RoomID": "28cb401b-2ddc-4dec-84c4-70e425460e10,860ae2ee-2620-4035-b36b-c4ff67d1124a,cab41bd6-a74e-4bde-acf8-cb38295c0b64",
+      "Start": "/Date(1469716200000)/",
+      "TimeZoneId": "Eastern Standard Time"
+    },
+    {
+      "AltID": "AAMkADJjY2UzYzUzLTdmNTUtNGRiYS1iYzEwLTYwMzI1ODYyNDIzZgBGAAAAAADaAE0MKO0OTYgZvOmSAaprBwBCFNjxJfilS5717ZXRuQ36AAAAAAENAABCFNjxJfilS5717ZXRuQ36AAB2BhxKAAA=",
+      "Attendees": "\"Nora MacGregor\" <Nora.MacGregor@toronto.ca>|| ",
+      "End": "/Date(1469734200000)/",
+      "EventOrMeeting": 1,
+      "GW_MeetingID": "040000008200E00074C5B7101A82E008000000008078BCE7DDE8D10100000000000000001000000069048543A05F4940A35F615ACE4344AA",
+      "IsPrivate": false,
+      "LastModified": "/Date(-62135578800000-0500)/",
+      "Location": "MH15F Wellington Meeting Room (8 Seats)",
+      "MeetingComment": "",
+      "MeetingSubject": "Nora MacGregor ",
+      "MeetingType": 1,
+      "NotifyAction": 0,
+      "Organizer": "\"Nora MacGregor\" <nmacgre@toronto.ca>",
+      "RRule": "",
+      "RV_MeetingID": "454E4390-5912-41C3-8D02-29F537AB0D1B",
+      "RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
+      "Start": "/Date(1469730600000)/",
+      "TimeZoneId": "Eastern Standard Time"
+    }
+  ],
+  "PageNumber": 1,
+  "Status": "Success",
+  "TotalRecords": 6
 }

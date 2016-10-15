@@ -4,7 +4,7 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("fusion.controller.LoginView", {
-
+		
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -70,28 +70,78 @@ sap.ui.define([
 			var aData = jQuery.ajax({
 				              url: url,  
 			                  type : "GET",
-			            	  data: param,
-			                  dateType: "json",
+//			            	  data: param,
+			                  dateType: "text",
 				              contentType : "application/json",
 			                  async: true, 
 			                  crossDomain : true,
 			            success: function(data, textStatus, jqXHR) { // callback called when data is 
 
 		                  var rooms = [];   
+					      var list = data.API_Rooms;
+					      var n = list.length;
 
-			                  for(var i = 0; i< 3; i++) {
-			                    var room = {};
-			                    var roomName = room.childNodes[0].text;
-			                    rooms.push(roomName);
+			                  for(var i = 0; i< n; i++) {
+			                  	try {
+			                  	  var roomData = list[i];
+			                      var RoomName = roomData.RoomName;
+			                      var RoomID = roomData.RoomID;
+			                      var _room = {
+			                      	"RoomName" : RoomName,
+			                      	"RoomID" : RoomID
+			                      };
+			                      rooms.push(_room);
+			                  	} catch(err) {
+			                  		alert(err);
+			                  	}
+			                 } 
+			                 
+			                 this.loadAppointments();
+			            },
+			           error: function(data, textStatus, jqXHR) {
+			                    alert("Error occured"+data.statusText + textStatus);
+			                 }
+			            });		                 
+		}, 
+		
+		loadAppointments: function () {
+			var url = "model/appointments.json"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
+			var param = { "Content-Type": "application/json" };
+			var aData = jQuery.ajax({
+				              url: url,  
+			                  type : "GET",
+//			            	  data: param,
+			                  dateType: "text",
+				              contentType : "application/json",
+			                  async: true, 
+			                  crossDomain : true,
+			            success: function(data, textStatus, jqXHR) { 
+
+		                  var rooms = [];   
+					      var list = data.API_Appointments;
+					      var n = list.length;
+
+			                  for(var i = 0; i< n; i++) {
+			                  	try {
+			                  	  var roomData = list[i];
+			                      var RoomName = roomData.RoomName;
+			                      var RoomID = roomData.RoomID;
+			                      var _room = {
+			                      	"RoomName" : RoomName,
+			                      	"RoomID" : RoomID
+			                      };
+			                      rooms.push(_room);
+			                  	} catch(err) {
+			                  		alert(err);
+			                  	}
 			                 } 
 			            },
 			           error: function(data, textStatus, jqXHR) {
 			                    alert("Error occured"+data.statusText + textStatus);
 			                 }
 			            });		                 
-			
-	
-		}, 
+		},
+		
 		loadData: function() {
 
 			var url = "model/API_Rooms.xml"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
@@ -162,6 +212,8 @@ sap.ui.define([
 					router.navTo("main", {}, true);
 				}
 			});
+			
+			this.loadRooms();
 
 			//	   	  this.getRouter().navTo("mymeetings", {}, true );
 
