@@ -36,7 +36,7 @@
 											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 												xmlns:html="http://www.w3.org/1999/xhtml" id="__layout0111" width="100%">
 												<sap.ui.layout:content>
-													<Slider id="capacitySliderId" width="200px" change="onCapacityChanged" liveChange="changeCapacity" value="3" max="20" step="1" 
+													<Slider id="capacitySliderId" width="200px" change="onCapacityChanged" liveChange="changeCapacity" value="3" max="20" step="1"
 														tooltip="Select number of Attendees"/>
 													<Label text="20 pers" width="60px" id="cotRoomCapacity" style="text-align: right" textAlign="Left"/>
 												</sap.ui.layout:content>
@@ -63,10 +63,15 @@
 											</sap.ui.layout:content>
 										</sap.ui.layout:VerticalLayout>
 									</Panel>
-									<List headerText="Found rooms" noDataText="No rooms found" id="listFilteredRooms" items="{rooms>/}" mode="SingleSelectLeft" includeItemInSelection="true"
-										growingScrollToLoad="true" growingThreshold="5" growing="true" selectionChange="onFilteredRoomsSelectionChanged">
+									<List headerText="Found rooms" noDataText="No rooms found" id="listFilteredRooms" items="{rooms>/}" mode="SingleSelectLeft"
+										includeItemInSelection="true" growingScrollToLoad="true" growingThreshold="5" growing="true"
+										selectionChange="onFilteredRoomsSelectionChanged">
 										<items>
-											<StandardListItem title="{rooms>RoomName}" description="Capacity: {rooms>Capacity}" />
+											<ObjectListItem title="{rooms>RoomName}">
+												<attributes>
+													<ObjectAttribute text="Capacity: {rooms>Capacity}"/>
+												</attributes>
+											</ObjectListItem>
 										</items>
 									</List>
 								</content>

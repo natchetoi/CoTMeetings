@@ -39,7 +39,7 @@
 										<t:columns>
 											<t:Column>
 												<t:template>
-													<Text text="{weekMeetings>rows/0/MeetingSubject}"/>
+													<Text text="{weekMeetings>0/MeetingSubject}"/>
 												</t:template>
 											</t:Column>
 											<t:Column>

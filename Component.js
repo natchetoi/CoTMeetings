@@ -355,6 +355,9 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 		var meetings = new sap.ui.model.json.JSONModel('model/AppointmentSet.json');
 		this.setModel(meetings, "all_meetings");
 		
+		var people = new sap.ui.model.json.JSONModel('model/AttendeeSet.json');
+		this.setModel(people, "all_people");
+		
 
 		this.createMeeting();
 

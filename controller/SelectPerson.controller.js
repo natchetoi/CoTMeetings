@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
-], function (Controller, History) {
+	"sap/ui/core/routing/History"
+], function(Controller, History) {
 	"use strict";
 
 	return Controller.extend("fusion.controller.SelectPerson", {
@@ -11,18 +11,18 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf fusion.view.SelectPerson
 		 */
-		//	onInit: function() {
-		//
-		//	},
+		onInit: function() {
+
+		},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
 		 * @memberOf fusion.view.SelectPerson
 		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
+		onBeforeRendering: function() {
+			this.loadPeople();
+		},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
@@ -40,71 +40,60 @@ sap.ui.define([
 		//	onExit: function() {
 		//
 		//	}
-		
-				
-		getMeeting: function () {
+
+		getMeeting: function() {
 			var view = this.getView();
 			var oModel = view.getModel("new");
 			var meeting = oModel.getData();
 			return meeting;
 		},
-		
-		getRouter : function () {
+
+		getRouter: function() {
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
-		
+
 		addAttendees: function() {
-			var view = this.getView();
-//			var model = view.getModel("att");
-			var attendees = [] ; //model.getProperty("/AttendeeSet");
+			var oList = this.byId("listAttendees");
+			var selectedItems = oList.getSelectedItems();
 			
-			var oModel = view.getModel();
-		    var list = "";
-			var checks = $("input[type='CheckBox']");
-			var n = checks.length;
-			for(var i = 0; i<n; i++) {
-				var checkBox = checks[i];
-				var selected = checkBox.checked;
-				var j = i;
-				var path = "/AttendeeSet('" + j + "')/";
-				var PersonID = oModel.getProperty(path + "PersonID");
-				var firstName = oModel.getProperty(path + "firstName");
-				var lastName = oModel.getProperty(path + "lastName");
-//				var wasSelected = oModel.getProperty(path + "selected");
-//					model.setProperty(path, true);
-					var guest = {
-                		"PersonID" : PersonID,
-                		"selected" : selected,
-                		"firstName": firstName,
-                		"lastName" : lastName
-            		};
-					if(selected) {
-					  attendees.push(guest);
-					  if(i > 0) {
-					  	list += ",";
-					  }	
-					  list += PersonID;
-					}
+			if (window.coTShared === undefined) {
+				window.coTShared = {};
+			}
+			if (window.coTShared.meeting === undefined) {
+				window.coTShared.meeting = {};
+			}
+			window.coTShared.meeting.attendees = [];
+			for (var i = 0; i < selectedItems.length; i++) {
+				var selectedPerson = selectedItems[i].getBindingContext("people").getObject();
+				window.coTShared.meeting.attendees.push({"name" : selectedPerson.firstName + " " + selectedPerson.lastName});
 			}
 
-			window.coTShared.att =  attendees;    
-			
-//			model.setData(attendees);
-//            this.setModel(model, "att");
-			this.getRouter().navTo("NewMeeting", { "list": list }, true );
+			this.getRouter().navTo("NewMeeting", {}, true);
 		},
-		
-		onNavBack: function (oEvent) {
+
+		onNavBack: function(oEvent) {
 			// var oHistory, sPreviousHash;
 			// oHistory = History.getInstance();
 			// sPreviousHash = oHistory.getPreviousHash();
 			// if (sPreviousHash !== undefined) {
 			// 	window.history.go(-1);
 			// } else {
-				this.getRouter().navTo("NewMeeting", {}, true );
+			this.getRouter().navTo("NewMeeting", {}, true);
 			//}
-		}
+		},
 
+		loadPeople: function() {
+			var peopleModel = this.getView().getModel("all_people");
+			var sortedPeople = Enumerable
+				.From(peopleModel.getData())
+				.OrderBy("x => x.firstName")
+				.ThenBy("x => x.lastName")
+				.ToArray();
+
+			var model = new sap.ui.model.json.JSONModel();
+			model.setData(sortedPeople);
+			this.getView().setModel(model, "people");
+		}
 	});
 
 });

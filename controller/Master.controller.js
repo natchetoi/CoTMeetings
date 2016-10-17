@@ -190,10 +190,7 @@ sap.ui.define([
 					return Date.parse(x.Date + " " + x.Start);
 				});
 
-			var pendingMeetingsPairsCount = pendingMeetings.ToArray().length / 2;
-			if (pendingMeetings.ToArray().length - pendingMeetingsPairsCount * 2 > 0) {
-				pendingMeetingsPairsCount += 1;
-			}
+			var pendingMeetingsPairsCount = Math.ceil(pendingMeetings.ToArray().length / 2);
 
 			var pendingMeetingsPairs = [];
 			for (var i = 0; i < pendingMeetingsPairsCount; i++) {

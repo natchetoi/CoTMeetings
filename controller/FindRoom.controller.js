@@ -10,8 +10,6 @@ sap.ui.define([
 ) {
 	"use strict";
 
-	var filter = {};
-
 	return Controller.extend("fusion.controller.FindRoom", {
 		//        formatter : formatter,
 
@@ -23,8 +21,10 @@ sap.ui.define([
 			projector: false,
 			computer: false
 		},
-		
-		selectedRoom: { RoomName: "Simcoe" },
+
+		selectedRoom: {
+			RoomName: "Simcoe"
+		},
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -123,17 +123,15 @@ sap.ui.define([
 		},
 
 		bookRoom: function(oEvent) {
-//			var tabBar = this.getView().byId("findRoomTabBar");
-//			var selectedKey = tabBar.selectedKey;
-
-			var roomName = this.selectedRoom.RoomName;
-			var meeting = {};
-			try {
-				meeting = this.getMeeting();
-				meeting.RoomName = roomName;
-			} catch (err) {
-				meeting.RoomName = "Adelaide";
+			if (window.coTShared === undefined) {
+				window.coTShared = {};
 			}
+			if (window.coTShared.meeting === undefined) {
+				window.coTShared.meeting = {};
+			}
+			window.coTShared.meeting.room = this.selectedRoom.RoomName;
+			window.coTShared.meeting.roomId = this.selectedRoom.RoomId;
+
 			var router = this.getRouter();
 			router.navTo("NewMeeting", {}, true);
 		},
@@ -217,27 +215,23 @@ sap.ui.define([
 		onFavoritesSelectionChanged: function(oControlEvent) {
 			var oList = oControlEvent.getSource();
 			var selectedRoom = oList.getSelectedItem().getTitle();
-			if (window.coTShared === undefined) {
-				window.coTShared = {};
+			this.selectedRoom.RoomName = selectedRoom;
+			//some hardcoded values:
+			
+			if(selectedRoom === "Simcoe"){
+				this.selectedRoom.RoomId = "28cb401b-2ddc-4dec-84c4-70e425460e10";
+			} else if(selectedRoom === "Adelaide"){
+				this.selectedRoom.RoomId = "1a775e79-c1e1-479b-be90-6704d16b48b1";
+			} else if(selectedRoom === "Jarvis"){
+				this.selectedRoom.RoomId = "ba5d6332-92ac-4324-a62e-fe7164514407";
 			}
-			if (window.coTShared.meeting === undefined) {
-				window.coTShared.meeting = {};
-			}
-			this.selectedRoom.RoomName = selectedRoom; 
-			window.coTShared.meeting.room = selectedRoom;
 		},
 
 		onFilteredRoomsSelectionChanged: function(oControlEvent) {
 			var oList = oControlEvent.getSource();
-			var selectedRoom = oList.getSelectedItem().getTitle();
-			if (window.coTShared === undefined) {
-				window.coTShared = {};
-			}
-			if (window.coTShared.meeting === undefined) {
-				window.coTShared.meeting = {};
-			}
-			this.selectedRoom.RoomName = selectedRoom; 
-			window.coTShared.meeting.room = selectedRoom;
+			var selectedRoom = oList.getSelectedItem().getBindingContext("rooms").getObject();
+			this.selectedRoom.RoomName = selectedRoom.RoomName;
+			this.selectedRoom.RoomId = selectedRoom.RoomID;
 		},
 
 		onQuickFilter: function(oEvent) {
@@ -341,46 +335,6 @@ sap.ui.define([
 			var router = this.getRouter();
 			router.navTo("FloorPlan3d", {}, true);
 			//}
-		},
-
-		pressRoom11: function(oEvent) {
-			var router = this.getRouter();
-			var oItem = oEvent.getSource();
-			//				var room = oItem.getBindingContext().getPath().substr(1);
-			//				var roomName = oItem.getBindingContext().getProperty("RoomName");
-			var roomId = "1";
-			window.coTShared.att = "Jarvis";
-			router.navTo("RoomDetails", {
-				"room": roomId,
-				"RoomName": window.coTShared.att
-			}, true);
-		},
-		pressRoom12: function(oEvent) {
-			var router = this.getRouter();
-			var roomId = "2";
-			window.coTShared.att = "Adelaide";
-			router.navTo("RoomDetails", {
-				"room": roomId,
-				"RoomName": window.coTShared.att
-			}, true);
-		},
-		pressRoom21: function(oEvent) {
-			var router = this.getRouter();
-			var roomId = "3";
-			window.coTShared.att = "Berkeley";
-			router.navTo("RoomDetails", {
-				"room": roomId,
-				"RoomName": window.coTShared.att
-			}, true);
-		},
-		pressRoom22: function(oEvent) {
-			var router = this.getRouter();
-			var roomId = "4";
-			window.coTShared.att = "Duncan";
-			router.navTo("RoomDetails", {
-				"room": roomId,
-				"RoomName": window.coTShared.att
-			}, true);
 		}
 
 	});

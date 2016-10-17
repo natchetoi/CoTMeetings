@@ -65,6 +65,7 @@ sap.ui.define([
 
 		loadRooms: function () {
 		
+		var self = this;
 			var url = "model/rooms.json"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
 			var param = { "Content-Type": "application/json" };
 			var aData = jQuery.ajax({
@@ -96,7 +97,7 @@ sap.ui.define([
 			                  	}
 			                 } 
 			                 
-			                 this.loadAppointments();
+			                 self.loadAppointments();
 			            },
 			           error: function(data, textStatus, jqXHR) {
 			                    alert("Error occured"+data.statusText + textStatus);

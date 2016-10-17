@@ -1,9 +1,9 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="fusion.controller.NewMeeting" id="NewMeetingViewId">	
-
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" controllerName="fusion.controller.NewMeeting" id="NewMeetingViewId">
 	<App>
 		<pages>
 			<Page title="NEW MEETING" icon="sap-icon://company-view" navButtonPress="onNavBack" showSubHeader="false" id="newMeetingPageId">
-		<!--customHeader  class="coTnewMeeting" id="newMeetingHeader" >
+				<!--customHeader  class="coTnewMeeting" id="newMeetingHeader" >
 			<Bar height="118px"  >
 			<contentLeft>
 				<Button text="&lt;" press="onNavBack" ></Button>
@@ -17,68 +17,73 @@
 		</contentRight>		
 		</Bar>
 		</customHeader -->
-		
 				<content>
-				    <IconTabBar selectedKey="__filter0" id="__bar0">
-				        <items>
-				            <IconTabFilter text="Details" id="__filter0" iconColor="Neutral" icon="sap-icon://idea-wall">
-				            <content>
-				                <Label text="Subject:" width="100%" id="__label4"/>
-				                <Input width="100%" id="__input1" value="{new>/MeetingSubject}"/>
-				                <Label text="Room:" width="25%" id="__label0"/>
-				                <ComboBox  value="{new>/RoomName}" 
-				                		id="roomSelectBox" width="50%" selectedKey="Adelaide">
-				                    <items>
-				                        <!-- core:ListItem text="{RoomName}" key="{RoomID}" / -->
-				                        <core:ListItem text="Adelaide" key="Adelaide" id="__item30"/>
-				                        <core:ListItem text="Berkeley" key="Berkeley" id="__item31"/>
-				                        <core:ListItem text="Duncan" key="Duncan" id="__item32"/>
-				                        <core:ListItem text="Frederick" key="Frederick" id="__item33"/>
-				                        <core:ListItem text="Richmond" key="Richmond" id="__item34"/>
-				                        <core:ListItem text="Simcoe" key="Simcoe" id="__item35"/>
-				                        <core:ListItem text="Wellington" key="Wellington" id="__item36"/>
-				                        <core:ListItem text="York" key="York" id="__item37"/>
-				                        <core:ListItem text="Jarvis" key="Jarvis" id="__item38"/>
-				                    </items>
-				                </ComboBox>
-				                <Label text="Description:" width="100%" id="__label5"/>
-				                <TextArea id="__area0" width="100%" value="{new>/MeetingComment}"/>
-				                <Label text="Conference Call #:" width="25%" id="__label1"/>
-				                <Input width="50%" id="__input2" fieldWidth="30%" value="+1-416-933-8665"/>
-				            </content>
-				            </IconTabFilter>
-				            <IconTabFilter text="Attendees"  iconColor="Neutral" icon="sap-icon://person-placeholder" id="__filter2">
-				            	<content>
-				                    <List noDataText="No data" id="attListId" items="{/AttendeeSet}">
-				                        <items>
-				                            <StandardListItem  title="{firstName} {lastName}" visible="{selected}"/>
-				                         </items>
-				                    </List>
-				<Button width="100px" id="__button22" press="addPerson" icon="sap-icon://add" tooltip="Add Attendees" tap="addPerson"/>
-				                </content>
-				            </IconTabFilter>
-				            <IconTabFilter text="Time" iconColor="Neutral" icon="sap-icon://time-entry-request" id="__filter1">
-				            <content>
-				                <DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{new>/Date}"/>
-		                		<Label text="From:" width="100%" id="__label3"/>
-		                		<TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker0" valueFormat="h:mm a" value="{Start}"/>
-		                		<Label text="To:" width="100%" id="__label33"/>
-		                		<TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker1" valueFormat="h:mm a" value="{End}"/>
-				            </content>
-				            </IconTabFilter>
-				            </items>
-				    </IconTabBar>
+					<IconTabBar selectedKey="__filter0" id="__bar0">
+						<items>
+							<IconTabFilter text="Details" id="__filter0" iconColor="Neutral" icon="sap-icon://idea-wall">
+								<content>
+									<VBox class="sapUiSmallMargin">
+										<f:SimpleForm id="SimpleFormDisplay354" maxContainerCols="2" editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+											columnsL="1" columnsM="1" layout="ResponsiveGridLayout">
+											<f:content>
+												<Label text="Subject" design="Bold"/>
+												<Input id="inputSubject" value="{/MeetingSubject}"/>
+												<Label text="Description" design="Bold"/>
+												<TextArea id="inputDescription" value="{/MeetingComment}"/>
+												<Label text="Conference Call #" id="__label1" design="Bold"/>
+												<Input id="inputCallNumber" value="{/CallNumber}"/>
+												<Label text="Room" design="Bold"/>
+												<Text id="txtSelectedRoom" text="{/RoomName}">
+													<layoutData>
+														<l:GridData span="L3 M4 S4"/>
+													</layoutData>
+												</Text>
+												<Link text="Find room" press="findRoom"/>
+											</f:content>
+										</f:SimpleForm>
+									</VBox>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="Attendees" iconColor="Neutral" icon="sap-icon://person-placeholder" id="__filter2">
+								<content>
+									<List noDataText="No data" id="attListId" items="{/Attendees}">
+										<items>
+											<StandardListItem title="{name}"/>
+										</items>
+									</List>
+									<Button id="__button22" press="addPerson" icon="sap-icon://add" tooltip="Add Attendees" tap="addPerson" text="Add"/>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="Time" iconColor="Neutral" icon="sap-icon://time-entry-request" id="__filter1">
+								<content>
+									<VBox class="sapUiSmallMargin">
+										<f:SimpleForm id="SimpleFormDisplay355" maxContainerCols="2" editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+											columnsL="1" columnsM="1" layout="ResponsiveGridLayout">
+											<f:content>
+												<Label text="Date" design="Bold"/>
+												<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{/Date}"/>
+												<Label text="From" design="Bold"/>
+												<TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker0"
+													valueFormat="h:mm a" value="{/Start}"/>
+												<Label text="To" design="Bold"/>
+												<TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker1"
+													valueFormat="h:mm a" value="{/End}"/>
+											</f:content>
+										</f:SimpleForm>
+									</VBox>
+								</content>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
 				</content>
-		<footer>
-			<Toolbar>
-                <Button text="" width="50px" id="__button31" press="onNavBack" icon="sap-icon://accept" tooltip="Save and return" type="Emphasized"/>
-                <Button text="" width="50px" id="__button41" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel and return" type="Emphasized"/>
-
-                <Button width="50px" id="__button3" press="calendar" icon="sap-icon://calendar" tooltip="Calendar" type="Emphasized"/>
-                <Button width="50px" id="__button0" press="pickTime" icon="sap-icon://create-entry-time" tooltip="Pick Event Time" type="Emphasized"/>
- 			    <Button width="50px" id="__button1" press="findRoom" icon="sap-icon://search" tooltip="Find a Room" type="Emphasized"/>
-			</Toolbar>
-		</footer>
+				<footer>
+					<Toolbar>
+						<Button text="" width="50px" id="__button31" press="saveMeeting" icon="sap-icon://accept" tooltip="Save and return" type="Emphasized"/>
+						<Button text="" width="50px" id="__button41" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel and return" type="Emphasized"/>
+						<!--<Button width="50px" id="__button3" press="calendar" icon="sap-icon://calendar" tooltip="Calendar" type="Emphasized"/>-->
+						<Button width="50px" id="__button0" press="pickTime" icon="sap-icon://create-entry-time" tooltip="Pick Event Time" type="Emphasized"/>
+					</Toolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>
