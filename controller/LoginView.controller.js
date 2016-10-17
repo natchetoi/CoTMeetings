@@ -138,7 +138,7 @@ sap.ui.define([
 			                 } 
 			            },
 			           error: function(data, textStatus, jqXHR) {
-			                    alert("Error occured"+data.statusText + textStatus);
+			                    alert("Error occured " + data.statusText +  " " + textStatus);
 			                 }
 			            });		                 
 		},

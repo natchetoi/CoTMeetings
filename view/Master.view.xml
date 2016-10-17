@@ -12,8 +12,8 @@
 		<content>
 			<ObjectHeader title="Upcoming meetings">
 			</ObjectHeader>
-			<t:Table noDataText="My Meetings" id="myMeetingsListId" rows="{/rows}" selectionMode="None" columnHeaderVisible="false"
-				visibleRowCount="{/rowsCount}" cellClick="onMeetingCellSelected">
+			<t:Table noDataText="My Meetings" id="myMeetingsListId" selectionMode="None" columnHeaderVisible="false"
+			visibleRowCount="{/rowsCount}" rows="{/rows}"    cellClick="onMeetingCellSelected">                <!-- 	   -->
 				<t:columns>
 					<t:Column resizable="false" flexible="false">
 						<t:template>

@@ -2,7 +2,8 @@
 // jQuery.sap.require("fusion.util.Controller");
 
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/layout/VerticalLayout"
 ], function(Controller) {
 	"use strict";
 	return Controller.extend("fusion.controller.Master", {
@@ -10,9 +11,15 @@ sap.ui.define([
 			sap.ui.core.UIComponent.getRouterFor(this).attachRouteMatched(this.onRouteMatched, this);
 		},
 
+		onBeforeRendering: function() {
+			
+			this.loadMeetings();
+			this.meetingList();	
+		},
+		
 		onAfterRendering: function() {
 
-		},
+		}, 
 
 		/**
 		 * Master view RoutePatternMatched event handler 
@@ -39,7 +46,7 @@ sap.ui.define([
 			// 	this.selectFirstItem();
 
 			// });
-			this.loadMeetings();
+
 		},
 
 		/**
@@ -210,7 +217,76 @@ sap.ui.define([
 			});
 			this.getView().setModel(model);
 		},
+		
+		getMyMeetings: function() {
+		   var model = this.getView().getModel();
+		   var list = model.getData();
+		   return list;
+		},
+        
+        meetingList: function( ) {
+           
+         var oTable = this.getView().byId("myMeetingsListId");
+         
+         var list = this.getMyMeetings();
+         
+         var n= list.rows.length;
+         
+         for(var i=0; i<n; i++ ) {
+         	var pair = list.rows[i];
+             
+            var meeting1 = pair[0];
+            var meeting2 = pair[1];
+            
+            
+			var link1 = new sap.m.Link("l1" + i, {
+				 press: "showMeeting"
+			});
+			link1.setText(meeting1.MeetingSubject);
 
+			var link2 = new sap.m.Link("l2" + i, {
+				 press: "showMeeting"
+			});
+			link2.setText(meeting1.Start + "-" + meeting1.End);
+			
+			var panel1 = new sap.m.Panel({
+				content: [
+					new sap.ui.layout.VerticalLayout({
+						content: [
+							link1,
+							link2
+					]})
+				]});
+			panel1.addStyleClass("coTWhiteSquare");
+
+			var link12 = new sap.m.Link("l12" + i, {
+				 press: "showMeeting"
+			});
+			link1.setText(meeting2.MeetingSubject);
+
+			var link22 = new sap.m.Link("l22" + i, {
+				 press: "showMeeting"
+			});
+			link2.setText(meeting2.Start + "-" + meeting2.End);				
+			var panel2 = new sap.m.Panel({
+				content: [
+					new sap.ui.layout.VerticalLayout({
+						content: [
+							link12,
+							link22
+					]})
+				]});
+			panel2.addStyleClass("coTWhiteSquare");
+				
+            var row = new sap.ui.table.Row({cells: [
+         	  new sap.m.Text({ text: "column1" }),
+         	  new sap.m.Text({ text: "column2" })
+			]});
+			oTable.insertRow(row);
+         }
+
+        },
+        
 		buildDate: function(oTime, oDate) {
 			var result = new Date(Date.parse(oDate + " " + oTime));
 			return result;
