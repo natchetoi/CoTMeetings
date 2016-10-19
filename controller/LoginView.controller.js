@@ -65,7 +65,7 @@ sap.ui.define([
 
 		loadRooms: function () {
 		
-		var self = this;
+			var self = this;
 			var url = "model/rooms.json"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
 			var param = { "Content-Type": "application/json" };
 			var aData = jQuery.ajax({
@@ -118,20 +118,20 @@ sap.ui.define([
 			                  crossDomain : true,
 			            success: function(data, textStatus, jqXHR) { 
 
-		                  var rooms = [];   
+		                  var appointments = [];   
 					      var list = data.API_Appointments;
 					      var n = list.length;
 
 			                  for(var i = 0; i< n; i++) {
 			                  	try {
-			                  	  var roomData = list[i];
-			                      var RoomName = roomData.RoomName;
-			                      var RoomID = roomData.RoomID;
+			                  	  var appData = list[i];
+			                      var MeetingSubject = appData.RoomName;
+			                      var AltID = appData.AltID;
 			                      var _room = {
-			                      	"RoomName" : RoomName,
-			                      	"RoomID" : RoomID
+			                      	"MeetingSubject" : MeetingSubject,
+			                      	"AltID" : AltID
 			                      };
-			                      rooms.push(_room);
+			                      appointments.push(_room);
 			                  	} catch(err) {
 			                  		alert(err);
 			                  	}
@@ -199,16 +199,28 @@ sap.ui.define([
 			*/
 		},
 		
+		login: function(data) {
+					var self = this;
+			   	    var oModel = new sap.ui.model.json.JSONModel();
+       			    oModel.setData(data);  // fill the received data into the JSONModel
+       				sap.ui.getCore().setModel(oModel, "user");  // Store in the Model
+					this.loadRooms();				 
+					var router = sap.ui.core.UIComponent.getRouterFor(self);
+					router.navTo("main", {}, true);
+		},
+		
 		createSession: function() {
+			var self = this;
 		  
-		   var param = //JSON.stringify(
+			var param = //JSON.stringify(
 		   			{ user : "testweb1",
 					  pwd : "toronto", 
 					  app : "deploy"
 				    };
-
+//		 var url =  "https://was8-intra-dev.toronto.ca/cc_sr_admin_v1/session/";
+	     var url =  "http://behealthymagazine.ca/session.php";
 		 jQuery.ajax({
-	            url: "https://was8-intra-dev.toronto.ca/cc_sr_admin_v1/session/",  
+	            url: url,  
 				type : "POST",
 				data: param,
   				dataType: "json",
@@ -216,8 +228,23 @@ sap.ui.define([
 				async: true, 
 				crossDomain : false,
 	            success: function(data, textStatus, jqXHR) { // callback called when data is 
-	            	var name = data.cotUser.firstName + " " +  data.cotUser.lastName;
-					sap.m.MessageToast.show("Hello " + name, {
+	        		var name = data.cotUser.firstName + " " +  data.cotUser.lastName;
+						sap.m.MessageToast.show("Hello " + name, {
+						duration: "200",
+					width: "15em",
+					my: "center top",
+					at: "center top",
+					offset: "0 0",
+					iNumber: 2,
+					autoClose: true,
+					onClose: function() {
+						self.login();
+					}
+				});
+	            },
+	            
+				error: function(data, textStatus, jqXHR) {
+					sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
 						duration: "200",
 						width: "15em",
 						my: "center top",
@@ -226,33 +253,14 @@ sap.ui.define([
 						iNumber: 2,
 						autoClose: true,
 						onClose: function() {
-				       	    var oModel = new sap.ui.model.json.JSONModel();
-       					    oModel.setData(data);  // fill the received data into the JSONModel
-       						sap.ui.getCore().setModel(oModel, "user");  // Store in the Model
-							this.loadRooms();				 
-							var router = sap.ui.core.UIComponent.getRouterFor(self);
-							router.navTo("main", {}, true);
+							self.login();
 						}
-					});
-			
-
-	            },
-				error: function(data, textStatus, jqXHR) {
-					sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
-						duration: "2000",
-						width: "15em",
-						my: "center top",
-						at: "center top",
-						offset: "0 0",
-						iNumber: 2,
-						autoClose: true
 					});
 				}
 			});
 		}, 
 
 		onLogin: function(oEvent) {
-			var self = this;
 			this.createSession();
 
 			//	   	  this.getRouter().navTo("mymeetings", {}, true );

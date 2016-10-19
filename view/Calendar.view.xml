@@ -78,97 +78,6 @@
 							</IconTabFilter>
 							<IconTabFilter text="Monthly" iconColor="Neutral" icon="sap-icon://calendar" id="__filter3">
 								<content>
-									<Table noDataText="Drop column list items here and columns in the area above" id="__table1" headerDesign="Plain">
-										<items>
-											<ColumnListItem counter="0" id="__item5">
-												<cells>
-													<Link press="drilDown" text="De." id="__text6"/>
-													<Link press="drilDown" text="SC." id="__text7"/>
-													<Link press="drilDown" text="" id="__text8"/>
-													<Link press="drilDown" text="" id="__text2_copy9"/>
-													<Link press="drilDown" text="" id="__text2_copy10"/>
-													<Link press="drilDown" text="" id="__text2_cop11"/>
-													<Link press="drilDown" text="" id="__text2_cop12"/></cells>
-											</ColumnListItem>
-											<ColumnListItem counter="0" id="__item6">
-												<cells>
-													<Link press="drilDown" text="Po." id="__text9"/>
-													<Link press="drilDown" text="" id="__text10"/>
-													<Link press="drilDown" text="SC." id="__text11"/>
-													<Link press="drilDown" text="" id="__text2_copy13"/>
-													<Link press="drilDown" text="" id="__text2_copy14"/>
-													<Link press="drilDown" text="" id="__text2_copy15"/>
-													<Link press="drilDown" text="" id="__text2_cop16"/></cells>
-											</ColumnListItem>
-											<ColumnListItem counter="0" id="__item15">
-												<cells>
-													<Link press="drilDown" text="" id="__text16"/>
-													<Link press="drilDown" text="SC." id="__text17"/>
-													<Link press="drilDown" text="" id="__text18"/>
-													<Link press="drilDown" text="" id="__text2_copy19"/>
-													<Link press="drilDown" text="" id="__text2_copy18"/>
-													<Link press="drilDown" text="" id="__text2_copy11"/>
-													<Link press="drilDown" text="" id="__text2_copy12"/></cells>
-											</ColumnListItem>
-											<ColumnListItem counter="0" id="__item25">
-												<cells>
-													<Link press="drilDown" text="De." id="__text26"/>
-													<Link press="drilDown" text="" id="__text27"/>
-													<Link press="drilDown" text="" id="__text28"/>
-													<Link press="drilDown" text="" id="__text2_copy29"/>
-													<Link press="drilDown" text="" id="__text2_copy20"/>
-													<Link press="drilDown" text="" id="__text2_copy21"/>
-													<Link press="drilDown" text="" id="__text2_copy22"/></cells>
-											</ColumnListItem>
-											<ColumnListItem counter="0" id="__item10">
-												<cells>
-													<Label text="Planning" id="__label4"/>
-												</cells>
-											</ColumnListItem>
-										</items>
-										<columns>
-											<Column id="__column70">
-												<header>
-													<Label text="Su" id="__label70"/>
-												</header>
-											</Column>
-											<Column id="__column71">
-												<header>
-													<Label text="Mo" id="__label71"/>
-												</header>
-											</Column>
-											<Column id="__column72">
-												<header>
-													<Label text="Tu" id="__label72"/>
-												</header>
-											</Column>
-											<Column id="__column73">
-												<header>
-													<Label text="We" id="73"/>
-												</header>
-											</Column>
-											<Column id="__column74">
-												<header>
-													<Label text="Th" id="__label74"/>
-												</header>
-											</Column>
-											<Column id="__column75">
-												<header>
-													<Label text="Fr" id="__label75"/>
-												</header>
-											</Column>
-											<Column id="__column76">
-												<header>
-													<Label text="Sa" id="__label76"/>
-												</header>
-											</Column>
-										</columns>
-									</Table>
-								</content>
-							</IconTabFilter>
-							<IconTabFilter text="Yearly" icon="sap-icon://home-share" id="__filter4">
-								<content>
-									<Image width="300px" height="300px" id="__image0" src="Images/yearCalendar.png"/>
 									<Table noDataText="Drop column list items here and columns in the area above" id="__table2">
 										<items>
 											<ColumnListItem counter="0" id="__item7">
@@ -268,6 +177,11 @@
 				                            </Column -->
 										</columns>
 									</Table>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="Yearly" icon="sap-icon://home-share" id="__filter4">
+								<content>
+									<Image width="300px" height="300px" id="__image0" src="Images/yearCalendar.png"/>
 								</content>
 							</IconTabFilter>
 						</items>

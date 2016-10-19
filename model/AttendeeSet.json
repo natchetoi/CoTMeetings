@@ -1,36 +1,50 @@
 [{
 	"PersonID": "1",
+	"selected" : false, 
+	"firstName": "Johan",
+	"lastName": "Macedo",
+	"Position" : "Solution Architect",
+	"workEmail": "marco.palermo@toronto.ca"
+}, {
+	"PersonID": "2",
+	"selected" : false, 
+	"firstName": "Marco",
+	"lastName": "Palermo",
+	"Position" : "Solution Architect",
+	"workEmail": "marco.palermo@toronto.ca"
+}, {
+	"PersonID": "3",
+	"selected" : false, 
+	"firstName": "Asad",
+	"lastName": "Sultan",
+	"Position" : "Solution Architect",
+	"workEmail": "asultan@toronto.ca"
+}, {
+	"PersonID": "11",
 	"selected" : true, 
 	"firstName": "Yuri",
 	"lastName": "Natchetoi",
 	"Position" : "Consultant",
 	"workEmail": "ynatche@toronto.ca"
 }, {
-	"PersonID": "2",
+	"PersonID": "12",
 	"selected" : false, 
 	"firstName": "George",
 	"lastName": "Liu",
 	"Position" : "Developer",
 	"workEmail": "gliu3@toronto.ca"
 }, {
-	"PersonID": "3",
+	"PersonID": "13",
 	"selected" : false, 
 	"firstName": "Jacqueline ",
 	"lastName": "Chow",
 	"Position" : "Term student",
 	"workEmail": "jchow8@toronto.ca"
 }, {
-	"PersonID": "4",
+	"PersonID": "14",
 	"selected" : false, 
 	"firstName": "William",
 	"lastName": "She",
 	"Position" : "QA specialist",
 	"workEmail": "wshe@toronto.ca"
-}, {
-	"PersonID": "5",
-	"selected" : false, 
-	"firstName": "Eugenia ",
-	"lastName": "Bakchinova",
-	"Position" : "UX Expert",
-	"workEmail": "ebakchi@toronto.ca"
 }]
