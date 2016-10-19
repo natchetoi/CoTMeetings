@@ -14,11 +14,11 @@ sap.ui.define([
 		onBeforeRendering: function() {
 			
 			this.loadMeetings();
-			this.meetingList();	
+//			this.meetingList();	
 		},
 		
 		onAfterRendering: function() {
-
+			this.colorPanels();
 		}, 
 
 		/**
@@ -201,11 +201,14 @@ sap.ui.define([
 
 			var pendingMeetingsPairs = [];
 			for (var i = 0; i < pendingMeetingsPairsCount; i++) {
+				var m1 = pendingMeetings.ElementAtOrDefault(i * 2);
+				var m2 = pendingMeetings.ElementAtOrDefault(i * 2 + 1);
+				m1.Color = i % 2 === 0 ? "coTBlueSquare" : "coTWhiteSquare";
+				m2.Color = i % 2 === 0 ? "coTWhiteSquare" : "coTBlueSquare";
+				
 				var pair = {
-					"0": pendingMeetings.ElementAtOrDefault(i * 2),
-					"1": pendingMeetings.ElementAtOrDefault(i * 2 + 1),
-					"css1": i % 2 === 0 ? "coTBlueSquare" : "coTWhiteSquare",
-					"css2": i % 2 !== 0 ? "coTWhiteSquare" : "coTBlueSquare"
+					"0": m1,
+					"1": m2
 				};
 				pendingMeetingsPairs[i] = pair;
 			}
@@ -223,6 +226,16 @@ sap.ui.define([
 		   var list = model.getData();
 		   return list;
 		},
+        
+        colorPanels: function() {
+			var panels = $("section[role='form']");
+			var n = panels.length - 1;
+			for(var i = 1; i<n; i+=2) {
+				var panel = panels[i];
+				var cl =  i % 2 === 0 ? "coTBlueSquare" : "coTWhiteSquare";
+				panel.addClass(cl);
+			}
+        },
         
         meetingList: function( ) {
            

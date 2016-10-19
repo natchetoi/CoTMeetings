@@ -25,7 +25,7 @@
 	"MeetingComment": "Let's hold UX session tomorrow",
 	"Organizer": "Yuri",
 	"Attendees": [{
-		"name": "Eugenia Bakchinova"
+		"name": "Marco Palermo"
 	}, {
 		"name": "Jacqueline Chow"
 	}],
@@ -47,7 +47,7 @@
 	}],
 	"Date": "10/05/16"
 }, {
-	"MeetingSubject": "Project Sponsor Committee",
+	"MeetingSubject": "Sponsor Committee",
 	"AltID": "4",
 	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
 	"Start": "2:00 PM",
