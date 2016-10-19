@@ -198,23 +198,62 @@ sap.ui.define([
 			            });
 			*/
 		},
-		onLogin: function(oEvent) {
-			var self = this;
-			sap.m.MessageToast.show("Logging in..", {
-				duration: "200",
-				width: "15em",
-				my: "center top",
-				at: "center top",
-				offset: "0 0",
-				iNumber: 2,
-				autoClose: true,
-				onClose: function() {
-					var router = sap.ui.core.UIComponent.getRouterFor(self);
-					router.navTo("main", {}, true);
+		
+		createSession: function() {
+		  
+		   var param = //JSON.stringify(
+		   			{ user : "testweb1",
+					  pwd : "toronto", 
+					  app : "deploy"
+				    };
+
+		 jQuery.ajax({
+	            url: "https://was8-intra-dev.toronto.ca/cc_sr_admin_v1/session/",  
+				type : "POST",
+				data: param,
+  				dataType: "json",
+//				contentType : "application/json",
+				async: true, 
+				crossDomain : false,
+	            success: function(data, textStatus, jqXHR) { // callback called when data is 
+	            	var name = data.cotUser.firstName + " " +  data.cotUser.lastName;
+					sap.m.MessageToast.show("Hello " + name, {
+						duration: "200",
+						width: "15em",
+						my: "center top",
+						at: "center top",
+						offset: "0 0",
+						iNumber: 2,
+						autoClose: true,
+						onClose: function() {
+				       	    var oModel = new sap.ui.model.json.JSONModel();
+       					    oModel.setData(data);  // fill the received data into the JSONModel
+       						sap.ui.getCore().setModel(oModel, "user");  // Store in the Model
+							this.loadRooms();				 
+							var router = sap.ui.core.UIComponent.getRouterFor(self);
+							router.navTo("main", {}, true);
+						}
+					});
+			
+
+	            },
+				error: function(data, textStatus, jqXHR) {
+					sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
+						duration: "2000",
+						width: "15em",
+						my: "center top",
+						at: "center top",
+						offset: "0 0",
+						iNumber: 2,
+						autoClose: true
+					});
 				}
 			});
-			
-			this.loadRooms();
+		}, 
+
+		onLogin: function(oEvent) {
+			var self = this;
+			this.createSession();
 
 			//	   	  this.getRouter().navTo("mymeetings", {}, true );
 

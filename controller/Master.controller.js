@@ -230,10 +230,15 @@ sap.ui.define([
         colorPanels: function() {
 			var panels = $("section[role='form']");
 			var n = panels.length - 1;
-			for(var i = 1; i<n; i+=2) {
+			for(var i = 0; i<n; i+=4) {
 				var panel = panels[i];
-				var cl =  i % 2 === 0 ? "coTBlueSquare" : "coTWhiteSquare";
-				panel.addClass(cl);
+				$(panel).addClass("coTBlueSquare");
+				panel = panels[i+1];
+				if(panel !== undefined) { $(panel).addClass("coTWhiteSquare"); }
+				panel = panels[i+2];
+				if(panel !== undefined) { $(panel).addClass("coTWhiteSquare"); }
+				panel = panels[i+3];
+				if(panel !== undefined) { $(panel).addClass("coTBlueSquare"); }
 			}
         },
         
