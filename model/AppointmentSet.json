@@ -15,7 +15,7 @@
 	}, {
 		"name": "Yuri Natchetoi"
 	}],
-	"Date": "10/05/16"
+	"Date": "10/20/16"
 }, {
 	"MeetingSubject": "Usability testing",
 	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
@@ -29,7 +29,7 @@
 	}, {
 		"name": "Jacqueline Chow"
 	}],
-	"Date": "10/05/16"
+	"Date": "10/21/16"
 }, {
 	"MeetingSubject": "Lunch&Learn ",
 	"Start": "11:30 AM",
@@ -45,7 +45,7 @@
 	}, {
 		"name": "Yuri Natchetoi"
 	}],
-	"Date": "10/05/16"
+	"Date": "10/21/16"
 }, {
 	"MeetingSubject": "Sponsor Committee",
 	"AltID": "4",
@@ -72,7 +72,7 @@
 	"Start": "3:15 PM",
 	"MeetingComment": "This is our daily SCRUM meeting",
 	"Organizer": "Yuri",
-	"Date": "10/05/16"
+	"Date": "10/21/16"
 }, {
 	"AltID": "6",
 	"MeetingSubject": "App.UX Demo",
@@ -81,7 +81,7 @@
 	"Start": "4:00 PM",
 	"MeetingComment": "We will show our PoC #1 application ",
 	"Organizer": "George",
-	"Date": "10/05/16"
+	"Date": "10/21/16"
 }, {
 	"AltID": "7",
 	"MeetingSubject": "QA session",
@@ -90,7 +90,7 @@
 	"End": "12:30 PM",
 	"Start": "13:00 PM",
 	"Organizer": "Yuri",
-	"Date": "10/06/16"
+	"Date": "10/24/16"
 }, {
 	"AltID": "8",
 	"MeetingSubject": "Design discussion",
@@ -99,7 +99,7 @@
 	"End": "11:00 AM",
 	"Start": "12:00 PM",
 	"Organizer": "Yuri",
-	"Date": "10/07/16"
+	"Date": "10/25/16"
 }, {
 	"AltID": "9",
 	"MeetingComment": "QA session",
@@ -108,7 +108,7 @@
 	"End": "8:45 AM ",
 	"Start": "9:15 AM",
 	"Organizer": "Yuri",
-	"Date": "10/08/16"
+	"Date": "10/26/16"
 }, {
 	"AltID": "10",
 	"MeetingSubject": "Server configuration",
@@ -117,5 +117,5 @@
 	"End": "10:00 AM",
 	"Start": "11:00 AM",
 	"Organizer": "Yuri",
-	"Date": "10/08/16"
+	"Date": "10/27/16"
 }]
