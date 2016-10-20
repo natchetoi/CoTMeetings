@@ -1,4 +1,5 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" controllerName="fusion.controller.NewMeeting" id="NewMeetingViewId">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" 
+      xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" controllerName="fusion.controller.NewMeeting" id="NewMeetingViewId">
 	<App>
 		<pages>
 			<Page title="NEW MEETING" icon="sap-icon://company-view" navButtonPress="onNavBack" showSubHeader="false" id="newMeetingPageId">
@@ -26,17 +27,19 @@
 											<f:content>
 												<Label text="Subject" design="Bold"/>
 												<Input id="inputSubject" value="{/MeetingSubject}"/>
+												<l:HorizontalLayout>
+												  <Label text="Location   :" design="Bold"/>
+												  <Text id="txtSelectedRoom" text=".   {/RoomName}    .">
+													<layoutData>
+														<l:GridData span="L3 M4 S4" />
+													</layoutData>
+												  </Text>
+												  <Button text=""  id="__button1" icon="sap-icon://search" press="findRoom" class="coTFindRoomButton"  />
+												</l:HorizontalLayout>
 												<Label text="Description" design="Bold"/>
 												<TextArea id="inputDescription" value="{/MeetingComment}"/>
 												<Label text="Conference Call #" id="__label1" design="Bold"/>
 												<Input id="inputCallNumber" value="{/CallNumber}"/>
-												<Label text="Room" design="Bold"/>
-												<Text id="txtSelectedRoom" text="{/RoomName}">
-													<layoutData>
-														<l:GridData span="L3 M4 S4" />
-													</layoutData>
-												</Text>
-												<Button text="Find Room" width="200px" id="__button1" icon="sap-icon://search" press="findRoom" class="coTLoginButton"  />
 											</f:content>
 										</f:SimpleForm>
 									</VBox>

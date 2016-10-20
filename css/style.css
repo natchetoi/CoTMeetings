@@ -169,6 +169,18 @@
     left: 25%;
     top: 85%;
 }
+
+.coTFindRoomButton  {
+    border: 1px solid #ffffff;
+}
+
+.coTFindRoomButton span {
+    color: #ffffff;
+    border-radius: 3px;
+    border: 1px solid #009de0;
+	background-color: #009de0;
+    border-color: #008bc7;
+}
 .cotWhiteLabel {
     color: white;
 }
