@@ -85,8 +85,8 @@ sap.ui.define([
 		loadRooms: function () {
 		
 			var self = this;
-//			var url = "model/rooms.json";			
-			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/";
+			var url = "model/rooms.json";			
+//			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/";
 			
 			var headers = { "Content-Type": "application/json" };
 			
@@ -185,6 +185,8 @@ sap.ui.define([
 			                  		alert(err);
 			                  	}
 			                 } 
+		                     self.mainScreen();
+			                 
 			            },
 			           error: function(data, textStatus, jqXHR) {
 							sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
@@ -269,7 +271,7 @@ sap.ui.define([
 		},
 		
 		mainScreen: function() {
-			var router = sap.ui.core.UIComponent.getRouterFor(self);
+			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			router.navTo("main", {}, true);
 		},
 		
