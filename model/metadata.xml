@@ -53,6 +53,7 @@
                 <Property Name="TmeZoneId" Type="Edm.String"/>
                 <Property Name="Attendees" Type="Edm.String"/>
                 <Property Name="Organizer" Type="Edm.String"/>
+                <Property Name="Location" Type="Edm.String"/>
                 <Property Name="Color" Type="Edm.String"/>
                 <NavigationProperty FromRole="From_Appointment" Name="AttendeeSet" Relationship="FusionRooms.AppointmentAttendee" ToRole="To_Attendee"/>
                 <NavigationProperty FromRole="To_Appointment" Name="API_Room" Relationship="FusionRooms.API_RoomAppointment" ToRole="From_API_Room"/>

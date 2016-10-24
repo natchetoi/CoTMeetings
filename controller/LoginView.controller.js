@@ -21,6 +21,8 @@ sap.ui.define([
 		_onRouteMatched: function() {
 
 		},
+		
+		
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -50,6 +52,23 @@ sap.ui.define([
 			});
 
 		},
+		
+		convertDT: function( epoch ) {
+		  var d;
+		  try {
+//			var re = new RegExp("\/Date\(\d+\)");			
+//			var gr = re.exec(epoch);			
+			var msec = epoch.substring(6, 19);
+			d = new Date(msec);
+      	  } catch(err) {
+      		alert(err);
+      	  }
+		  return d;
+		},
+		
+		attendeeList: function() {
+			
+		},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -66,12 +85,15 @@ sap.ui.define([
 		loadRooms: function () {
 		
 			var self = this;
-			var url = "model/rooms.json"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
-			var param = { "Content-Type": "application/json" };
+//			var url = "model/rooms.json";			
+			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/";
+			
+			var headers = { "Content-Type": "application/json" };
+			
 			var aData = jQuery.ajax({
 				              url: url,  
 			                  type : "GET",
-//			            	  data: param,
+			            	  headers: headers,
 			                  dateType: "text",
 				              contentType : "application/json",
 			                  async: true, 
@@ -100,13 +122,32 @@ sap.ui.define([
 			                 self.loadAppointments();
 			            },
 			           error: function(data, textStatus, jqXHR) {
-			                    alert("Error occured"+data.statusText + textStatus);
+							sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
+								duration: "200",
+								width: "15em",
+								my: "center top",
+								at: "center top",
+								offset: "0 0",
+								iNumber: 2,
+								autoClose: true,
+								onClose: function() {
+				                    self.loadAppointments();
+								}			        	   
+			                 });
 			                 }
 			            });		                 
 		}, 
 		
 		loadAppointments: function () {
-			var url = "model/appointments.json"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
+			var self = this;
+			var url = "model/appointments.json";
+			
+			var start = "7/27/2016%203:30%20PM";
+			var room = "860ae2ee-2620-4035-b36b-c4ff67d1124a";
+			
+//			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/appointments/?Start=" + 
+//			start + "&room=" + room + "&duration=30";
+			
 			var param = { "Content-Type": "application/json" };
 			var aData = jQuery.ajax({
 				              url: url,  
@@ -125,27 +166,47 @@ sap.ui.define([
 			                  for(var i = 0; i< n; i++) {
 			                  	try {
 			                  	  var appData = list[i];
-			                      var MeetingSubject = appData.RoomName;
-			                      var AltID = appData.AltID;
-			                      var _room = {
-			                      	"MeetingSubject" : MeetingSubject,
-			                      	"AltID" : AltID
+			                  	  var start = self.convertDT( appData.Start );
+			                  	  var end = self.convertDT( appData.End );
+			                  	  var attendees = appData.Attendees.split(",");
+			                  	  
+			                      var _appointment = {
+			                      	"AltID" : appData.AltID,
+			                      	"MeetingSubject" : appData.MeetingSubject,
+				                      "MeetingComment" : appData.MeetingComment,
+				                      "Location" : appData.Location, 
+				                      "Start" : start,
+				                      "End" : end,
+				                      "Organizer" : appData.Organizer,
+				                      "Attendees" : attendees
 			                      };
-			                      appointments.push(_room);
+			                      appointments.push(_appointment);
 			                  	} catch(err) {
 			                  		alert(err);
 			                  	}
 			                 } 
 			            },
 			           error: function(data, textStatus, jqXHR) {
-			                    alert("Error occured " + data.statusText +  " " + textStatus);
+							sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
+								duration: "200",
+								width: "15em",
+								my: "center top",
+								at: "center top",
+								offset: "0 0",
+								iNumber: 2,
+								autoClose: true,
+								onClose: function() {
+				                    self.mainScreen();
+								}			        	   
+			                 });
 			                 }
 			            });		                 
 		},
 		
 		loadData: function() {
 
-			var url = "model/API_Rooms.xml"; // http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/
+//			var url = "model/API_Rooms.xml"; 
+			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/";
 			var param = //JSON.stringify(
 				{};
 			//	  	var jqXHR = new Array();
@@ -205,28 +266,31 @@ sap.ui.define([
        			    oModel.setData(data);  // fill the received data into the JSONModel
        				sap.ui.getCore().setModel(oModel, "user");  // Store in the Model
 					this.loadRooms();				 
-					var router = sap.ui.core.UIComponent.getRouterFor(self);
-					router.navTo("main", {}, true);
+		},
+		
+		mainScreen: function() {
+			var router = sap.ui.core.UIComponent.getRouterFor(self);
+			router.navTo("main", {}, true);
 		},
 		
 		createSession: function() {
 			var self = this;
 		  
 			var param = //JSON.stringify(
-		   			{ user : "testweb1",
-					  pwd : "toronto", 
-					  app : "deploy"
+		   			{ "user" : "testweb1",
+					  "pwd" : "toronto", 
+					  "app" : "deploy"
 				    };
-//		 var url =  "https://was8-intra-dev.toronto.ca/cc_sr_admin_v1/session/";
-	     var url =  "http://behealthymagazine.ca/session.php";
+		 var url =  "https://was8-intra-dev.toronto.ca/cc_sr_admin_v1/session/";
+//	     var url =  "http://behealthymagazine.ca/session.php";
 		 jQuery.ajax({
 	            url: url,  
 				type : "POST",
 				data: param,
   				dataType: "json",
-//				contentType : "application/json",
+				contentType : "application/x-www-form-urlencoded",
 				async: true, 
-				crossDomain : false,
+				crossDomain : true,
 	            success: function(data, textStatus, jqXHR) { // callback called when data is 
 	        		var name = data.cotUser.firstName + " " +  data.cotUser.lastName;
 						sap.m.MessageToast.show("Hello " + name, {
