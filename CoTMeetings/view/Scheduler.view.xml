@@ -1,0 +1,237 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="fusion.controller.Scheduler" id="SchedulerViewId">
+<html:style>
+.blueBkgr  {
+	color: white;
+	background: #275b8b  !important;
+}
+</html:style>	
+	
+	<App>
+		<pages>
+			<Page title="SCHEDULER" navButtonPress="onNavBack" id="SchedulerPageId">
+				<content>
+				    <Table noDataText="Add meeting attendees" id="__table0" fixedColumnCount="3" press="pickTime" itemPress="pickTime" select="pickTime" swipe="pickTime">
+				        <items>
+				            <ColumnListItem counter="0" id="__item0" press="pickTime" detailPress="pickTime" vAlign="Middle">
+				                <cells>
+				                    <Text text="9" maxLines="0" id="__text0"/>
+				                    <Text maxLines="0" id="__text1"/>
+				                    <Panel class="blueBkgr" press="pickTime" >
+				                    	<Link maxLines="0" id="__text2" text="X" press="pickTime" />
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy2"/>
+				                    <Text maxLines="0" id="__text5_copy6"/>
+				                    <Text maxLines="0" id="__text5_copy7"/>
+				                    <Panel class="blueBkgr">
+					                  <Text maxLines="0" id="__text5_copy8" text=""/>  <!-- &#9632; -->
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy9"/></cells>
+				            </ColumnListItem>
+				            <ColumnListItem counter="0" id="__item1" press="pickTime" detailPress="pickTime">
+				                <cells>
+				                    <Text text="10" maxLines="0" id="__text3"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text4" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy3" text="" style="color:green"/>
+				                    </Panel>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy4" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy5"/>
+				                    <Panel class="blueBkgr">
+				                    <Text maxLines="0" id="__text5_copy11" text=""/>
+				                    </Panel>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy12" text=""/>
+				                    </Panel>
+				                    </cells>
+				            </ColumnListItem>
+				            <ColumnListItem counter="0" id="__item0_copy" press="onNavBack" tap="pickTime" detailPress="pickTime">
+				                <cells>
+				                    <Text text="11" maxLines="0" id="__text0_copy"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text1_copy" text=""/>
+				                    </Panel>
+				                    <Panel class="blueBkgr">
+					                    <Text maxLines="0" id="__text2_copy" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy13"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy33" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy14"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy15" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy16"/>
+				                    <Text maxLines="0" id="__text5_copy17"/>
+				                    </cells>
+				                
+				            </ColumnListItem>
+				            <ColumnListItem counter="0" id="__item0_copy4" press="onNavBack" tap="pickTime" detailPress="pickTime">
+				                <cells>
+				                    <Text text="12" maxLines="0" id="__text0_copy4"/>
+				                    <Text maxLines="0" id="__text1_copy6"/>
+				                    <Text maxLines="0" id="__text2_copy6"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy26" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy23"/>
+				                    <Text maxLines="0" id="__text5_copy24"/>
+				                    <Text maxLines="0" id="__text5_copy25"/>
+				                    <Text maxLines="0" id="__text5_copy27"/>
+				                    
+				                    </cells>
+				                
+				            </ColumnListItem>
+				            <ColumnListItem counter="0" id="__item0_copy6" press="pickTime" tap="pickTime" detailTap="pickTime" detailPress="pickTime">
+				                <cells>
+				                    <Text text="1pm" maxLines="0" id="__text0_copy6"/>
+				                    <Panel class="blueBkgr">
+				                      <Text maxLines="0" id="__text1_copy4" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text2_copy4"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy18" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy19"/>
+				                    <Text maxLines="0" id="__text5_copy20"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy21" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy34"/>
+				                    <Text maxLines="0" id="__text5_copy22"/>
+				                 </cells>
+				            </ColumnListItem>
+				            <ColumnListItem counter="0" id="__item0_copy8" press="pickTime" tap="pickTime" detailTap="pickTime">
+				                <cells>
+				                    <Text text="2pm" maxLines="0" id="__text0_copy8"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text1_copy8" text=""/>
+				                    </Panel>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text2_copy8" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy28"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy29" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy30"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" id="__text5_copy31" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0" id="__text5_copy32"/>
+				                  </cells>
+				            </ColumnListItem></items>
+				            <ColumnListItem counter="0" press="pickTime" tap="pickTime" detailTap="pickTime" detailPress="pickTime">
+				                <cells>
+				                    <Text text="3pm" maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0"/>
+				                 </cells>
+				            </ColumnListItem>
+				            <ColumnListItem counter="0" press="pickTime" tap="pickTime" detailTap="pickTime" detailPress="pickTime">
+				                <cells>
+				                    <Text text="4pm" maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                 </cells>
+				            </ColumnListItem>
+				            <ColumnListItem counter="0" press="pickTime" tap="pickTime" detailTap="pickTime" detailPress="pickTime">
+				                <cells>
+				                    <Text text="5pm" maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Panel class="blueBkgr">
+				                    	<Text maxLines="0" text=""/>
+				                    </Panel>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                    <Text maxLines="0"/>
+				                 </cells>
+				            </ColumnListItem>
+				        <columns>
+				            <Column id="__column2_copy7" press="pickTime" width="2em">
+				                <header>
+				                    <Label text="Hr" id="__label2_copy7" design="Bold"/>
+				                </header>
+				            </Column>
+				            <Column id="__column0" press="pickTime" width="2em" tooltip="Marco Palermo">
+				                <header>
+				                    <Label text="MP" id="__label0" design="Bold" press="pickTime" width="2em"/>
+				                </header>
+				            </Column>
+				            <Column id="__column1" press="pickTime" width="2em" tooltip="George Liu">
+				                <header>
+				                    <Label text="GL" id="__label1" design="Bold" press="pickTime"/>
+				                </header>
+				            </Column>
+				            <Column id="__column2" press="pickTime" width="2em" tooltip="Yuri Natchetoi">
+				                <header>
+				                    <Label text="YN" id="__label2" design="Bold" press="pickTime"/>
+				                </header>
+				            </Column>
+				            <Column id="__column2_copy2" press="pickTime" width="2em" tooltip="William She">
+				                <header>
+				                    <Label text="WS" id="__label2_copy2" design="Bold" press="pickTime"/>
+				                </header>
+				            </Column>
+				            <Column id="__column2_copy3" press="pickTime" width="2em" tooltip="Jacqueline Chow">
+				                <header>
+				                    <Label text="JC" id="__label2_copy3" design="Bold" press="pickTime"/>
+				                </header>
+				            </Column>
+				            <Column id="__column2_copy4" width="2em" tooltip="Eugenia Bakchinova">
+				                <header>
+				                    <Label text="EB" id="__label2_copy4" design="Bold" press="pickTime"/>
+				                </header>
+				            </Column>
+				            <Column id="__column2_copy5" press="pickTime" width="2em" tooltip="Johan Macedo">
+				                <header>
+				                    <Label text="JM" id="__label2_copy5" design="Bold" press="pickTime"/>
+				                </header>
+				            </Column>
+				            <Column id="__column2_copy6" press="pickTime" width="2em" tooltip="Asad Sultan">
+				                <header>
+				                    <Label text="AS" id="__label2_copy6" design="Bold" press="pickTime"/>
+				                </header>
+				            </Column>
+				            </columns>
+				        <swipeContent>
+				            <Text maxLines="0" id="__text5_copy10"/>
+				        </swipeContent>
+				        </Table>
+				        <Label text="Swipe to select the meeting time or pick the time below"/>
+		                <Label text="From:" width="100%" id="__label3"/><TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker0" valueFormat="h:mm a"/>
+		                <Label text="To:" width="100%" id="__label33"/><TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker1" valueFormat="h:mm a"/>
+				        
+				</content>
+		<footer>
+			<Toolbar>
+                <Button text="OK" id="__button3" press="onNavBack" icon="sap-icon://accept" tooltip="Save and return" type="Emphasized"/>
+                <Button text="Cancel" id="__button4" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel and return" type="Emphasized"/>
+			</Toolbar>
+		</footer>				
+				
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
