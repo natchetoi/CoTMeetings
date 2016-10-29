@@ -1,0 +1,53 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" xmlns:unified="sap.ui.unified"
+	xmlns:t="sap.ui.table" displayBlock="true" controllerName="fusion.controller.Master">
+	<Page id="page" title="MY MEETINGS" class="coTMyMeetings">
+		<!-- subHeader>
+			<Bar id="searchBar">
+				<contentMiddle>
+					<SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" search="onSearch"
+						tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>
+				</contentMiddle>
+			</Bar>
+		</subHeader -->
+		<content>
+			<ObjectHeader title="Upcoming meetings">
+			</ObjectHeader>
+			<t:Table noDataText="My Meetings" id="myMeetingsListId" selectionMode="None" columnHeaderVisible="false"
+			visibleRowCount="{/rowsCount}" rows="{/rows}"    cellClick="onMeetingCellSelected">                <!-- 	   -->
+				<t:columns>
+					<t:Column resizable="false" flexible="false">
+						<t:template>
+							<Panel>
+								<content>
+									<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
+										<Text text="{0/MeetingSubject}"/>
+										<Text text="{0/Date} {0/Start}"/>
+									</sap.ui.layout:VerticalLayout>
+								</content>
+							</Panel>
+						</t:template>
+					</t:Column>
+					<t:Column resizable="false" flexible="false">
+						<t:template>
+							<Panel>
+								<content>
+									<sap.ui.layout:VerticalLayout xmlns:sap.ui.layout="sap.ui.layout">
+										<Text text="{1/MeetingSubject}"/>
+										<Text text="{1/Date} {1/Start}"/>
+									</sap.ui.layout:VerticalLayout>
+								</content>
+							</Panel>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button text="Calendar" width="110px" id="__button3" press="calendar" icon="sap-icon://calendar" tooltip="My Calendar View"
+					css="background-color:#498bca" type="Emphasized"/>
+				<Button text="New" width="100px" id="newButtonId" press="addMeeting" icon="sap-icon://add-contact" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

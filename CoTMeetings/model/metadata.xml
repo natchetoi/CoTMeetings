@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="FusionRooms">
+            <EntityType Name="API_Room">
+                <Key>
+                    <PropertyRef Name="RoomID"/>
+                </Key>
+                <Property Name="RoomID" Nullable="false" Type="Edm.String"/>
+                <Property Name="RoomName" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="Capacity" Type="Edm.Int16"/>
+                <Property Name="x" Type="Edm.Int16"/>
+                <Property Name="y" Type="Edm.Int16"/>
+                <Property Name="Distance" Type="Edm.Int16"/>
+                <Property Name="Image" Type="Edm.String"/>
+                <Property Name="Building" Type="Edm.String"/>
+                <Property Name="Floor" Type="Edm.Int16"/>
+                <Property Name="Path2Room" Type="Edm.String"/>
+                <Property Name="WiFi" Type="Edm.Boolean"/>
+                <Property Name="Projector" Type="Edm.Boolean"/>
+                <Property Name="Computer" Type="Edm.Boolean"/>
+                <Property Name="TV" Type="Edm.Boolean"/>
+                <Property Name="Conference" Type="Edm.Boolean"/>
+                <Property Name="WhiteBoard" Type="Edm.Boolean"/>
+                <NavigationProperty FromRole="From_API_Room" Name="AppointmentSet" Relationship="FusionRooms.API_RoomAppointment" ToRole="To_Appointment"/>
+            </EntityType>
+            <EntityType Name="API_Result">
+                <Key>
+                    <PropertyRef Name="API_ResultID"/>
+                </Key>
+                <Property Name="API_ResultID" Nullable="false" Type="Edm.String"/>
+                <Property Name="Message" Type="Edm.String"/>
+                <Property Name="PageNumber" Type="Edm.String"/>
+                <Property Name="Status" Type="Edm.String"/>
+                <Property Name="TotalRecords" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_API_Result" Name="API_RoomSet" Relationship="FusionRooms.API_ResultAPI_Room" ToRole="To_API_Room"/>
+            </EntityType>
+            <EntityType Name="Appointment">
+                <Key>
+                    <PropertyRef Name="AltID"/>
+                </Key>
+                <Property Name="AltID" Nullable="false" Type="Edm.String"/>
+                <Property Name="MeetingSubject" Type="Edm.String"/>
+                <Property Name="MeetingComment" Type="Edm.String"/>
+                <Property Name="RoomID" Type="Edm.String"/>
+                <Property Name="Date" Type="Edm.String"/>
+                <Property Name="End" Type="Edm.String"/>
+                <Property Name="Start" Type="Edm.String"/>
+                <Property Name="TmeZoneId" Type="Edm.String"/>
+                <Property Name="Attendees" Type="Edm.String"/>
+                <Property Name="Organizer" Type="Edm.String"/>
+                <Property Name="Location" Type="Edm.String"/>
+                <Property Name="Color" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_Appointment" Name="AttendeeSet" Relationship="FusionRooms.AppointmentAttendee" ToRole="To_Attendee"/>
+                <NavigationProperty FromRole="To_Appointment" Name="API_Room" Relationship="FusionRooms.API_RoomAppointment" ToRole="From_API_Room"/>
+            </EntityType>
+            <EntityType Name="Attendee">
+                <Key>
+                    <PropertyRef Name="PersonID"/>
+                </Key>
+                <Property Name="PersonID" Nullable="false" Type="Edm.String"/>
+                <Property Name="selected" Type="Edm.Boolean"/>
+                <Property Name="firstName" Type="Edm.String"/>
+                <Property Name="lastName" Type="Edm.String"/>
+                <Property Name="Position" Type="Edm.String"/>
+                <Property Name="workEmail" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="NewMeeting">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Nullable="false" Type="Edm.String"/>
+                <Property Name="MeetingSubject" Type="Edm.String"/>
+                <Property Name="MeetingComment" Type="Edm.String"/>
+                <Property Name="Organizer" Type="Edm.String"/>
+                <Property Name="Start" Type="Edm.String"/>
+                <Property Name="End" Type="Edm.String"/>
+                <Property Name="RoomID" Type="Edm.String"/>
+                <Property Name="RoomName" Type="Edm.String"/>
+                <Property Name="RoomUrl" Type="Edm.String"/>
+                <Property Name="Attendees" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_NewMeeting" Name="API_RoomSet" Relationship="FusionRooms.NewMeetingAPI_Room" ToRole="To_API_Room"/>
+            </EntityType>
+            <EntityType Name="MeetingAttendee">
+                <Key>
+                    <PropertyRef Name="PersonID"/>
+                </Key>
+                <Property Name="PersonID" Nullable="false" Type="Edm.String"/>
+                <Property Name="firstName" Type="Edm.String"/>
+                <Property Name="lastName" Type="Edm.String"/>
+                <Property Name="Position" Type="Edm.String"/>
+                <Property Name="workEmail" Type="Edm.String"/>
+            </EntityType>            
+            <Association Name="API_ResultAPI_Room">
+                <End Multiplicity="1" Role="From_API_Result" Type="FusionRooms.API_Result"/>
+                <End Multiplicity="*" Role="To_API_Room" Type="FusionRooms.API_Room"/>
+            </Association>
+            <Association Name="AppointmentAttendee">
+                <End Multiplicity="1" Role="From_Appointment" Type="FusionRooms.Appointment"/>
+                <End Multiplicity="*" Role="To_Attendee" Type="FusionRooms.Attendee"/>
+            </Association>
+            <Association Name="API_RoomAppointment">
+                <End Multiplicity="1" Role="From_API_Room" Type="FusionRooms.API_Room"/>
+                <End Multiplicity="*" Role="To_Appointment" Type="FusionRooms.Appointment"/>
+            </Association>
+            <EntityContainer Name="default" m:IsDefaultEntityContainer="true">
+                <EntitySet EntityType="FusionRooms.API_Room" Name="API_Rooms"/>
+                <EntitySet EntityType="FusionRooms.API_Result" Name="API_ResultSet"/>
+                <EntitySet EntityType="FusionRooms.Appointment" Name="AppointmentSet"/>
+                <EntitySet EntityType="FusionRooms.Attendee" Name="AttendeeSet"/>
+                <AssociationSet Association="FusionRooms.API_ResultAPI_Room" Name="API_ResultAPI_RoomSet">
+                    <End EntitySet="API_ResultSet" Role="From_API_Result"/>
+                    <End EntitySet="API_Rooms" Role="To_API_Room"/>
+                </AssociationSet>
+                <AssociationSet Association="FusionRooms.AppointmentAttendee" Name="AppointmentAttendeeSet">
+                    <End EntitySet="AppointmentSet" Role="From_Appointment"/>
+                    <End EntitySet="AttendeeSet" Role="To_Attendee"/>
+                </AssociationSet>
+                <AssociationSet Association="FusionRooms.API_RoomAppointment" Name="API_RoomAppointmentSet">
+                    <End EntitySet="API_Rooms" Role="From_API_Room"/>
+                    <End EntitySet="AppointmentSet" Role="To_Appointment"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

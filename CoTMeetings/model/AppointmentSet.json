@@ -1,0 +1,121 @@
+[{
+	"MeetingSubject": "Planning Session",
+	"Start": "9:00 AM",
+	"End": "9:30 AM",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"AltID": "1",
+	"MeetingComment": "We need to plan our Application development",
+	"Organizer": "Marco Palermo",
+	"Attendees": [{
+		"name": "George Liu"
+	}, {
+		"name": "Marco Palermo"
+	}, {
+		"name": "Jacqueline Chow"
+	}, {
+		"name": "Yuri Natchetoi"
+	}],
+	"Date": "10/20/16"
+}, {
+	"MeetingSubject": "Usability testing",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"End": "11:30 AM",
+	"Start": "11:00 AM",
+	"AltID": "2",
+	"MeetingComment": "Let's hold UX session tomorrow",
+	"Organizer": "Yuri",
+	"Attendees": [{
+		"name": "Marco Palermo"
+	}, {
+		"name": "Jacqueline Chow"
+	}],
+	"Date": "10/21/16"
+}, {
+	"MeetingSubject": "Lunch&Learn ",
+	"Start": "11:30 AM",
+	"End": "12:00 PM",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"AltID": "3",
+	"MeetingComment": "Everyone is invited to SAP UI5 Lunch& Learn session.",
+	"Organizer": "Yuri",
+	"Attendees": [{
+		"name": "George Liu"
+	}, {
+		"name": "Jacqueline Chow"
+	}, {
+		"name": "Yuri Natchetoi"
+	}],
+	"Date": "10/21/16"
+}, {
+	"MeetingSubject": "Sponsor Committee",
+	"AltID": "4",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"Start": "2:00 PM",
+	"End": "3:00 PM",
+	"MeetingComment": "Mobility Project Steering Committee ",
+	"Organizer": "Asad Sultan",
+	"Attendees": [{
+		"name": "Asad Sultan"
+	}, {
+		"name": "Fazal Husain"
+	}, {
+		"name": "Lan Nguyen"
+	}, {
+		"name": "Johan Macedo"
+	}],
+	"Date": "10/05/16"
+}, {
+	"AltID": "5",
+	"MeetingSubject": "SCRUM Meeting",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"End": "3:45 PM",
+	"Start": "3:15 PM",
+	"MeetingComment": "This is our daily SCRUM meeting",
+	"Organizer": "Yuri",
+	"Date": "10/21/16"
+}, {
+	"AltID": "6",
+	"MeetingSubject": "App.UX Demo",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
+	"End": "4:45 PM",
+	"Start": "4:00 PM",
+	"MeetingComment": "We will show our PoC #1 application ",
+	"Organizer": "George",
+	"Date": "10/21/16"
+}, {
+	"AltID": "7",
+	"MeetingSubject": "QA session",
+	"MeetingComment": "QA session",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b2",
+	"End": "12:30 PM",
+	"Start": "13:00 PM",
+	"Organizer": "Yuri",
+	"Date": "10/24/16"
+}, {
+	"AltID": "8",
+	"MeetingSubject": "Design discussion",
+	"MeetingComment": "Design discussion",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b3",
+	"End": "11:00 AM",
+	"Start": "12:00 PM",
+	"Organizer": "Yuri",
+	"Date": "10/25/16"
+}, {
+	"AltID": "9",
+	"MeetingComment": "QA session",
+	"MeetingSubject": "QA session",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b4",
+	"End": "8:45 AM ",
+	"Start": "9:15 AM",
+	"Organizer": "Yuri",
+	"Date": "10/26/16"
+}, {
+	"AltID": "10",
+	"MeetingSubject": "Server configuration",
+	"MeetingComment": "Server configuration",
+	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b5",
+	"End": "10:00 AM",
+	"Start": "11:00 AM",
+	"Organizer": "Yuri",
+	"Date": "10/27/16"
+}]
