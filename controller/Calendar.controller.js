@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History"
-], function(Controller, History) {
+	"sap/ui/core/routing/History",
+	'sap/ui/unified/DateTypeRange'
+], function(Controller, History, DateTypeRange) {
 	"use strict";
 
 	return Controller.extend("fusion.controller.Calendar", {
@@ -84,6 +85,7 @@ sap.ui.define([
 			var date = Date.today();
 			this.showDayliMeetings(date);
 			this.showWeekMeetings(date);
+			this.showMonthMeetings(date);
 		},
 
 		onMeetingSelected: function(oEvent) {
@@ -197,6 +199,48 @@ sap.ui.define([
 			});
 			this.getView().setModel(weeklyMeetingsModel, "weekMeetings");
 			this.byId("weeklyTable").setProperty("visibleRowCount", rows.length);
+		},
+
+		showMonthMeetings: function(date) {
+			var monthMeetings =
+				Enumerable.From(this.getMyMeetings())
+				.Where(function(x) {
+					var d1 = Date.parse(x.Date);
+					var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+					var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+					return d1.between(firstDay, lastDay);
+				})
+				.ToArray();
+			var calendar = this.byId("calendarMonth");
+			for (var i = 0; i < monthMeetings.length; i++) {
+				calendar.addSpecialDate(new DateTypeRange({
+					startDate: Date.parse(monthMeetings[i].Date),
+					type: "Type01"
+				}));
+			}
+		},
+
+		onMonthCalendarDaySelected: function(oEvent) {
+			var selectedDate = oEvent.getSource().getSelectedDates()[0].getStartDate();
+			this.showDayMeetings(new Date(selectedDate));
+		},
+
+		showDayMeetings: function(oDate) {
+			var dayMeetings =
+				Enumerable.From(this.getMyMeetings())
+				.Where(function(x) {
+					var d1 = Date.parse(x.Date);
+					return d1.equals(oDate);
+				})
+				.ToArray();
+			var selectedMonthDayModel = new sap.ui.model.json.JSONModel();
+			selectedMonthDayModel.setData(dayMeetings);
+			this.getView().setModel(selectedMonthDayModel, "selectedMonthDay");
+		},
+
+		onMonthCalendarChanged: function(oEvent) {
+			var calendar = oEvent.getSource();
+			this.showMonthMeetings(calendar.getStartDate());
 		},
 
 		getMyMeetings: function() {
