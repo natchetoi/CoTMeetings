@@ -93,11 +93,11 @@
 									</List>
 								</content>
 							</IconTabFilter>
-							<IconTabFilter text="Yearly" icon="sap-icon://home-share" id="__filter4">
+							<!-- IconTabFilter text="Yearly" icon="sap-icon://home-share" id="__filter4">
 								<content>
 									<Image width="300px" height="300px" id="__image0" src="Images/yearCalendar.png"/>
 								</content>
-							</IconTabFilter>
+							</IconTabFilter -->
 						</items>
 						<content>
 							<StandardListItem counter="0" title="List Item 3" id="__item2_copy2"/>
