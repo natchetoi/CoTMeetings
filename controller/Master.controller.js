@@ -187,18 +187,23 @@ sap.ui.define([
 		loadMeetings: function() {
 			var meetModel = this.getView().getModel("all_meetings");
 
-			var currentDate = Date.today().add(-20).days();
+			var currentDate = Date.today();  // .add(-20).days();
+			var meetingList = meetModel.getData();
+			
 			var pendingMeetings = Enumerable
-				.From(meetModel.getData())
+				.From(meetingList)
+/*				
 				.Where(function(x) {
-					return Date.parse(x.Date).compareTo(currentDate) >= 0;
+					return x.Date.compareTo(currentDate) >= 0;  //Date.parse(x.Date).compareTo(currentDate) >= 0;
 				})
+*/
 				.OrderBy(function(x) {
-					return Date.parse(x.Date + " " + x.Start);
+					return x.Epoch;   // Date.parse(x.Date + " " + x.Start);
 				});
-
-			var pendingMeetingsPairsCount = Math.ceil(pendingMeetings.ToArray().length / 2);
-
+			var len = pendingMeetings.ToArray().length / 2;
+			var pendingMeetingsPairsCount = Math.ceil( len );
+			
+			
 			var pendingMeetingsPairs = [];
 			for (var i = 0; i < pendingMeetingsPairsCount; i++) {
 				var m1 = pendingMeetings.ElementAtOrDefault(i * 2);

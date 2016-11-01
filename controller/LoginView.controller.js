@@ -53,23 +53,6 @@ sap.ui.define([
 
 		},
 		
-		convertDT: function( epoch ) {
-		  var d;
-		  try {
-//			var re = new RegExp("\/Date\(\d+\)");			
-//			var gr = re.exec(epoch);			
-			var msec = epoch.substring(6, 19);
-			d = new Date(msec);
-      	  } catch(err) {
-      		alert(err);
-      	  }
-		  return d;
-		},
-		
-		attendeeList: function() {
-			
-		},
-
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf fusion.view.LoginView
@@ -85,8 +68,8 @@ sap.ui.define([
 		loadRooms: function () {
 		
 			var self = this;
-			var url = "model/rooms.json";			
-//			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/";
+//			var url = "model/rooms.json";			
+			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/";
 			
 			var headers = { "Content-Type": "application/json" };
 			
@@ -119,74 +102,7 @@ sap.ui.define([
 			                  	}
 			                 } 
 			                 
-			                 self.loadAppointments();
-			            },
-			           error: function(data, textStatus, jqXHR) {
-							sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
-								duration: "200",
-								width: "15em",
-								my: "center top",
-								at: "center top",
-								offset: "0 0",
-								iNumber: 2,
-								autoClose: true,
-								onClose: function() {
-				                    self.loadAppointments();
-								}			        	   
-			                 });
-			                 }
-			            });		                 
-		}, 
-		
-		loadAppointments: function () {
-			var self = this;
-			var url = "model/appointments.json";
-			
-			var start = "7/27/2016%203:30%20PM";
-			var room = "860ae2ee-2620-4035-b36b-c4ff67d1124a";
-			
-//			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/appointments/?Start=" + 
-//			start + "&room=" + room + "&duration=30";
-			
-			var param = { "Content-Type": "application/json" };
-			var aData = jQuery.ajax({
-				              url: url,  
-			                  type : "GET",
-//			            	  data: param,
-			                  dateType: "text",
-				              contentType : "application/json",
-			                  async: true, 
-			                  crossDomain : true,
-			            success: function(data, textStatus, jqXHR) { 
-
-		                  var appointments = [];   
-					      var list = data.API_Appointments;
-					      var n = list.length;
-
-			                  for(var i = 0; i< n; i++) {
-			                  	try {
-			                  	  var appData = list[i];
-			                  	  var start = self.convertDT( appData.Start );
-			                  	  var end = self.convertDT( appData.End );
-			                  	  var attendees = appData.Attendees.split(",");
-			                  	  
-			                      var _appointment = {
-			                      	"AltID" : appData.AltID,
-			                      	"MeetingSubject" : appData.MeetingSubject,
-				                      "MeetingComment" : appData.MeetingComment,
-				                      "Location" : appData.Location, 
-				                      "Start" : start,
-				                      "End" : end,
-				                      "Organizer" : appData.Organizer,
-				                      "Attendees" : attendees
-			                      };
-			                      appointments.push(_appointment);
-			                  	} catch(err) {
-			                  		alert(err);
-			                  	}
-			                 } 
-		                     self.mainScreen();
-			                 
+			                 self.mainScreen();
 			            },
 			           error: function(data, textStatus, jqXHR) {
 							sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
@@ -203,64 +119,7 @@ sap.ui.define([
 			                 });
 			                 }
 			            });		                 
-		},
-		
-		loadData: function() {
-
-//			var url = "model/API_Rooms.xml"; 
-			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/rooms/";
-			var param = //JSON.stringify(
-				{};
-			//	  	var jqXHR = new Array();
-
-			/*
-				  	var aData = jQuery.ajax({
-				              url: url,  
-			                  type : "GET",
-			            //    data: param,
-			                  dataType: "xml",
-			                  //dateType: "json",
-			                  //dataType: 'jsonp',
-			//                contentType : "application/json",
-			                  async: true, 
-			                  crossDomain : true,
-			            success: function(data, textStatus, jqXHR) { // callback called when data is 
-			        
-			                        jQuery.sap.require("sap.m.MessageBox");
-			//                      alert("Success now!!");
-			                        //sap.m.MessageBox.show("Hello from sap messagebox" + data);
-			                        
-			                  var rooms = [];   
-			                  var list = $(data).find('API_Rooms');
-
-			                  var n = list.childNodes().length;
-			                  
-			                  for(var i = 0; i< n; i++) {
-			                    var room = list.getElementsByTagName("API_Room")[i];
-			                    var roomName = room.childNodes[0].text;
-			                    rooms.push(roomName);
-			                 } 
-			                  
-			                        
-			                        
-			                var oModel = new sap.ui.model.xml.XMLModel();
-			//             oModel.setData(data);  // fill the received data into the JSONModel
-			//               sap.ui.getCore().setModel(oModel, "glRooms");  // Store in the Model
-			                  
-			//                var testStr = oModel.getProperty("/API_Rooms");
-			//                alert("attr value OF ROOM NAME is: "+testStr);
-			//                if(appC.restrictions === undefined) {
-			//                        appC.restrictions = new Array();
-			//                  } 
-			                              
-			            },
-			                  error: function(data, textStatus, jqXHR) {
-			                    alert("Error occured"+data.statusText + textStatus);
-			//                     sap.m.MessageBox.show("Error");
-			                 }
-			            });
-			*/
-		},
+		}, 
 		
 		login: function(data) {
 					var self = this;

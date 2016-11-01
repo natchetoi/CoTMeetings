@@ -354,6 +354,7 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 		
 		var meetings = new sap.ui.model.json.JSONModel('model/AppointmentSet.json');
 		this.setModel(meetings, "all_meetings");
+		this.loadAppointments();
 		
 		var people = new sap.ui.model.json.JSONModel('model/AttendeeSet.json');
 		this.setModel(people, "all_people");
@@ -374,6 +375,131 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 		this.setModel(oDeviceModel, "device");
 
 		this.getRouter().initialize();
+	},
+
+	convertDT: function( epoch ) {
+		  var d;
+		  try {
+			var utcSeconds = epoch.substring(6, 19);
+			d = new Date(0);
+			d.setUTCMilliseconds(utcSeconds);
+    	  } catch(err) {
+    		alert(err);
+    	  }
+		  return d;
+		},
+		
+	attendeeList: function() {
+			
+		},
+
+
+	loadAppointments: function () {
+        this.appointments = [];   
+
+		var date = "10/26"
+		var room = "1a775e79-c1e1-479b-be90-6704d16b48b1"; // Adelaide
+		
+		this.loadMeetingsForRoom(room, date); 
+		
+		room = "2fb16a9c-c4b2-4fa8-a0bc-f81f189acdb8"; // Berkley
+		
+		this.loadMeetingsForRoom(room, date); 
+		
+		room = "adf3b026-9a85-494f-b69c-08e328ebdc8d"; // Duncan
+
+		this.loadMeetingsForRoom(room, date); 
+		
+		room = "860ae2ee-2620-4035-b36b-c4ff67d1124a"; // Wellington
+		
+//		this.loadMeetingsForRoom(room, date);
+		
+        this.setAppointmentsModel();
+	},
+	
+	loadMeetingsForRoom: function ( room, date ) {
+		var self = this;
+		
+		var start = date + "/2016%203:30%20PM";
+//		var room = "860ae2ee-2620-4035-b36b-c4ff67d1124a";
+		
+//		var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/appointments/?Start=" + 
+//		start + "&room=" + room + "&duration=120";
+
+		var url = "model/appointments.json";
+		
+		var headers = { "Content-Type": "application/json" };
+		var aData = jQuery.ajax({
+			              url: url,  
+		                  type : "GET",
+		            	  headers: headers,
+		                  dateType: "text",
+			              contentType : "application/json",
+		                  async: false, 
+		                  crossDomain : true,
+//					beforeSend : function(jqXHR, settings) {
+//								jqXHR.setRequestHeader('Access-Control-Allow-Origin', '*');
+//								jqXHR.setRequestHeader('X-SUP-APPCID', this.appCID);
+//								jqXHR.overrideMimeType('text/plain; charset=x-user-defined');
+//							},		                  
+		            success: function(data, textStatus, jqXHR) { 
+
+				      var list = data.API_Appointments;
+				      var n = list.length;
+
+		                  for(var i = 0; i< n; i++) {
+		                  	try {
+		                  	  var appData = list[i];
+		                  	  var epoch = appData.Start.substring(6, 19); 
+		                  	  var start = self.convertDT( appData.Start );
+		                  	  var end = self.convertDT( appData.End );
+//		                  	  var date = start.getMonth() +  "/" + start.getDay() + "/" + start.getYear(); 
+		                  	  var date =  start.toString().substring(4, 10);
+		                  	  var attendees = appData.Attendees.split(",");
+		                  	  start = start.getHours() + ":" + start.getMinutes();
+		                  	  end = end.getHours() + ":" + end.getMinutes();
+		                  	  
+		                      var _appointment = {
+		                      	"AltID" : appData.RV_MeetingID,
+		                      	"MeetingSubject" : appData.MeetingSubject,
+			                      "MeetingComment" : appData.MeetingComment,
+			                      "Location" : appData.Location, 
+			                      "Start" : start,
+			                      "Epoch" : epoch,
+			                      "End" : end,
+			                      "Date": date,
+			                      "Organizer" : appData.Organizer,
+			                      "Attendees" : attendees
+		                      };
+		                      self.appointments.push(_appointment);
+		                  	} catch(err) {
+		                  		alert(err);
+		                  	}
+		                 } 
+//	                     self.setAppointmentsModel();
+		                 
+		            },
+		           error: function(data, textStatus, jqXHR) {
+						sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
+							duration: "200",
+							width: "15em",
+							my: "center top",
+							at: "center top",
+							offset: "0 0",
+							iNumber: 2,
+							autoClose: true,
+							onClose: function() {
+			                    self.mainScreen();
+							}			        	   
+		                 });
+		                 }
+		            });		                 
+	},
+	
+	setAppointmentsModel: function() {
+		var meetings = new sap.ui.model.json.JSONModel();
+		meetings.setData(this.appointments);
+		this.setModel(meetings, "all_meetings");
 	},
 
 	createMeeting: function() {
@@ -510,6 +636,57 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 		});
 	},
 
+//****************************************** Geolocation	
+	onDeviceReady : function() {
+	   var options = { maximumAge: 150000, 
+			   		   timeout: 100000, 
+			   		   enableHighAccuracy: true };
+	   
+	   var watchID = null;
+	   watchID = navigator.geolocation.watchPosition(this.onSuccess, this.onError, options);
+//	   navigator.notification.beep(3);
+	},
+
+// ------------------------------------------------------------------------------------	
+	   onSuccess: function (position) {
+		  var lat = position.coords.latitude;
+		  var lon = position.coords.longitude;
+		
+		  var minProximity = 10000.0;
+		  
+		  var rooms =	this.getModel("all_rooms").getData();
+		  if(rooms !== undefined) {
+			var n = rooms.length
+
+ //		  sap.m.MessageToast.show("la=" + lat + " lo=" + lon );
+		    for(var i=0; i<n; i++) {
+		    	var room = rooms[i];
+		    	var xProx = lat - room.x;
+		    	var yProx  = lon - room.y;
+		    	var dist2 = Math.sqrt(xProx * xProx + yProx * yProx); //  distance
+		    }
+	     }
+	 },		    	
+//------------------------------------------------------------------------------------- GPS error   
+	   onError:	function (error) {
+		   		navigator.notification.alert('Unable to find your location. Error code: ' + error.code   + '\n' + 
+		   	     'message: ' + error.message + '\n', null, 'Error', 'Dismiss');
+	   },
+//--------------------------------------------------------------------------------- Timer
+	   checkTime: function() {
+		 if(this.lastTime == undefined) {
+			 this.lastTime = 0;
+		 }  
+		 var date = new Date();
+		 var now = date.getTime();
+	     if((now - this.lastTime) >= this.period) {   // less than 10 sec passed
+	    	 this.lastTime = now;
+	    	 return true;
+	     }
+//	     sap.m.MessageToast.show(((10000.0 - (now - this.lastTime))/1000)  +  " sec");
+	     return false;
+	   },
+//******************************************  End of Geolocation		
 	/**
 	 * start application mock server
 	 * param{String} sServiceUrl mock server url

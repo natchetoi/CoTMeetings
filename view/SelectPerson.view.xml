@@ -5,9 +5,17 @@
 	<App>
 		<pages>
 			<Page title="ATTENDEES" navButtonPress="onNavBack">
+		<!-- subHeader>
+			<Bar id="searchBar">
+				<contentMiddle>
+					<SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" 
+					search="onSearch" tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>
+				</contentMiddle>
+			</Bar>
+		</subHeader -->			
 				<content>
 					<!-- SearchField  width="100%" placeholder="Search" id="srcField0"/ -->
-					<List id="listAttendees" noDataText="No meetings" items="{people>/}" headerText="Attendees" includeItemInSelection="true" mode="MultiSelect">
+					<List id="listAttendees" noDataText="No attendees" items="{people>/}" headerText="Attendees" includeItemInSelection="true" mode="MultiSelect">
 						<items>
 							<ObjectListItem title="{people>firstName} {people&gt;lastName}">
 								<attributes>

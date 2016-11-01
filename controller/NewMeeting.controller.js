@@ -102,59 +102,81 @@ sap.ui.define([
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
 
-		postMeeting: function() {
+		toDate: function(date, time) {
+			var d = date.split("/");
+			var t = time.split(":");
+			var am = t[1].split(" ");
+			var year =  parseInt("20" + d[2]);
+			var month = parseInt(d[0]) - 1;
+			var day = parseInt(d[1]);
+			var hr = parseInt(t[0]);
+			if(am[1] === 'PM' ) {
+				hr = hr + 12;
+			}
+			var min = parseInt(t[1]);
+			var date = new Date(year, month, day, hr, min, 0, 0);
+			return date;
+		},
+		
+		postMeeting: function( newMeeting ) {
 
 			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/appointments/";
 
-			var payload = {
-				"AltID": "String content7056",
-				"MeetingSubject": "talk about mobile",
-				"MeetingComment": "test сomment",
-				"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
-				"End": "\/Date(1476327600000)\/",
-				"Start": "\/Date(1476324000000)\/",
-				"TimeZoneId": "Eastern Daylight Time",
-				"Attendees": "George liu, Yuri Natchetoi",
-				"Organizer": "ynatche@toronto.ca"
-			};
+			var headers = { "Content-Type": "application/json" };
+			
+			var start =  this.toDate(newMeeting.Date, newMeeting.Start).getTime();
+			var end =  this.toDate(newMeeting.Date, newMeeting.End).getTime();
+			
+			var startD =  "\/Date(" + start.toString() + ")\/";
+			var endD =  "\/Date(" + end.toString() + ")\/";
+			
+			var attendees = "George Liu, Yuri Natchetoi";
+			var organizer = "gliu3@toronto.ca";
+			newMeeting.AltId = "String content12345";
+			
+			var payload = JSON.stringify( 
+					{
+					    
+					    "AltID" : newMeeting.AltId,
+					    "MeetingSubject" : newMeeting.MeetingSubject,
+					    "MeetingComment" : newMeeting.MeetingComment,
+					    "RoomID" : newMeeting.RoomID,			    
+					    "End" : endD, 
+					    "Start" : startD,
+					    "TimeZoneId" : "Eastern Daylight Time",
+					    "Attendees" : attendees,
+					    "Organizer" : organizer
+			}) ;
 
-			var param = {
-				"LastModified": 1473969772,
-				"MeetingSubject": "talk about mobile",
-				"Start": 1473962572,
-				"Preset": [{
-					"Enabled": false,
-					"PresetFields": ""
-				}],
-				"GWMeetingID": [{
-					"xsi:nil": true,
-					"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
-				}],
-				"End": 1473969772,
-				"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
-				"IsPrivate": false,
-				"RVMeetingID": [{
-					"xsi:nil": true,
-					"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
-				}]
-			};
-
+/*
+		    "AltID": "String content7056",
+		    "MeetingSubject":"talk about mobile",
+		    "MeetingComment": "testabou tfdfdasg comment",
+		    "RoomID":"860ae2ee-2620-4035-b36b-c4ff67d1124a",
+		    "End":"\/Date(1480089600000)\/", 
+		    "Start":"\/Date(1480086000000)\/",
+		    "TimeZoneId": "Eastern Daylight Time",
+		    "Attendees": "George Liu, Yuri Natchetoi",
+		    "Organizer": "gliu3@toronto.ca"
+*/			
 			var aData = jQuery.ajax({
 				url: url,
 				type: "POST",
+          	    headers: headers,
 				data: payload,
-				dataType: "json",
+				processData : false,
+//				dataType: "text",
 				contentType: "application/json",
-				async: true,
+				async: false,
 				crossDomain: true,
-				success: function(data, textStatus, jqXHR) { // callback called when data is 
-					alert('data=' + data);
+				success: function(data, textStatus) { // callback called when data is 
+//					alert('data=' + data);
 					jQuery.sap.require("sap.m.MessageBox");
-					//sap.m.MessageBox.show("Hello from sap messagebox" + data);
+					sap.m.MessageBox.show("Meeting created" + data.responseText );
 
 				},
-				error: function(data, textStatus, jqXHR) {
-					alert("Error occured" + data.statusText + textStatus);
+				error: function(data, textStatus) {
+					alert("Error occured" + data.responseText + textStatus);
 				}
 			});
 
@@ -189,6 +211,8 @@ sap.ui.define([
 			this.newMeeting.AltID = (data.length + 1).toString();
 			data.push(this.newMeeting);
 			meetingsModel.setData(data);
+			
+			this.postMeeting(this.newMeeting);
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("main", true);

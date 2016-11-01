@@ -86,7 +86,8 @@
 													height="300px"/>
 											</Panel>
 											<Image width="100%" height="100%" id="__image1" src="Images/MH15.png"/>
-											<html:iframe src="http://map.toronto.ca/maps/map.jsp?app=TorontoMaps_v2" width="100%" height="300px"></html:iframe>
+											<html:iframe src="Images/ESRI1.png" width="100%" height="300px"></html:iframe>
+											<!-- html:iframe src="http://map.toronto.ca/maps/map.jsp?app=TorontoMaps_v2" width="100%" height="300px"></html:iframe -->
 											<!-- sap.ui.vbm:GeoMap xmlns:sap.ui.vbm="sap.ui.vbm" id="__map0" initialPosition="43.6460466;-79.3909029;2"/ -->
 										</pages>
 									</Carousel>
