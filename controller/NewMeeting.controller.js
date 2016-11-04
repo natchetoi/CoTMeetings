@@ -148,17 +148,7 @@ sap.ui.define([
 					    "Organizer" : organizer
 			}) ;
 
-/*
-		    "AltID": "String content7056",
-		    "MeetingSubject":"talk about mobile",
-		    "MeetingComment": "testabou tfdfdasg comment",
-		    "RoomID":"860ae2ee-2620-4035-b36b-c4ff67d1124a",
-		    "End":"\/Date(1480089600000)\/", 
-		    "Start":"\/Date(1480086000000)\/",
-		    "TimeZoneId": "Eastern Daylight Time",
-		    "Attendees": "George Liu, Yuri Natchetoi",
-		    "Organizer": "gliu3@toronto.ca"
-*/			
+		if(window.coTShared.on) {
 			var aData = jQuery.ajax({
 				url: url,
 				type: "POST",
@@ -176,9 +166,10 @@ sap.ui.define([
 
 				},
 				error: function(data, textStatus) {
-					alert("Error occured" + data.responseText + textStatus);
+					sap.m.MessageBox.show("Error occured" + data.responseText + textStatus);
 				}
 			});
+		}
 
 		},
 
@@ -206,7 +197,7 @@ sap.ui.define([
 
 		saveMeeting: function() {
 			this.preSaveMeeting();
-			var meetingsModel = this.getView().getModel("all_meetings");
+			var meetingsModel = sap.ui.getCore().getModel("all_meetings");
 			var data = meetingsModel.getData();
 			this.newMeeting.AltID = (data.length + 1).toString();
 			data.push(this.newMeeting);
