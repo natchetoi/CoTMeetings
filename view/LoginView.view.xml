@@ -6,9 +6,9 @@
 				<content>
 					<Link id="__link0"/>
 					<Label text="User Name" id="__label0" class="coTUserNameLabel"/>
-					<Input width="100%" id="__input0" value="testweb1" class="coTUserName"/>
+					<Input width="100%" id="username" value="testweb2" class="coTUserName"/>
 					<Label text="Password" id="__label1" class="coTPasswordLabel"/>
-					<Input width="100%" id="__input1" value="*******" type="Password" class="coTPassword"/>
+					<Input width="100%" id="password" value="toronto" type="Password" class="coTPassword"/>
 					<HBox>
 						<CheckBox id="__box0" text="Remember me" class="coTRememberMe"/>
 					</HBox>

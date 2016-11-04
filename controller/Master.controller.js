@@ -185,7 +185,7 @@ sap.ui.define([
 		},
 
 		loadMeetings: function() {
-			var meetModel = this.getView().getModel("all_meetings");
+			var meetModel = sap.ui.getCore().getModel("all_meetings");
 
 			var currentDate = Date.today();  // .add(-20).days();
 			var meetingList = meetModel.getData();

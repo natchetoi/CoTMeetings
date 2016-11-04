@@ -48,7 +48,7 @@ sap.ui.define([
 		},
 
 		loadMeet: function(meetId) {
-			var meetModel = this.getView().getModel("all_meetings");
+			var meetModel = sap.ui.getCore().getModel("all_meetings");
 			var meet = Enumerable
 				.From(meetModel.getData())
 				.Where(function(x) {
