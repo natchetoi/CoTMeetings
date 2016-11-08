@@ -244,16 +244,11 @@ sap.ui.define([
 		},
 
 		getMyMeetings: function() {
-			var meetModel = this.getView().getModel("all_meetings");
+			var meetModel = sap.ui.getCore().getModel("all_meetings");
 
 			var myMeetings = Enumerable.From(meetModel.getData())
-				.Where(function(x) {
-					return x.Organizer === "Yuri" || Enumerable.From(x.Attendees).Any(function(y) {
-						return y.Name === "Yuri";
-					});
-				})
 				.OrderBy(function(x) {
-					return new Date(Date.parse(x.Date + " " + x.Start));
+					return x.Epoch;
 				})
 				.ToArray();
 
