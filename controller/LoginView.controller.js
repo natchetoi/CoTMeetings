@@ -174,7 +174,7 @@ sap.ui.define([
 		                      this.appointments.push(_appointment);
 					}
 	              } catch(err) {
-	                  		alert(err);
+	                  		sap.m.MessageToast.show(err);
 	              }
 				}
 			
