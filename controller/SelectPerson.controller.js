@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History"
-], function(Controller, History) {
+	"sap/ui/core/routing/History",
+	'sap/ui/model/Filter'
+], function(Controller, History, Filter) {
 	"use strict";
 
 	return Controller.extend("fusion.controller.SelectPerson", {
@@ -55,7 +56,7 @@ sap.ui.define([
 		addAttendees: function() {
 			var oList = this.byId("listAttendees");
 			var selectedItems = oList.getSelectedItems();
-			
+
 			if (window.coTShared === undefined) {
 				window.coTShared = {};
 			}
@@ -65,7 +66,9 @@ sap.ui.define([
 			window.coTShared.meeting.attendees = [];
 			for (var i = 0; i < selectedItems.length; i++) {
 				var selectedPerson = selectedItems[i].getBindingContext("people").getObject();
-				window.coTShared.meeting.attendees.push({"name" : selectedPerson.firstName + " " + selectedPerson.lastName});
+				window.coTShared.meeting.attendees.push({
+					"name": selectedPerson.firstName + " " + selectedPerson.lastName
+				});
 			}
 
 			this.getRouter().navTo("NewMeeting", {}, true);
@@ -93,6 +96,17 @@ sap.ui.define([
 			var model = new sap.ui.model.json.JSONModel();
 			model.setData(sortedPeople);
 			this.getView().setModel(model, "people");
+		},
+
+		onSearch: function(oEvt) {
+			var sQuery = oEvt.getSource().getValue();
+			var list = this.getView().byId("listAttendees");
+			var binding = list.getBinding("items");
+
+			binding.filter(new sap.ui.model.Filter([
+				new sap.ui.model.Filter("firstName", sap.ui.model.FilterOperator.Contains, sQuery),
+				new sap.ui.model.Filter("lastName", sap.ui.model.FilterOperator.Contains, sQuery)
+			], false));
 		}
 	});
 

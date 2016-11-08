@@ -1,21 +1,20 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="fusion.controller.SelectPerson">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="fusion.controller.SelectPerson">
 	<html:style>
 		.raisedCheckBox div { vertical-align: -25px; }
 	</html:style>
 	<App>
 		<pages>
 			<Page title="ATTENDEES" navButtonPress="onNavBack">
-		<!-- subHeader>
-			<Bar id="searchBar">
-				<contentMiddle>
-					<SearchField id="searchField" showRefreshButton="{device>/isNoTouch}" placeholder="{i18n>masterSearchPlaceholder}" 
-					search="onSearch" tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>
-				</contentMiddle>
-			</Bar>
-		</subHeader -->			
 				<content>
 					<!-- SearchField  width="100%" placeholder="Search" id="srcField0"/ -->
-					<List id="listAttendees" noDataText="No attendees" items="{people>/}" headerText="Attendees" includeItemInSelection="true" mode="MultiSelect">
+					<List id="listAttendees" noDataText="No attendees" items="{people>/}" headerText="Attendees" includeItemInSelection="true"
+						mode="MultiSelect">
+						<headerToolbar>
+							<Toolbar>
+								<SearchField width="100%" search="onSearch"/>
+							</Toolbar>
+						</headerToolbar>
 						<items>
 							<ObjectListItem title="{people>firstName} {people&gt;lastName}">
 								<attributes>
@@ -27,8 +26,10 @@
 				</content>
 				<footer>
 					<Toolbar>
-						<Button text="OK" width="100px" id="__button31" press="addAttendees" icon="sap-icon://accept" tooltip="Save and return" tap="addAttendees" type="Emphasized"/>
-						<Button text="Cancel" width="100px" id="__button41" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel and return" tap="onNavBack" type="Emphasized"/>
+						<Button text="OK" width="100px" id="__button31" press="addAttendees" icon="sap-icon://accept" tooltip="Save and return" tap="addAttendees"
+							type="Emphasized"/>
+						<Button text="Cancel" width="100px" id="__button41" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel and return" tap="onNavBack"
+							type="Emphasized"/>
 					</Toolbar>
 				</footer>
 			</Page>
