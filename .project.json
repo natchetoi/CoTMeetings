@@ -347,6 +347,12 @@
         }
       },
       "custom": {}
+    },
+    "FacadeConfig": {
+      "cordova-plugin-device-orientation": false,
+      "accelerometer": {},
+      "compass": {},
+      "bFacade": true
     }
   }
 }

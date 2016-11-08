@@ -69,7 +69,7 @@ sap.ui.define([
 		loadAppointments: function ( userName ) {
 
 		  this.appointments = []; 
-		  var date = "11/04"
+		  var date = "11/04";
 
 		  if(window.coTShared.on) {	
 			
@@ -147,9 +147,15 @@ sap.ui.define([
 		                  	  start = start.getHours() + ":" + start.getMinutes();
 		                  	  end = end.getHours() + ":" + end.getMinutes();
 		                  	  
+		                  	  
 		                  	  var roomID = appData.RoomID;
-		                  	  var roomImage = window.coTRooms[roomID].Image; 
-		                  	  var roomPath = window.coTRooms[roomID].Path2Room; 
+		                  	  var roomImage = "Images/MH15/Adelaide.png";
+		                  	  var roomPath = "Images/MH15/Adelaide1.png";
+		                  	  
+		                  	  if(window.coTRooms[roomID] != null) {
+		                  	     roomImage = window.coTRooms[roomID].Image; 
+		                  	     roomPath = window.coTRooms[roomID].Path2Room; 
+		                  	  }
 		                  	  
 		                      var _appointment = {
 		                      	  "AltID" : appData.RV_MeetingID,
