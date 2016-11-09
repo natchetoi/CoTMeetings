@@ -3,7 +3,7 @@
 	"mapheight": "600",
 	"categories": [
 		{
-			"id": "food",
+			"id": "Jarvis",
 			"title": "Jarvis",
 			"color": "#b7a6bd",
 			"show": "false"
@@ -35,10 +35,10 @@
 	],
 	"levels": [
 		{
-			"id": "basement-floor",
-			"title": "Basement",
-			"map": "Images/mall/mall-underground.svg",
-			"minimap": "Images/mall/mall-underground-mini.jpg",
+			"id": "Adelaide",
+			"title": "Adelaide",
+			"map": "Images/mall/Adelaide1.svg",
+			"minimap": "Images/mall/Adelaide2.jpg",
 			"locations": [
 				{
 					"id": "gap",
@@ -63,10 +63,10 @@
 			]
 		},
 		{
-			"id": "ground-floor",
-			"title": "MH 15th Floor",
-			"map": "Images/mall/mall-ground.svg",
-			"minimap": "Images/mall/mall-ground-mini.jpg",
+			"id": "Jarvis",
+			"title": "Jarvis",
+			"map": "Images/mall/Jarvis1.svg",
+			"minimap": "Images/mall/Jarvis2.jpg",
 			"show": "true",
 			"locations": [
 				{
@@ -158,7 +158,7 @@
 					"id": "sportchek",
 					"title": "Simcoe",
 					"about": "Lorem ipsum",
-					"description": "<img src=\"images/logo.png\" alt=\"Mapplic\"><p>Lorem ipsum</p>",
+					"description": "<img src=\"Images/logo.png\" alt=\"Mapplic\"><p>Lorem ipsum</p>",
 					"category": "clothing",
 					"thumbnail": "Images/thumbs/sportchek.jpg",
 					"x": "0.6243",
@@ -188,10 +188,10 @@
 			]
 		},
 		{
-			"id": "first-floor",
-			"title": "First Floor",
-			"map": "images/mall/mall-level1.svg",
-			"minimap": "images/mall/mall-level1-mini.jpg",
+			"id": "Duncan",
+			"title": "Duncan",
+			"map": "Images/mall/Duncan1.svg",
+			"minimap": "Images/mall/Duncan2.jpg",
 			"locations": [
 				{
 					"id": "applebees",
@@ -199,7 +199,7 @@
 					"about": "Lorem ipsum",
 					"description": "See you tomorrow",
 					"category": "food",
-					"thumbnail": "images/thumbs/applebees.jpg",
+					"thumbnail": "Images/thumbs/applebees.jpg",
 					"x": "0.7465",
 					"y": "0.2769"
 				},
@@ -209,7 +209,7 @@
 					"about": "Lorem ipsum",
 					"description": "Kentucky Fried Chicken",
 					"category": "food",
-					"thumbnail": "images/thumbs/kfc.jpg",
+					"thumbnail": "Images/thumbs/kfc.jpg",
 					"x": "0.7488",
 					"y": "0.4997"
 				},
@@ -219,7 +219,7 @@
 					"about": "Lorem ipsum",
 					"description": "Additional information",
 					"category": "food",
-					"thumbnail": "images/thumbs/mcdonalds.jpg",
+					"thumbnail": "Images/thumbs/mcdonalds.jpg",
 					"link": "",
 					"x": "0.7374",
 					"y": "0.3918"
@@ -230,7 +230,7 @@
 					"about": "Lorem ipsum",
 					"description": "Make it great",
 					"category": "food",
-					"thumbnail": "images/thumbs/pizzahut.jpg",
+					"thumbnail": "Images/thumbs/pizzahut.jpg",
 					"x": "0.6267",
 					"y": "0.3151"
 				},
@@ -240,7 +240,7 @@
 					"about": "Lorem ipsum",
 					"description": "Eat fresh.",
 					"category": "food",
-					"thumbnail": "images/thumbs/subway.jpg",
+					"thumbnail": "Images/thumbs/subway.jpg",
 					"x": "0.7092",
 					"y": "0.5232"
 				},
@@ -250,7 +250,7 @@
 					"about": "Lorem ipsum",
 					"description": "Lorem ipsum <a href=\"http://www.codecanyon.net\">dolor sit</a> amet, consectetur.",
 					"category": "health",
-					"thumbnail": "images/thumbs/cvs.jpg",
+					"thumbnail": "Images/thumbs/cvs.jpg",
 					"link": "",
 					"x": "0.5104",
 					"y": "0.2771"
@@ -261,7 +261,7 @@
 					"about": "Lorem ipsum",
 					"description": "Lorem ipsum",
 					"category": "clothing",
-					"thumbnail": "images/thumbs/pullbear.jpg",
+					"thumbnail": "Images/thumbs/pullbear.jpg",
 					"x": "0.4846",
 					"y": "0.3246"
 				},
@@ -271,7 +271,7 @@
 					"about": "Lorem ipsum",
 					"description": "Additional information",
 					"category": "misc",
-					"thumbnail": "images/thumbs/amc.jpg",
+					"thumbnail": "Images/thumbs/amc.jpg",
 					"x": "0.6640",
 					"y": "0.6426"
 				},
@@ -281,7 +281,7 @@
 					"about": "Lorem ipsum",
 					"description": "Additional information",
 					"category": "misc",
-					"thumbnail": "images/thumbs/att.jpg",
+					"thumbnail": "Images/thumbs/att.jpg",
 					"x": "0.3750",
 					"y": "0.5391"
 				}
