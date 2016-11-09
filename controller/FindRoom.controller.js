@@ -129,7 +129,6 @@ sap.ui.define([
 			if (window.coTShared.meeting === undefined) {
 				window.coTShared.meeting = {};
 			}
-			window.coTShared.meeting.room = this.selectedRoom.RoomName;
 			window.coTShared.meeting.roomId = this.selectedRoom.RoomId;
 
 			var router = this.getRouter();

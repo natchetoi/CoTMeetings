@@ -11,7 +11,7 @@ sap.ui.define([
 			"Start": {},
 			"End": {},
 			"RoomID": "",
-			"RoomName": "",
+			"Location" : "",
 			"AltID": "",
 			"MeetingComment": "",
 			"Organizer": "Yuri Natchetoi",
@@ -72,10 +72,10 @@ sap.ui.define([
 			}
 
 			//find room results
-			if (window.coTShared !== undefined && window.coTShared.meeting !== undefined && window.coTShared.meeting.room !== undefined) {
+			if (window.coTShared !== undefined && window.coTShared.meeting !== undefined) {
 				window.coTShared.NewMeeting.RoomID = window.coTShared.meeting.roomId;
-				this.newMeeting.RoomName = window.coTShared.meeting.room;
 				this.newMeeting.RoomID = window.coTShared.meeting.roomId;
+				this.fillRoomInfo(this.newMeeting.RoomID);
 			}
 
 			this.loadMeeting();
@@ -193,6 +193,20 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel();
 			oModel.setData(this.newMeeting);
 			this.getView().setModel(oModel);
+		},
+		
+		fillRoomInfo: function(roomId){
+			var roomsModel = this.getView().getModel("all_rooms");
+			var room = Enumerable.From(roomsModel.getData())
+								.Where(function(x){
+									return x.RoomID === roomId;	
+								})
+								.FirstOrDefault();
+			if(room !== undefined){
+				this.newMeeting.Location = room.RoomName;
+				this.newMeeting.Image = room.Image;
+				this.newMeeting.Path2Room = room.Path2Room;                    
+			}
 		},
 
 		saveMeeting: function() {

@@ -29,7 +29,7 @@
 												<Input id="inputSubject" value="{/MeetingSubject}"/>
 												<l:HorizontalLayout>
 												  <Label text="Location   :" design="Bold"/>
-												  <Text id="txtSelectedRoom" text=".   {/RoomName}    .">
+												  <Text id="txtSelectedRoom" text=".   {/Location}    .">
 													<layoutData>
 														<l:GridData span="L3 M4 S4" />
 													</layoutData>

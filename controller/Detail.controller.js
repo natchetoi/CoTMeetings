@@ -62,42 +62,6 @@ sap.ui.define([
 			}
 		},
 
-		getRoomName: function(roomId) {
-			var roomsModel = this.getView().getModel("all_rooms");
-			var room = Enumerable
-				.From(roomsModel.getData())
-				.Where(function(x) {
-					return x.RoomID === roomId;
-				})
-				.FirstOrDefault();
-
-			return room !== undefined ? room.RoomName : "-";
-		},
-
-		getRoomImage: function(roomId) {
-			var roomsModel = this.getView().getModel("all_rooms");
-			var room = Enumerable
-				.From(roomsModel.getData())
-				.Where(function(x) {
-					return x.RoomID === roomId;
-				})
-				.FirstOrDefault();
-
-			return room !== undefined ? room.Image : "-";
-		},
-
-		getRoomPath: function(roomId) {
-			var roomsModel = this.getView().getModel("all_rooms");
-			var room = Enumerable
-				.From(roomsModel.getData())
-				.Where(function(x) {
-					return x.RoomID === roomId;
-				})
-				.FirstOrDefault();
-
-			return room !== undefined ? room.Path2Room : "-";
-		},
-
 		/**
 		 * Binds the view to the object path.
 		 * @param {string} sEntityPath path to the entity
