@@ -3,7 +3,7 @@
 		<pages>
 			<Page title="MH 15 floor" id="Floor3dPageId" >
 				<content>
-					<html:iframe src="../mh15.html" width="100%" height="300px" />
+					<html:iframe src="mh15.html" width="100%" height="300px" />
 				</content>
 		<footer>
 			<Toolbar>
