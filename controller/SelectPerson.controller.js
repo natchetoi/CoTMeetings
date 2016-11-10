@@ -70,9 +70,11 @@ sap.ui.define([
 					"name": selectedPerson.firstName + " " + selectedPerson.lastName
 				});
 			}
+			
+			var empty = false;
 
 			this.getRouter().navTo("NewMeeting", {
-				"empty" : false
+				"empty" : empty
 			}, true);
 		},
 

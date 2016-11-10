@@ -14,7 +14,7 @@ sap.ui.define([
 			"RoomName": "",
 			"AltID": "",
 			"MeetingComment": "",
-			"Organizer": "Yuri Natchetoi",
+			"Organizer": window.coTRooms.Organizer,
 			"Attendees": [],
 			"Date": "",
 			"CallNumber": ""
@@ -67,12 +67,15 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent) {
 			
 			var empty =  oEvent.getParameter("arguments").empty;
-			if(empty) {
+			if(empty === "true" ) {
 				this.initMeeting();
 			}
 			
 			//add attendees result
 			if (window.coTShared !== undefined && window.coTShared.meeting !== undefined && window.coTShared.meeting.attendees !== undefined) {
+				if(	window.coTShared.NewMeeting === undefined ) {
+					window.coTShared.NewMeeting = {};
+				}
 				window.coTShared.NewMeeting.Attendees = window.coTShared.meeting.attendees;
 				this.newMeeting.Attendees = window.coTShared.meeting.attendees;
 			}
@@ -98,11 +101,14 @@ sap.ui.define([
 		
 		initMeeting: function() {
 			var date = new Date();
-			var dt = date.toString().substring(4, 16); 
-			var organizer = window.coTRooms.userName;
-		
+			var dt = this.getFormattedDate( date ); 
+			var organizer = window.coTRooms.Organizer;
+			window.coTShared.meeting = { };
+			window.coTShared.meeting.attendees = [];
+
 			this.newMeeting = {
 			"MeetingSubject": "",
+			"Date": dt,
 			"Start": "",
 			"End": "",
 			"RoomID": "",
@@ -110,11 +116,10 @@ sap.ui.define([
 			"MeetingComment": "",
 			"Organizer": organizer,
 			"Attendees": [],
-			"Date": dt,
 			"CallNumber": "",
+			"Location": "",
 			"Image" : "",
-			"Path2Room"  : "",
-			"Location"  : ""
+			"Path2Room"  : ""
 			};
 				
 		},
@@ -169,7 +174,7 @@ sap.ui.define([
 			var endD =  "\/Date(" + end.toString() + ")\/";
 			
 			var attendees = "George Liu, Yuri Natchetoi";
-			var organizer = "gliu3@toronto.ca";
+			var organizer = 	window.coTRooms.Organizer;
 			newMeeting.AltId = "String content12345";
 			
 			var payload = JSON.stringify( 
@@ -232,8 +237,52 @@ sap.ui.define([
 			oModel.setData(this.newMeeting);
 			this.getView().setModel(oModel);
 		},
-
+		
+		
+		showError: function( msg ) {
+			sap.m.MessageToast.show("Error: " + msg, {
+								duration: "2000",
+								width: "15em",
+								my: "center top",
+								at: "center top",
+								offset: "0 0",
+								iNumber: 2,
+								autoClose: true
+		});
+		},
+		
+		validate: function( ) {
+			var result = true;
+			var attendees = window.coTShared.meeting.attendees;
+			
+			if(this.newMeeting.RoomID === "") {
+				this.showError( "Need a location" );
+			}
+			if(attendees.length === 0) {
+				this.showError( "Meeting should have attendees" );
+				result = false;
+			}
+			if(this.newMeeting.Start === undefined || this.newMeeting.Start === "") {
+				this.showError( "Start time is empty" );
+				result = false;
+			}
+			if(this.newMeeting.End === undefined || this.newMeeting.End === "") {
+				this.showError( "Start time is empty" );
+				result = false;
+			}
+			if( result ) {
+				var start =  this.toDate(this.newMeeting.Date, this.newMeeting.Start).getTime();
+				var end =  this.toDate(this.newMeeting.Date, this.newMeeting.End).getTime();
+				if(end <= start) {
+					this.showError( "End time should be after Start time" );
+					result = false;
+				}
+			}
+			return result;
+		},
+		
 		saveMeeting: function() {
+		  if(this.validate()) {
 			this.preSaveMeeting();
 			var meetingsModel = sap.ui.getCore().getModel("all_meetings");
 			var data = meetingsModel.getData();
@@ -241,10 +290,13 @@ sap.ui.define([
 			data.push(this.newMeeting);
 			meetingsModel.setData(data);
 			
-			this.postMeeting(this.newMeeting);
+			if(window.coTShared.on) {
+				this.postMeeting(this.newMeeting);
+			}
 
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("main", true);
+		  }
 		}
 
 	});

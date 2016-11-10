@@ -118,8 +118,9 @@ sap.ui.define([
 			// 	window.history.go(-1);
 			// } else {
 			var router = this.getRouter();
+			var empty = false;
 			router.navTo("NewMeeting", {
-					"empty" : false
+					"empty" : empty
 			}, true);
 			//}
 		},
