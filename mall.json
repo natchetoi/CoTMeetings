@@ -1,6 +1,6 @@
 {
 	"mapwidth": "1000",
-	"mapheight": "600",
+	"mapheight": "530",
 	"categories": [
 		{
 			"id": "Jarvis",
@@ -60,6 +60,14 @@
 					"x": "0.5163",
 					"y": "0.3050"
 				}
+			]
+		},
+		{
+			"id": "Duncan",
+			"title": "Duncan",
+			"map": "Images/mall/Duncan1.svg",
+			"minimap": "Images/mall/Duncan2.jpg",
+			"locations": [
 			]
 		},
 		{
@@ -188,10 +196,10 @@
 			]
 		},
 		{
-			"id": "Duncan",
-			"title": "Duncan",
-			"map": "Images/mall/Duncan1.svg",
-			"minimap": "Images/mall/Duncan2.jpg",
+			"id": "Pearl",
+			"title": "Pearl",
+			"map": "Images/mall/Pearl1.svg",
+			"minimap": "Images/mall/Pearl2.jpg",
 			"locations": [
 				{
 					"id": "applebees",
@@ -285,6 +293,22 @@
 					"x": "0.3750",
 					"y": "0.5391"
 				}
+			]
+		},
+		{
+			"id": "Richmond",
+			"title": "Richmond",
+			"map": "Images/mall/Richmond1.svg",
+			"minimap": "Images/mall/Richmond2.jpg",
+			"locations": [
+			]
+		},
+		{
+			"id": "Simcoe",
+			"title": "Simcoe",
+			"map": "Images/mall/Simcoe1.svg",
+			"minimap": "Images/mall/Simcoe2.jpg",
+			"locations": [
 			]
 		}
 	]

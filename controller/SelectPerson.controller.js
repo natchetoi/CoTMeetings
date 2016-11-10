@@ -71,7 +71,9 @@ sap.ui.define([
 				});
 			}
 
-			this.getRouter().navTo("NewMeeting", {}, true);
+			this.getRouter().navTo("NewMeeting", {
+				"empty" : false
+			}, true);
 		},
 
 		onNavBack: function(oEvent) {
@@ -81,7 +83,9 @@ sap.ui.define([
 			// if (sPreviousHash !== undefined) {
 			// 	window.history.go(-1);
 			// } else {
-			this.getRouter().navTo("NewMeeting", {}, true);
+			this.getRouter().navTo("NewMeeting", {
+					"empty" : false
+			}, true);
 			//}
 		},
 

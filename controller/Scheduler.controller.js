@@ -59,7 +59,9 @@ sap.ui.define([
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				this.getRouter().navTo("NewMeeting", {}, true /*no history*/);
+				this.getRouter().navTo("NewMeeting", {
+					"empty" : false
+				}, true /*no history*/);
 			}
 		},
 		
@@ -84,7 +86,9 @@ sap.ui.define([
 							scheduler.onNavBack(oEvent);
 /*							var router = sap.ui.core.UIComponent.getRouterFor(this);
 							if(router !== undefined) {
-								router.navTo("NewMeeting", { }, true);
+								router.navTo("NewMeeting", { 
+									"empty" : false
+								}, true);
 							}
 */							
 						}

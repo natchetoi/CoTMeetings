@@ -181,7 +181,9 @@ sap.ui.define([
 		},
 
 		addMeeting: function(oEvent) {
-			sap.ui.core.UIComponent.getRouterFor(this).navTo("NewMeeting", {}, true);
+			sap.ui.core.UIComponent.getRouterFor(this).navTo("NewMeeting", {
+				"empty" : true
+			}, true);
 		},
 
 		loadMeetings: function() {

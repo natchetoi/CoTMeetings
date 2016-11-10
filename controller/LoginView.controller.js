@@ -111,6 +111,7 @@ sap.ui.define([
 			if(userName === "testweb2" || userName === "hmatth") {
 				name = "Horace";
 			} 
+			window.coTRooms.userName = name;
 			return name;
 		},
 		

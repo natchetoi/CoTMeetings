@@ -55,7 +55,7 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 					viewLevel: "2",
 					targetAggregation: "detailPages"
 				}, {
-					pattern: "NewMeeting",
+					pattern: "NewMeeting/{empty}",
 					name: "NewMeeting",
 					view: "NewMeeting",
 					viewLevel: "3",

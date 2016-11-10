@@ -65,6 +65,12 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function(oEvent) {
+			
+			var empty =  oEvent.getParameter("arguments").empty;
+			if(empty) {
+				this.initMeeting();
+			}
+			
 			//add attendees result
 			if (window.coTShared !== undefined && window.coTShared.meeting !== undefined && window.coTShared.meeting.attendees !== undefined) {
 				window.coTShared.NewMeeting.Attendees = window.coTShared.meeting.attendees;
@@ -79,6 +85,38 @@ sap.ui.define([
 			}
 
 			this.loadMeeting();
+		},
+		
+		getFormattedDate : function (date) {
+			var year = date.getFullYear();
+			var month = (1 + date.getMonth()).toString();
+			month = month.length > 1 ? month : '0' + month;
+			var day = date.getDate().toString();
+			day = day.length > 1 ? day : '0' + day;
+			return month + '/' + day + '/' + year;
+		},
+		
+		initMeeting: function() {
+			var date = new Date();
+			var dt = date.toString().substring(4, 16); 
+			var organizer = window.coTRooms.userName;
+		
+			this.newMeeting = {
+			"MeetingSubject": "",
+			"Start": "",
+			"End": "",
+			"RoomID": "",
+			"AltID": "",
+			"MeetingComment": "",
+			"Organizer": organizer,
+			"Attendees": [],
+			"Date": dt,
+			"CallNumber": "",
+			"Image" : "",
+			"Path2Room"  : "",
+			"Location"  : ""
+			};
+				
 		},
 
 		addPerson: function() {
