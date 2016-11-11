@@ -108,9 +108,12 @@ sap.ui.define([
 	
 		filterName: function( userName ) {
 			var name = "Asad";
+			window.coTRooms.Organizer = "Asad Sultan";
 			if(userName === "testweb2" || userName === "hmatth") {
 				name = "Horace";
+				window.coTRooms.Organizer = "Horace Matthews";
 			} 
+			window.coTRooms.userName = name;
 			return name;
 		},
 		
@@ -411,8 +414,12 @@ sap.ui.define([
 
 		onLogin: function(oEvent) {
 			window.coTShared.on = false;
-			
-			this.createSession();
+			if(window.coTShared.on) {
+				this.createSession();
+			} else {
+				var userName = this.getView().byId("username").getValue();
+				this.login(userName);
+			}
 
 			//	   	  this.getRouter().navTo("mymeetings", {}, true );
 

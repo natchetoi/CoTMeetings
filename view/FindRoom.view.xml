@@ -1,5 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:sap.ui.layout="sap.ui.layout" controllerName="fusion.controller.FindRoom" id="FindRoomViewId">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.ui.layout="sap.ui.layout" controllerName="fusion.controller.FindRoom" id="FindRoomViewId">
 	<App>
 		<pages>
 			<Page title="FIND A ROOM" navButtonPress="onNavBack" navButtonTap="onNavBack" id="FindRoomPageId">
@@ -22,8 +21,7 @@
 											</sap.ui.layout:HorizontalLayout>
 											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" id="__layout0222" width="100%">
 												<sap.ui.layout:content>
-													<Slider id="proximitySliderId" width="200px" change="onProximityChanged" liveChange="changeProximity" max="1000" step="20" value="500"
-														tooltip="Distance from the current location"/>
+													<Slider id="proximitySliderId" width="200px" change="onProximityChanged" liveChange="changeProximity" max="1000" step="20" value="500" tooltip="Distance from the current location"/>
 													<Label text="1000m" width="100%" id="cotRoomDistance" style="text-align: right" textAlign="End"/>
 												</sap.ui.layout:content>
 											</sap.ui.layout:HorizontalLayout>
@@ -33,11 +31,9 @@
 													<Text xmlns:core="sap.ui.core" text="2 pers." maxLines="0" id="capacityTextId" style="text-align: right"/>
 												</sap.ui.layout:content>
 											</sap.ui.layout:HorizontalLayout>
-											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-												xmlns:html="http://www.w3.org/1999/xhtml" id="__layout0111" width="100%">
+											<sap.ui.layout:HorizontalLayout xmlns:sap.ui.layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" id="__layout0111" width="100%">
 												<sap.ui.layout:content>
-													<Slider id="capacitySliderId" width="200px" change="onCapacityChanged" liveChange="changeCapacity" value="3" max="20" step="1"
-														tooltip="Select number of Attendees"/>
+													<Slider id="capacitySliderId" width="200px" change="onCapacityChanged" liveChange="changeCapacity" value="3" max="20" step="1" tooltip="Select number of Attendees"/>
 													<Label text="20 pers" width="60px" id="cotRoomCapacity" style="text-align: right" textAlign="Left"/>
 												</sap.ui.layout:content>
 											</sap.ui.layout:HorizontalLayout>
@@ -63,11 +59,11 @@
 											</sap.ui.layout:content>
 										</sap.ui.layout:VerticalLayout>
 									</Panel>
-									<List headerText="Found rooms" noDataText="No rooms found" id="listFilteredRooms" items="{rooms>/}" mode="SingleSelectLeft"
-										includeItemInSelection="true" growingScrollToLoad="true" growingThreshold="5" growing="true"
-										selectionChange="onFilteredRoomsSelectionChanged">
+									<List headerText="Found rooms" noDataText="No rooms found" id="listFilteredRooms" items="{rooms>/}" mode="SingleSelectLeft" 
+											includeItemInSelection="true" growingScrollToLoad="true" growingThreshold="5" growing="true" selectionChange="onFilteredRoomsSelectionChanged" 
+											 itemPress="showRoom" swipe="showRoom">
 										<items>
-											<ObjectListItem title="{rooms>RoomName}">
+											<ObjectListItem title="{rooms>RoomName}" detailPress="showRoom" press="showRoom">
 												<attributes>
 													<ObjectAttribute text="Capacity: {rooms>Capacity}"/>
 												</attributes>
@@ -80,48 +76,40 @@
 								<content>
 									<Carousel activePage="__image0" showBusyIndicator="false" id="__carousel0" pages="rooms&gt;/1/">
 										<pages>
-											<Panel id="addressImage" headerText="{i18n>panelImageTitle}" visible="true">
-												<Image
-													src="http://maps.googleapis.com/maps/api/staticmap?center=Toronto,+Canada,&amp;zoom=13&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;key=AIzaSyCqifMn0_bk8Vp_QXyfRSiS7GJcvhRwdm4&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C,55+John+Toronto+ON+Canada55"
-													height="300px"/>
+											<Panel id="googleMap" headerText="{i18n>panelImageTitle}" visible="true">
+												<Image src="http://maps.googleapis.com/maps/api/staticmap?center=Toronto,+Canada,&amp;zoom=13&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;key=AIzaSyCqifMn0_bk8Vp_QXyfRSiS7GJcvhRwdm4&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C,55+John+Toronto+ON+Canada55" height="300px"/>
 											</Panel>
 											<Image width="100%" height="100%" id="__image1" src="Images/MH15.png"/>
-											<html:iframe src="Images/ESRI1.png" width="100%" height="300px"></html:iframe>
+											<Panel id="ESRIMap" headerText="{i18n>panelImageTitle}" visible="true">
+											   <html:iframe src="Images/ESRI1.png" width="100%" height="300px"></html:iframe>
 											<!-- html:iframe src="http://map.toronto.ca/maps/map.jsp?app=TorontoMaps_v2" width="100%" height="300px"></html:iframe -->
 											<!-- sap.ui.vbm:GeoMap xmlns:sap.ui.vbm="sap.ui.vbm" id="__map0" initialPosition="43.6460466;-79.3909029;2"/ -->
+											</Panel>
 										</pages>
 									</Carousel>
 								</content>
 							</IconTabFilter>
 							<IconTabFilter text="Favorites" iconColor="Neutral" icon="sap-icon://favorite-list" id="favoritesFilter">
 								<content>
-									<List noDataText="Favorites" id="_listFavorites" mode="SingleSelectLeft" includeItemInSelection="true"
-										selectionChange="onFavoritesSelectionChanged">
+									<List noDataText="Favorites" id="_listFavorites" mode="SingleSelectLeft" includeItemInSelection="true" selectionChange="onFavoritesSelectionChanged">
 										<items>
-											<StandardListItem type="Active" counter="0" title="Simcoe" description="14 seats, Projector, conference calls" icon="sap-icon://projector"
-												id="__item0"/>
-											<StandardListItem xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" type="Active"
-												counter="0" title="Adelaide" description="5 seats, Big screen TV, Conference calls" icon="sap-icon://microphone" id="__item1_copy2"/>
-											<StandardListItem xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" counter="0"
-												title="Jarvis" description="4 seats, Computer, TV" icon="sap-icon://laptop" id="__item1_copy" type="Active"/></items>
+											<StandardListItem type="Active" counter="0" title="Simcoe" description="14 seats, Projector, conference calls" icon="sap-icon://projector" id="__item0"/>
+											<StandardListItem xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" type="Active" counter="0" title="Adelaide" description="5 seats, Big screen TV, Conference calls" icon="sap-icon://microphone" id="__item1_copy2"/>
+											<StandardListItem xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" counter="0" title="Jarvis" description="4 seats, Computer, TV" icon="sap-icon://laptop" id="__item1_copy" type="Active"/></items>
 									</List>
 								</content>
 							</IconTabFilter>
 						</items>
 						<content>
-							<Label xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" text="Equipment"
-								width="100%" id="__label1_copy"/>
+							<Label xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" text="Equipment" width="100%" id="__label1_copy"/>
 						</content>
 					</IconTabBar>
 				</content>
 				<footer>
 					<Toolbar>
-						<Button text="OK" width="100px" id="__button3" press="bookRoom" icon="sap-icon://accept" tooltip="Calendar View" tap="bookRoom"
-							type="Emphasized"/>
-						<Button text="Cancel" width="100px" id="__button4" press="onNavBack" icon="sap-icon://decline" tooltip="Calendar View" tap="onNavBack"
-							type="Emphasized"/>
-						<Button text="3D" width="100px" id="__button5" press="nav3DFloorPlan" icon="sap-icon://map-3" tooltip="3D Floor PLan" tap="bookRoom"
-							type="Emphasized"/>
+						<Button text="OK" width="100px" id="__button3" press="bookRoom" icon="sap-icon://accept" tooltip="Calendar View" tap="bookRoom" type="Emphasized"/>
+						<Button text="Cancel" width="100px" id="__button4" press="onNavBack" icon="sap-icon://decline" tooltip="Calendar View" tap="onNavBack" type="Emphasized"/>
+						<Button text="3D" width="100px" id="__button5" press="showRoom" icon="sap-icon://map-3" tooltip="3D Floor PLan"  type="Emphasized"/>
 					</Toolbar>
 				</footer>
 			</Page>

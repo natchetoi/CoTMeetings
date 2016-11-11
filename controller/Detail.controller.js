@@ -147,7 +147,9 @@ sap.ui.define([
 		//-----------------------------------------------------------------------------
 
 		addMeeting: function(oEvent) {
-			sap.ui.core.UIComponent.getRouterFor(this).navTo("NewMeeting", {}, true);
+			sap.ui.core.UIComponent.getRouterFor(this).navTo("NewMeeting", {
+					"empty" : false
+			}, true);
 
 			//		sap.ui.core.UIComponent.getRouterFor(this).navTo("loginview", {
 			//			entity: oEvent.getSource().getBindingContext().getPath().slice(1),

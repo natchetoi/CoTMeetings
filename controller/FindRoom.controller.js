@@ -118,7 +118,10 @@ sap.ui.define([
 			// 	window.history.go(-1);
 			// } else {
 			var router = this.getRouter();
-			router.navTo("NewMeeting", {}, true);
+			var empty = false;
+			router.navTo("NewMeeting", {
+					"empty" : empty
+			}, true);
 			//}
 		},
 
@@ -132,7 +135,9 @@ sap.ui.define([
 			window.coTShared.meeting.roomId = this.selectedRoom.RoomId;
 
 			var router = this.getRouter();
-			router.navTo("NewMeeting", {}, true);
+			router.navTo("NewMeeting", {
+					"empty" : false
+			}, true);
 		},
 
 		changeCapacity: function() {
@@ -288,7 +293,17 @@ sap.ui.define([
 					oMap.placeAt("__filter5");
 					return oMap; */
 		},
-
+		
+		showRoom: function( oEvent ) {
+			var router = this.getRouter();
+			var roomID = this.selectedRoom.RoomId;
+//			var roomName = this.selectedRoom.RoomName;
+			router.navTo("RoomDetails", {
+					"roomID" : roomID
+//					"roomName" : roomName
+			}, true);
+		},
+		
 		pressCollapse: function() {
 			var foomFilter = this.byId("RoomFilterId");
 			if (foomFilter.getVisible()) {

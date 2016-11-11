@@ -11,10 +11,10 @@ sap.ui.define([
 			"Start": {},
 			"End": {},
 			"RoomID": "",
-			"Location" : "",
+			"Location": "",
 			"AltID": "",
 			"MeetingComment": "",
-			"Organizer": "Yuri Natchetoi",
+			"Organizer": window.coTRooms.Organizer,
 			"Attendees": [],
 			"Date": "",
 			"CallNumber": ""
@@ -65,8 +65,17 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function(oEvent) {
+
+			var empty = oEvent.getParameter("arguments").empty;
+			if (empty === "true") {
+				this.initMeeting();
+			}
+
 			//add attendees result
 			if (window.coTShared !== undefined && window.coTShared.meeting !== undefined && window.coTShared.meeting.attendees !== undefined) {
+				if (window.coTShared.NewMeeting === undefined) {
+					window.coTShared.NewMeeting = {};
+				}
 				window.coTShared.NewMeeting.Attendees = window.coTShared.meeting.attendees;
 				this.newMeeting.Attendees = window.coTShared.meeting.attendees;
 			}
@@ -79,6 +88,40 @@ sap.ui.define([
 			}
 
 			this.loadMeeting();
+		},
+
+		getFormattedDate: function(date) {
+			var year = date.getFullYear();
+			var month = (1 + date.getMonth()).toString();
+			month = month.length > 1 ? month : '0' + month;
+			var day = date.getDate().toString();
+			day = day.length > 1 ? day : '0' + day;
+			return month + '/' + day + '/' + year;
+		},
+
+		initMeeting: function() {
+			var date = new Date();
+			var dt = this.getFormattedDate(date);
+			var organizer = window.coTRooms.Organizer;
+			window.coTShared.meeting = {};
+			window.coTShared.meeting.attendees = [];
+
+			this.newMeeting = {
+				"MeetingSubject": "",
+				"Date": dt,
+				"Start": "",
+				"End": "",
+				"RoomID": "",
+				"AltID": "",
+				"MeetingComment": "",
+				"Organizer": organizer,
+				"Attendees": [],
+				"CallNumber": "",
+				"Location": "",
+				"Image": "",
+				"Path2Room": ""
+			};
+
 		},
 
 		addPerson: function() {
@@ -106,70 +149,71 @@ sap.ui.define([
 			var d = date.split("/");
 			var t = time.split(":");
 			var am = t[1].split(" ");
-			var year =  parseInt("20" + d[2]);
+			var year = parseInt("20" + d[2]);
 			var month = parseInt(d[0]) - 1;
 			var day = parseInt(d[1]);
 			var hr = parseInt(t[0]);
-			if(am[1] === 'PM' ) {
+			if (am[1] === 'PM') {
 				hr = hr + 12;
 			}
 			var min = parseInt(t[1]);
 			var date = new Date(year, month, day, hr, min, 0, 0);
 			return date;
 		},
-		
-		postMeeting: function( newMeeting ) {
+
+		postMeeting: function(newMeeting) {
 
 			var url = "http://fusionrv.corp.toronto.ca/Fusion/APIService/appointments/";
 
-			var headers = { "Content-Type": "application/json" };
-			
-			var start =  this.toDate(newMeeting.Date, newMeeting.Start).getTime();
-			var end =  this.toDate(newMeeting.Date, newMeeting.End).getTime();
-			
-			var startD =  "\/Date(" + start.toString() + ")\/";
-			var endD =  "\/Date(" + end.toString() + ")\/";
-			
+			var headers = {
+				"Content-Type": "application/json"
+			};
+
+			var start = this.toDate(newMeeting.Date, newMeeting.Start).getTime();
+			var end = this.toDate(newMeeting.Date, newMeeting.End).getTime();
+
+			var startD = "\/Date(" + start.toString() + ")\/";
+			var endD = "\/Date(" + end.toString() + ")\/";
+
 			var attendees = "George Liu, Yuri Natchetoi";
-			var organizer = "gliu3@toronto.ca";
+			var organizer = window.coTRooms.Organizer;
 			newMeeting.AltId = "String content12345";
-			
-			var payload = JSON.stringify( 
-					{
-					    
-					    "AltID" : newMeeting.AltId,
-					    "MeetingSubject" : newMeeting.MeetingSubject,
-					    "MeetingComment" : newMeeting.MeetingComment,
-					    "RoomID" : newMeeting.RoomID,			    
-					    "End" : endD, 
-					    "Start" : startD,
-					    "TimeZoneId" : "Eastern Daylight Time",
-					    "Attendees" : attendees,
-					    "Organizer" : organizer
-			}) ;
 
-		if(window.coTShared.on) {
-			var aData = jQuery.ajax({
-				url: url,
-				type: "POST",
-          	    headers: headers,
-				data: payload,
-				processData : false,
-//				dataType: "text",
-				contentType: "application/json",
-				async: false,
-				crossDomain: true,
-				success: function(data, textStatus) { // callback called when data is 
-//					alert('data=' + data);
-					jQuery.sap.require("sap.m.MessageBox");
-					sap.m.MessageBox.show("Meeting created" + data.responseText );
+			var payload = JSON.stringify({
 
-				},
-				error: function(data, textStatus) {
-					sap.m.MessageBox.show("Error occured" + data.responseText + textStatus);
-				}
+				"AltID": newMeeting.AltId,
+				"MeetingSubject": newMeeting.MeetingSubject,
+				"MeetingComment": newMeeting.MeetingComment,
+				"RoomID": newMeeting.RoomID,
+				"End": endD,
+				"Start": startD,
+				"TimeZoneId": "Eastern Daylight Time",
+				"Attendees": attendees,
+				"Organizer": organizer
 			});
-		}
+
+			if (window.coTShared.on) {
+				var aData = jQuery.ajax({
+					url: url,
+					type: "POST",
+					headers: headers,
+					data: payload,
+					processData: false,
+					//				dataType: "text",
+					contentType: "application/json",
+					async: false,
+					crossDomain: true,
+					success: function(data, textStatus) { // callback called when data is 
+						//					alert('data=' + data);
+						jQuery.sap.require("sap.m.MessageBox");
+						sap.m.MessageBox.show("Meeting created" + data.responseText);
+
+					},
+					error: function(data, textStatus) {
+						sap.m.MessageBox.show("Error occured" + data.responseText + textStatus);
+					}
+				});
+			}
 
 		},
 
@@ -194,33 +238,77 @@ sap.ui.define([
 			oModel.setData(this.newMeeting);
 			this.getView().setModel(oModel);
 		},
-		
-		fillRoomInfo: function(roomId){
-			var roomsModel = this.getView().getModel("all_rooms");
-			var room = Enumerable.From(roomsModel.getData())
-								.Where(function(x){
-									return x.RoomID === roomId;	
-								})
-								.FirstOrDefault();
-			if(room !== undefined){
-				this.newMeeting.Location = room.RoomName;
-				this.newMeeting.Image = room.Image;
-				this.newMeeting.Path2Room = room.Path2Room;                    
-			}
+
+		showError: function(msg) {
+			sap.m.MessageToast.show("Error: " + msg, {
+				duration: "2000",
+				width: "15em",
+				my: "center top",
+				at: "center top",
+				offset: "0 0",
+				iNumber: 2,
+				autoClose: true
+			});
 		},
 
-		saveMeeting: function() {
-			this.preSaveMeeting();
-			var meetingsModel = sap.ui.getCore().getModel("all_meetings");
-			var data = meetingsModel.getData();
-			this.newMeeting.AltID = (data.length + 1).toString();
-			data.push(this.newMeeting);
-			meetingsModel.setData(data);
-			
-			this.postMeeting(this.newMeeting);
+		validate: function() {
+			var result = true;
+			var attendees = window.coTShared.meeting.attendees;
 
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("main", true);
+			if (this.newMeeting.RoomID === "") {
+				this.showError("Need a location");
+			}
+			if (attendees.length === 0) {
+				this.showError("Meeting should have attendees");
+				result = false;
+			}
+			if (this.newMeeting.Start === undefined || this.newMeeting.Start === "") {
+				this.showError("Start time is empty");
+				result = false;
+			}
+			if (this.newMeeting.End === undefined || this.newMeeting.End === "") {
+				this.showError("Start time is empty");
+				result = false;
+			}
+			if (result) {
+				var start = this.toDate(this.newMeeting.Date, this.newMeeting.Start).getTime();
+				var end = this.toDate(this.newMeeting.Date, this.newMeeting.End).getTime();
+				if (end <= start) {
+					this.showError("End time should be after Start time");
+					result = false;
+				}
+			}
+			return result;
+		},
+		fillRoomInfo: function(roomId) {
+			var roomsModel = this.getView().getModel("all_rooms");
+			var room = Enumerable.From(roomsModel.getData())
+				.Where(function(x) {
+					return x.RoomID === roomId;
+				})
+				.FirstOrDefault();
+			if (room !== undefined) {
+				this.newMeeting.Location = room.RoomName;
+				this.newMeeting.Image = room.Image;
+				this.newMeeting.Path2Room = room.Path2Room;
+			}
+		},
+		saveMeeting: function() {
+			if (this.validate()) {
+				this.preSaveMeeting();
+				var meetingsModel = sap.ui.getCore().getModel("all_meetings");
+				var data = meetingsModel.getData();
+				this.newMeeting.AltID = (data.length + 1).toString();
+				data.push(this.newMeeting);
+				meetingsModel.setData(data);
+
+				if (window.coTShared.on) {
+					this.postMeeting(this.newMeeting);
+				}
+
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("main", true);
+			}
 		}
 
 	});
