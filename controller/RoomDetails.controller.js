@@ -88,10 +88,15 @@ sap.ui.define([
 
 		jQuery.when(this.oInitialLoadFinishedDeferred).then(jQuery.proxy(function() {
 			var oView = this.getView();
-			if (oParameters.name !== "RoomDetails") {
-				var room = oParameters.arguments.room;
-				if(room !== undefined) {
-					
+			if (oParameters.name === "RoomDetails") {
+				var roomID = oParameters.arguments.room;
+				if(roomID !== undefined) {
+					var oRoomModel = new sap.ui.model.json.JSONModel();
+					var room = window.coTRooms[roomID];
+					oRoomModel.setData( room );
+					this.getView().setModel(oRoomModel);
+// 				sap.ui.getCore().setModel(oRoomModel, "room");
+//					this.bindView( "room>/" );	
 				}
 				return;
 			}

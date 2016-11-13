@@ -297,9 +297,12 @@ sap.ui.define([
 		showRoom: function( oEvent ) {
 			var router = this.getRouter();
 			var roomID = this.selectedRoom.RoomId;
+			if( roomID === undefined ) {
+				roomID = "1a775e79-c1e1-479b-be90-6704d16b48b1";   // Adelaide
+			}
 //			var roomName = this.selectedRoom.RoomName;
 			router.navTo("RoomDetails", {
-					"roomID" : roomID
+					"room" : roomID
 //					"roomName" : roomName
 			}, true);
 		},
