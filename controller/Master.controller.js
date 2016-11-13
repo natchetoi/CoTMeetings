@@ -45,6 +45,7 @@ sap.ui.define([
 			// });
 
 			this.loadMeetings();
+			this.getView().rerender();
 		},
 
 		/**
