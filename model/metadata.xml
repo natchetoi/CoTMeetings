@@ -19,6 +19,7 @@
                 <Property Name="Building" Type="Edm.String"/>
                 <Property Name="Floor" Type="Edm.Int16"/>
                 <Property Name="Path2Room" Type="Edm.String"/>
+                <Property Name="Path3D" Type="Edm.String"/>
                 <Property Name="WiFi" Type="Edm.Boolean"/>
                 <Property Name="Projector" Type="Edm.Boolean"/>
                 <Property Name="Computer" Type="Edm.Boolean"/>

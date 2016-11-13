@@ -128,6 +128,15 @@ sap.ui.define([
 			return attList;
 		},
 		
+		addMeeting2Room: function( meeting ) {
+			var roomID = meeting.RoomID;
+			if(roomID !== undefined ) {
+				if( window.coTRooms[roomID].Appointments === undefined ) {
+					window.coTRooms[roomID].Appointments = [];
+				}
+				window.coTRooms[roomID].Appointments.push( meeting );
+			}
+		},
 		
 		filterMeetings: function(meetingList, userName) {
 			var self = this;
@@ -138,6 +147,7 @@ sap.ui.define([
 			for(var i=0; i< meetingList.length; i++) {
                 try {
 					var meeting = meetingList[i];
+					this.addMeeting2Room( meeting );
 					var att = meeting.Attendees;
 					if(att.indexOf(name) >=0) {
 		                  	  var appData = meeting;
@@ -382,7 +392,7 @@ sap.ui.define([
 	    			sap.ui.getCore().setModel(oModel, "user");  // Store in the Model
 
 				  sap.m.MessageToast.show("Hello " + name, {
-					duration: "200",
+					duration: "2000",
 					width: "15em",
 					my: "center top",
 					at: "center top",
@@ -397,7 +407,7 @@ sap.ui.define([
 	            
 				error: function(data, textStatus, jqXHR) {
 					sap.m.MessageToast.show("Error: " + data.statusText + " "  + textStatus, {
-						duration: "200",
+						duration: "2000",
 						width: "15em",
 						my: "center top",
 						at: "center top",

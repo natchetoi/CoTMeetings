@@ -1,0 +1,22 @@
+{
+	"mapwidth": "1000",
+	"mapheight": "530",
+	"categories": [
+		{
+			"id": "Richmond",
+			"title": "Richmond",
+			"color": "#b7a6bd",
+			"show": "false"
+		}
+	],
+	"levels": [
+		{
+			"id": "Richmond",
+			"title": "Richmond",
+			"map": "Images/mall/Richmond1.svg",
+			"minimap": "Images/mall/Richmond2.jpg",
+			"locations": [
+			]
+		}
+	]
+}

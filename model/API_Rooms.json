@@ -12,7 +12,8 @@
 	"WiFi": true,
 	"Projector": true,
 	"Computer": false,
-	"Distance": 200
+	"Distance": 200,
+	"Path3D": "J"
 }, {
 	"RoomName": "Adelaide",
 	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
@@ -29,7 +30,8 @@
 	"Conference": true,
 	"WhiteBoard": true,
 	"Computer": true,
-	"Distance": 500
+	"Distance": 500,
+	"Path3D": "A"
 }, {
 	"RoomName": "Berkeley",
 	"RoomID": "2fb16a9c-c4b2-4fa8-a0bc-f81f189acdb8",
@@ -44,7 +46,8 @@
 	"WiFi": true,
 	"TV": true,
 	"Computer": true,
-	"Distance": 800
+	"Distance": 800,
+	"Path3D": "D"
 }, {
 	"RoomName": "Duncan",
 	"RoomID": "adf3b026-9a85-494f-b69c-08e328ebdc8d",
@@ -60,7 +63,8 @@
 	"TV": true,
 	"WhiteBoard": true,
 	"Computer": true,
-	"Distance": 300
+	"Distance": 300,
+	"Path3D": "D"
 }, {
 	"RoomName": "Frederick",
 	"RoomID": "e774d73c-ddbf-4195-8125-2077f005c2e4",
@@ -75,7 +79,8 @@
 	"WiFi": true,
 	"TV": true,
 	"Computer": true,
-	"Distance": 400
+	"Distance": 400,
+	"Path3D": "R"
 }, {
 	"RoomName": "Richmond",
 	"RoomID": "cab41bd6-a74e-4bde-acf8-cb38295c0b64",
@@ -92,7 +97,8 @@
 	"Conference": true,
 	"WhiteBoard": true,
 	"Computer": true,
-	"Distance": 700
+	"Distance": 700,
+	"Path3D": "R"
 }, {
 	"RoomName": "Simcoe",
 	"RoomID": "28cb401b-2ddc-4dec-84c4-70e425460e10",
@@ -110,7 +116,8 @@
 	"Conference": true,
 	"WhiteBoard": true,
 	"Computer": true,
-	"Distance": 150
+	"Distance": 150,
+	"Path3D": "S"
 }, {
 	"RoomName": "Wellington",
 	"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
@@ -127,7 +134,8 @@
 	"TV": true,
 	"Conference": true,
 	"Computer": true,
-	"Distance": 250
+	"Distance": 250,
+	"Path3D": "R"
 }, {
 	"RoomName": "York",
 	"RoomID": "1da79737-2c76-40b8-a63c-b304251269da",
@@ -140,5 +148,6 @@
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
-	"Distance": 380
+	"Distance": 380,
+	"Path3D": "R"
 }]

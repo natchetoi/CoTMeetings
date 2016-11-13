@@ -1,0 +1,22 @@
+{
+	"mapwidth": "1000",
+	"mapheight": "530",
+	"categories": [
+		{
+			"id": "Jarvis",
+			"title": "Jarvis",
+			"color": "#b7a6bd",
+			"show": "false"
+		}
+	],
+	"levels": [
+		{
+			"id": "Jarvis",
+			"title": "Jarvis",
+			"map": "Images/mall/Jarvis1.svg",
+			"minimap": "Images/mall/Jarvis2.jpg",
+			"locations": [
+			]
+		}
+	]
+}

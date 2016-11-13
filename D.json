@@ -1,0 +1,22 @@
+{
+	"mapwidth": "1000",
+	"mapheight": "530",
+	"categories": [
+		{
+			"id": "Jarvis",
+			"title": "Jarvis",
+			"color": "#b7a6bd",
+			"show": "false"
+		}
+	],
+	"levels": [
+		{
+			"id": "Duncan",
+			"title": "Duncan",
+			"map": "Images/mall/Duncan1.svg",
+			"minimap": "Images/mall/Duncan2.jpg",
+			"locations": [
+			]
+		}
+	]
+}

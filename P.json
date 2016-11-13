@@ -1,0 +1,22 @@
+{
+	"mapwidth": "1000",
+	"mapheight": "530",
+	"categories": [
+		{
+			"id": "Pearl",
+			"title": "Pearl",
+			"color": "#b7a6bd",
+			"show": "false"
+		}
+	],
+	"levels": [
+		{
+			"id": "Pearl",
+			"title": "Pearl",
+			"map": "Images/mall/Pearl1.svg",
+			"minimap": "Images/mall/Pearl2.jpg",
+			"locations": [
+			]
+		}
+	]
+}

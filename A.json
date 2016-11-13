@@ -1,0 +1,42 @@
+{
+	"mapwidth": "1000",
+	"mapheight": "530",
+	"categories": [
+		{
+			"id": "misc",
+			"title": "Miscellaneous",
+			"color": "#b7a6bd",
+			"show": "true"
+		}
+	],
+	"levels": [
+		{
+			"id": "Adelaide",
+			"title": "Adelaide",
+			"map": "Images/mall/Adelaide1.svg",
+			"minimap": "Images/mall/Adelaide2.jpg",
+			"locations": [
+				{
+					"id": "gap",
+					"title": "GAP",
+					"about": "Lorem ipsum",
+					"description": "Lorem ipsum",
+					"category": "clothing",
+					"thumbnail": "images/thumbs/gap.jpg",
+					"x": "0.3781",
+					"y": "0.4296"
+				},
+				{
+					"id": "petco",
+					"title": "Petco",
+					"about": "Lorem ipsum",
+					"description": "Lorem ipsum",
+					"category": "misc",
+					"thumbnail": "Images/thumbs/petco.jpg",
+					"x": "0.5163",
+					"y": "0.3050"
+				}
+			]
+		}
+	]
+}

@@ -23,7 +23,7 @@ sap.ui.define([
         },
 
         selectedRoom: {
-            RoomID: "",
+            RoomID: ""
         },
 
         _onObjectMatched: function () {

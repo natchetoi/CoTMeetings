@@ -95,14 +95,14 @@ sap.ui.define([
 					var room = window.coTRooms[roomID];
 					oRoomModel.setData( room );
 					this.getView().setModel(oRoomModel);
-// 				sap.ui.getCore().setModel(oRoomModel, "room");
-//					this.bindView( "room>/" );	
+				    sap.ui.getCore().setModel(oRoomModel, "room");
+					this.bindView( "room>/" );	
 				}
 				return;
 			}
 
-			var sEntityPath = "rooms>/" + oEvent.getParameter("arguments").room + "/";
-			this.bindView(sEntityPath);			
+//			var sEntityPath = "rooms>/" + oEvent.getParameter("arguments").room + "/";
+//			this.bindView(sEntityPath);			
 
 		}, this));
 
