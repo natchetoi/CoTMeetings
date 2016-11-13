@@ -96,7 +96,7 @@ sap.ui.define([
 					oRoomModel.setData( room );
 					this.getView().setModel(oRoomModel);
 				    sap.ui.getCore().setModel(oRoomModel, "room");
-					this.bindView( "room>/" );	
+					this.bindView( oRoomModel );	
 				}
 				return;
 			}
@@ -112,26 +112,26 @@ sap.ui.define([
 	 * Binds the view to the object path.
 	 * @param {string} sEntityPath path to the entity
 	 */
-	bindView: function(sEntityPath) {
+	bindView: function( oRoomModel ) {
 		var oView = this.getView();
-		oView.bindElement(sEntityPath);
+		oView.setModel( oRoomModel );
 
 		//Check if the data is already on the client
-		if (!oView.getModel().getData(sEntityPath)) {
+		if (!oView.getModel().getData()) {
 
 			// Check that the entity specified actually was found.
 			oView.getElementBinding().attachEventOnce("dataReceived", jQuery.proxy(function() {
-				var oData = oView.getModel().getData(sEntityPath);
+				var oData = oRoomModel.getData();
 				if (!oData) {
 					this.showEmptyView();
 					this.fireDetailNotFound();
 				} else {
-					this.fireDetailChanged(sEntityPath);
+//					this.fireDetailChanged(sEntityPath);
 				}
 			}, this));
 
 		} else {
-			this.fireDetailChanged(sEntityPath);
+//			this.fireDetailChanged(sEntityPath);
 		}
 	 },
 

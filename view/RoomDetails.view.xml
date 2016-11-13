@@ -13,13 +13,13 @@
 				                        <content>
 				                            <VBox width="100%" direction="Column" id="__vbox0">
 				                                <HBox>
-				                                    <Text text="{room>RoomName} at {room>Building} {room>Floor}" maxLines="0" id="__text0_copy"/>
+				                                    <Text text="{room>/RoomName} at {room>/Building} {room>/Floor}" maxLines="0" id="__text0_copy"/>
 				                                    <items/>
 				                                    </HBox>
-				                                <Text text="Capacity: {room>Capacity}" maxLines="0" id="__text011"/>
+				                                <Text text="Capacity: {room>/Capacity}" maxLines="0" id="__text011"/>
 				                                <HBox>
 				                                    <Label text="Projector" width="150px" id="__label1" visible="{room>Projector}"/>
-				                                    <Label text="Big Screen TV" id="__label2" visible="{room>TV}"/>
+				                                    <Label text="Big Screen TV" id="__label2" visible="{room>/TV}"/>
 				                                    </HBox>
 				                                <HBox>
 				                                    <Label text="Computer" width="150px" id="__label3" visible="{Computer}"/>
