@@ -12,9 +12,6 @@ sap.ui.define([
 		},
 
 		onBeforeRendering: function() {
-
-			this.loadMeetings();
-			//			this.meetingList();	
 		},
 
 		onAfterRendering: function() {
@@ -26,11 +23,11 @@ sap.ui.define([
 		 * @param{sap.ui.base.Event} oEvent router pattern matched event object
 		 */
 		onRouteMatched: function(oEvent) {
-			// var sName = oEvent.getParameter("name");
+			var sName = oEvent.getParameter("name");
 
-			// if (sName !== "main") {
-			// 	return;
-			// }
+			if (sName !== "main") {
+				return;
+			}
 
 			// //Load the detail view in desktop
 			// sap.ui.core.UIComponent.getRouterFor(this).myNavToWithoutHash({
@@ -47,6 +44,7 @@ sap.ui.define([
 
 			// });
 
+			this.loadMeetings();
 		},
 
 		/**

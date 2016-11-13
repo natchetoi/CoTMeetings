@@ -200,6 +200,8 @@ sap.ui.define([
 		},
 
 		preSaveMeeting: function() {
+			var bindedMeeting = this.getView().getModel().getData();
+			this.newMeeting = bindedMeeting;
 			window.coTShared.NewMeeting = this.newMeeting;
 		},
 
