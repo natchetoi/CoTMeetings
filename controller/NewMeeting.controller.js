@@ -258,6 +258,9 @@ sap.ui.define([
 			if (this.newMeeting.RoomID === "") {
 				this.showError("Need a location");
 			}
+			if (this.newMeeting.MeetingSubject === "") {
+				this.showError("Missing meeting subject");
+			}
 			if (attendees.length === 0) {
 				this.showError("Meeting should have attendees");
 				result = false;
