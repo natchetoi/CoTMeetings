@@ -40,7 +40,7 @@
 				                <content>
 				                    <Carousel xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" activePage="__image0" showBusyIndicator="false" id="__carousel0" pages="rooms&gt;/1/">
 				                        <pages>
-				                            <Image width="100%" height="60%" id="__image1" src="{room>Image}" alt="{room>RoomName}"/>
+				                            <Image width="100%" height="60%" id="__image1" src="{room>/Image}" alt="{room>RoomName}"/>
 				                        </pages>
 				                    </Carousel>
 				                </content>
@@ -50,7 +50,14 @@
 				                    <Carousel xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" activePage="__image0" showBusyIndicator="false" id="__carousel1">
 				                        <pages>
 											<Panel id="plan3dId" headerText="{i18n>panelImageTitle}" visible="true">
-												<html:iframe src="{Path3D}.html" width="100%" height="100%"></html:iframe>
+												<html:iframe src="{room>/Path3D}.html" width="100%" height="100%"></html:iframe>
+											</Panel>
+											<Panel id="ESRIMap" headerText="{i18n>panelImageTitle}" visible="true">
+											   <html:iframe src="Images/ESRI1.png" width="100%" height="300px"></html:iframe>
+											<!-- html:iframe src="http://map.toronto.ca/maps/map.jsp?app=TorontoMaps_v2" width="100%" height="300px"></html:iframe -->
+											</Panel>
+											<Panel id="googleMap" headerText="{i18n>panelImageTitle}" visible="true">
+												<Image src="http://maps.googleapis.com/maps/api/staticmap?center=Toronto,+Canada,&amp;zoom=13&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;key=AIzaSyCqifMn0_bk8Vp_QXyfRSiS7GJcvhRwdm4&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C,55+John+Toronto+ON+Canada55" height="300px"/>
 											</Panel>
 											<Image width="100%" height="100%" id="floorPlanId" src="Images/MH15.png"/>
 				                        </pages>
