@@ -94,9 +94,9 @@ sap.ui.define([
 					var oRoomModel = new sap.ui.model.json.JSONModel();
 					var room = window.coTRooms[roomID];
 					oRoomModel.setData( room );
-					this.getView().setModel(oRoomModel);
+					oView.setModel(oRoomModel, "room");
 				    sap.ui.getCore().setModel(oRoomModel, "room");
-					this.bindView( oRoomModel );	
+                    this.bindView( oRoomModel );
 				}
 				return;
 			}

@@ -30,9 +30,9 @@
 				                                    <Label text="WhiteBoard" width="150px" id="__label6" visible="{WhiteBoard}"/>
 				                                    </HBox>
 				                                </VBox>
-				                            
+
 				                        </content>
-				                        
+
 				                    </Panel>
 				                </content>
 				            </IconTabFilter>
@@ -52,11 +52,11 @@
 											<Panel id="plan3dId" headerText="{i18n>panelImageTitle}" visible="true">
 												<html:iframe src="{room>/Path3D}.html" width="100%" height="100%"></html:iframe>
 											</Panel>
-											<Panel id="ESRIMap" headerText="{i18n>panelImageTitle}" visible="true">
+											<Panel id="ESRIMapFloorPlan" headerText="{i18n>panelImageTitle}" visible="true">
 											   <html:iframe src="Images/ESRI1.png" width="100%" height="300px"></html:iframe>
 											<!-- html:iframe src="http://map.toronto.ca/maps/map.jsp?app=TorontoMaps_v2" width="100%" height="300px"></html:iframe -->
 											</Panel>
-											<Panel id="googleMap" headerText="{i18n>panelImageTitle}" visible="true">
+											<Panel id="googleMapFloorPlan" headerText="{i18n>panelImageTitle}" visible="true">
 												<Image src="http://maps.googleapis.com/maps/api/staticmap?center=Toronto,+Canada,&amp;zoom=13&amp;scale=false&amp;size=600x300&amp;maptype=roadmap&amp;key=AIzaSyCqifMn0_bk8Vp_QXyfRSiS7GJcvhRwdm4&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C,55+John+Toronto+ON+Canada55" height="300px"/>
 											</Panel>
 											<Image width="100%" height="100%" id="floorPlanId" src="Images/MH15.png"/>
@@ -75,17 +75,17 @@
 											</Panel>
 				            	</content>
 				            </IconTabFilter>
-				            	
+
 				            <IconTabFilter text="Schedule" icon="sap-icon://date-time" id="__filter10">
 				                <content>
-				                    <List   xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" 
+				                    <List   xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml"
 				                                xmlns="sap.m" noDataText="No data" id="__list1">
 				                        <items>
 				                            <StandardListItem counter="0" title="List Item 1" id="__item3"/>
 				                            <StandardListItem counter="0" title="List Item 2" id="__item4"/>
 				                            <StandardListItem counter="0" title="List Item 3" id="__item5"/>
 				                        </items>
-				                        
+
 				                    </List>
 				                </content>
 				            </IconTabFilter>
@@ -98,7 +98,7 @@
 						<Button text="Cancel" width="100px" id="__button4" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel" tap="onNavBack" type="Emphasized"/>
 						<Button text="3D" width="100px" id="__button5" press="nav3DFloorPlan" icon="sap-icon://map-3" tooltip="3D Floor PLan" type="Emphasized"/>
 			</Toolbar>
-		</footer>				
+		</footer>
 			</Page>
 		</pages>
 	</App>
