@@ -5,7 +5,7 @@
 				<content>
 					<IconTabBar selectedKey="findFIlter" id="findRoomTabBar">
 						<items>
-							<IconTabFilter text="Find" id="findFIlter" iconColor="Neutral" icon="sap-icon://work-history">
+							<IconTabFilter text="Find" id="findFIlter" iconColor="Neutral" icon="sap-icon://work-history" key="findFIlter">
 								<content>
 									<Button width="40px" id="expandButton" icon="sap-icon://expand" press="pressExpand" tap="pressExpand" visible="false"/>
 									<Label text="Show filter" id="lblShowFilter" visible="false" class="coFilterLabel"/>

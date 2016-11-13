@@ -18,9 +18,9 @@
 		</Bar>
 		</customHeader -->
 				<content>
-					<IconTabBar selectedKey="__filter0" id="__bar0">
+					<IconTabBar selectedKey="tabDetails" id="_newMeetingTabs">
 						<items>
-							<IconTabFilter text="Details" id="__filter0" iconColor="Neutral" icon="sap-icon://idea-wall">
+							<IconTabFilter text="Details" id="_tabDetails" key="tabDetails" iconColor="Neutral" icon="sap-icon://idea-wall">
 								<content>
 									<VBox class="sapUiSmallMargin">
 										<f:SimpleForm id="SimpleFormDisplay354" maxContainerCols="2" editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" layout="ResponsiveGridLayout">
@@ -61,11 +61,11 @@
 										<f:SimpleForm id="SimpleFormDisplay355" maxContainerCols="2" editable="true" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" layout="ResponsiveGridLayout">
 											<f:content>
 												<Label text="Date" design="Bold"/>
-												<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{/Date}"/>
+												<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{path:'/Date', type:'sap.ui.model.type.Date', formatOptions: { style: 'short', strictParsing: true}}" valueFormat="MM/DD/YYYY" displayFormat="short"/>
 												<Label text="From" design="Bold"/>
-												<TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker0" valueFormat="h:mm a" value="{/Start}"/>
+												<TimePicker placeholder="HH:MM" displayFormat="HH:mm" valueFormat="HH:mm" id="__picker0" value="{path: '/Start'}"/>
 												<Label text="To" design="Bold"/>
-												<TimePicker placeholder="hh:mm am/pm" placeholderSymbol="-" mask="h9:59:59 AB" displayFormat="h:mm a" localeId="en-US" id="__picker1" valueFormat="h:mm a" value="{/End}"/>
+												<TimePicker placeholder="HH:MM" displayFormat="HH:mm" valueFormat="HH:mm" id="__picker1" value="{/End}"/>
 											</f:content>
 										</f:SimpleForm>
 									</VBox>
