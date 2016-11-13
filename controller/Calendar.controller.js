@@ -6,6 +6,8 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("fusion.controller.Calendar", {
+
+		//event handlers
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -41,15 +43,6 @@ sap.ui.define([
 		//
 		//	}
 
-		getRouter: function() {
-			return sap.ui.core.UIComponent.getRouterFor(this);
-		},
-
-		onNavBack: function(oEvent) {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("main", true);
-		},
-
 		drillDown: function(oEvent) {
 			this.getRouter().navTo("Detail", {
 				ID: "1"
@@ -65,6 +58,40 @@ sap.ui.define([
 			var oCalendar = oEvent.oSource;
 			var startDate = oCalendar.getStartDate();
 			this.showWeekMeetings(startDate);
+		},
+
+		onMonthCalendarDaySelected: function(oEvent) {
+			var selectedDate = oEvent.getSource().getSelectedDates()[0].getStartDate();
+			this.showDayMeetings(new Date(selectedDate));
+		},
+
+		onMonthCalendarChanged: function(oEvent) {
+			var calendar = oEvent.getSource();
+			this.showMonthMeetings(calendar.getStartDate());
+		},
+
+		onNavBack: function(oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("main", true);
+		},
+
+		//end of event handlers
+
+		showDayMeetings: function(oDate) {
+			var dayMeetings =
+				Enumerable.From(this.getMyMeetings())
+					.Where(function(x) {
+						var d1 = Date.parse(x.Date);
+						return d1.equals(oDate);
+					})
+					.ToArray();
+			var selectedMonthDayModel = new sap.ui.model.json.JSONModel();
+			selectedMonthDayModel.setData(dayMeetings);
+			this.getView().setModel(selectedMonthDayModel, "selectedMonthDay");
+		},
+
+		getRouter: function() {
+			return sap.ui.core.UIComponent.getRouterFor(this);
 		},
 
 		loadMeetings: function() {
@@ -218,29 +245,6 @@ sap.ui.define([
 					type: "Type01"
 				}));
 			}
-		},
-
-		onMonthCalendarDaySelected: function(oEvent) {
-			var selectedDate = oEvent.getSource().getSelectedDates()[0].getStartDate();
-			this.showDayMeetings(new Date(selectedDate));
-		},
-
-		showDayMeetings: function(oDate) {
-			var dayMeetings =
-				Enumerable.From(this.getMyMeetings())
-				.Where(function(x) {
-					var d1 = Date.parse(x.Date);
-					return d1.equals(oDate);
-				})
-				.ToArray();
-			var selectedMonthDayModel = new sap.ui.model.json.JSONModel();
-			selectedMonthDayModel.setData(dayMeetings);
-			this.getView().setModel(selectedMonthDayModel, "selectedMonthDay");
-		},
-
-		onMonthCalendarChanged: function(oEvent) {
-			var calendar = oEvent.getSource();
-			this.showMonthMeetings(calendar.getStartDate());
 		},
 
 		getMyMeetings: function() {
