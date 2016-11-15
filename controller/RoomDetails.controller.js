@@ -5,6 +5,7 @@ sap.ui.define([
 
 	return Controller.extend("fusion.controller.RoomDetails", {
 
+		model : {},
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -40,9 +41,9 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf fusion.view.RoomDetails
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+			onAfterRendering: function() {
+				this.set3dModel();
+			},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -66,17 +67,19 @@ sap.ui.define([
 		}
 	},
 	
-	_onObjectMatched: function(oEvent) {
-			this.getView().bindElement({
-				path: "rooms>/3/" + oEvent.getParameter("arguments").room + "/",          
-				model: "rooms"
-			});	
-	},
-	
 	_onDetailMatched: function(oEvent) {
 		var sObjectPath="room>/" +oEvent.getParameter("arguments").room;
 		var oView=this.getView();
 		oView.bindElement(sObjectPath);
+	},
+	
+	set3dModel: function() {
+		//				var iframe = this.getView().byId("floor");
+				var src = this.model.getProperty("/Path3D");
+				src = "R";
+				src = src  + ".html";
+				var floor = $("#floor");
+				floor.attr("src", src);
 	},
 	
 	/**
@@ -91,12 +94,13 @@ sap.ui.define([
 			if (oParameters.name === "RoomDetails") {
 				var roomID = oParameters.arguments.room;
 				if(roomID !== undefined) {
-					var oRoomModel = new sap.ui.model.json.JSONModel();
+					this.model = new sap.ui.model.json.JSONModel();
+					this.set3dModel();
 					var room = window.coTRooms[roomID];
-					oRoomModel.setData( room );
-					oView.setModel(oRoomModel, "room");
-				    sap.ui.getCore().setModel(oRoomModel, "room");
-                    this.bindView( oRoomModel );
+					this.model.setData( room );
+					oView.setModel(this.model, "room");
+				    sap.ui.getCore().setModel(this.model, "room");
+                    this.bindView( this.model );
 				}
 				return;
 			}

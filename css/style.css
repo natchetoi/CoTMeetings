@@ -190,7 +190,10 @@
     margin: 3px;
     color: blue;
 }
-
+.coTMapIframe {
+    position: fixed;
+    top: "60px";
+}
 .coFilterLabel
 {
 	margin-left:10px;
