@@ -77,7 +77,7 @@
 				                <content>
 									<List items="{room>/Appointments}">
 					                    <items>
-				                            <StandardListItem  title="{MeetingSubject} {Date} {Start}" />
+											<ObjectListItem title="{room>MeetingSubject}" type="Active" press="onMeetingSelected" number="{path: 'room>Start', formatter: '.formatStart'}"/>
 				                        </items>
 				                    </List>
 				                </content>
