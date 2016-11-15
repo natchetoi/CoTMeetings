@@ -75,8 +75,13 @@ sap.ui.define([
             //				var iframe = this.getView().byId("floor");
             var src = this.room.Path3D;
             src = src + ".html";
-            var floor = $("#floor");
+            this.room.iFrame = '<iframe id="floor" src="' + src + '" width="100%" height="530px" class="coTMapIframe" />';
+            var floorId = sap.ui.getCore().byId("floor");
+            var floor = jQuery( floorId );
             floor.attr("src", src);
+            
+//            var floor = $("#__xmlview6--floor");
+//            floor.attr("src", src);
         },
 
         _onDetailMatched: function (oEvent) {
@@ -98,8 +103,8 @@ sap.ui.define([
                     var roomID = oParameters.arguments.room;
                     if (roomID !== undefined) {
                         this.model = new sap.ui.model.json.JSONModel();
-                        this.set3dModel();
                         this.room = window.coTRooms[roomID];
+                        this.set3dModel();
                         this.model.setData(this.room);
                         oView.setModel(this.model, "room");
                         sap.ui.getCore().setModel(this.model, "room");
