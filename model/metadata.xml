@@ -26,6 +26,7 @@
                 <Property Name="TV" Type="Edm.Boolean"/>
                 <Property Name="Conference" Type="Edm.Boolean"/>
                 <Property Name="WhiteBoard" Type="Edm.Boolean"/>
+                <Property Name="Appointments" Type="Edm.String"/>
                 <NavigationProperty FromRole="From_API_Room" Name="AppointmentSet" Relationship="FusionRooms.API_RoomAppointment" ToRole="To_Appointment"/>
             </EntityType>
             <EntityType Name="Appointment">

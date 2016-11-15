@@ -89,7 +89,6 @@
 			<Toolbar>
 						<Button text="Book" width="100px" id="__button3" press="bookRoom" icon="sap-icon://accept" tooltip="Book a room" tap="bookRoom" type="Emphasized"/>
 						<Button text="Cancel" width="100px" id="__button4" press="onNavBack" icon="sap-icon://decline" tooltip="Cancel" tap="onNavBack" type="Emphasized"/>
-						<Button text="3D" width="100px" id="__button5" press="nav3DFloorPlan" icon="sap-icon://map-3" tooltip="3D Floor PLan" type="Emphasized"/>
 			</Toolbar>
 		</footer>
 			</Page>

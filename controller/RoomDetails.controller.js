@@ -6,6 +6,7 @@ sap.ui.define([
     return Controller.extend("fusion.controller.RoomDetails", {
 
         model: {},
+        room: {},
 
         meetingStartDateFormat: "MMM dd HH:mm",
 
@@ -72,8 +73,7 @@ sap.ui.define([
 
         set3dModel: function () {
             //				var iframe = this.getView().byId("floor");
-            var src = this.model.getProperty("/Path3D");
-            src = "R";
+            var src = this.room.Path3D;
             src = src + ".html";
             var floor = $("#floor");
             floor.attr("src", src);
@@ -99,11 +99,16 @@ sap.ui.define([
                     if (roomID !== undefined) {
                         this.model = new sap.ui.model.json.JSONModel();
                         this.set3dModel();
-                        var room = window.coTRooms[roomID];
-                        this.model.setData(room);
+                        this.room = window.coTRooms[roomID];
+                        this.model.setData(this.room);
                         oView.setModel(this.model, "room");
                         sap.ui.getCore().setModel(this.model, "room");
                         this.bindView(this.model);
+                        
+                        var appointments = this.room.Appointments;
+                        var appmodel = new sap.ui.model.json.JSONModel();
+                        appmodel.setData(appointments);
+                        sap.ui.getCore().setModel(appmodel, "appointments");
                     }
                     return;
                 }
