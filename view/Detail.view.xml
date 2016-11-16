@@ -50,6 +50,7 @@
 			<Toolbar>
 				<content>
 					<Button text="OK" width="100px" id="okButtonId" press="onNavBack" type="Emphasized"/>
+					<Button text="Room" width="100px" id="__button5" press="showRoom" icon="sap-icon://map-3" tooltip="Room details"  type="Emphasized"/>
 				</content>
 			</Toolbar>
 		</footer>

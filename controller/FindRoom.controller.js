@@ -359,7 +359,7 @@ sap.ui.define([
             var router = this.getRouter();
             router.navTo("FloorPlan3d", {}, true);
             //}
-        },
+        }
 
 	});
 

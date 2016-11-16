@@ -5,6 +5,8 @@ sap.ui.define([
 	"use strict";
 	return Controller.extend("fusion.controller.Detail", {
 
+		meeting: {},
+		
 		/**
 		 * Called when the detail list controller is instantiated. 
 		 */
@@ -57,6 +59,7 @@ sap.ui.define([
 				.FirstOrDefault();
 			if (meet !== undefined) {
 				var model = new sap.ui.model.json.JSONModel();
+				this.meeting = meet;
 				model.setData(meet);
 				this.getView().setModel(model);
 			}
@@ -155,7 +158,25 @@ sap.ui.define([
 			//			entity: oEvent.getSource().getBindingContext().getPath().slice(1),
 			//			tab: oEvent.getParameter("selectedKey")
 			//		}, true);
+		},
+		
+        getRouter: function () {
+            return sap.ui.core.UIComponent.getRouterFor(this);
+        },
+		
+		showRoom: function( oEvent ) {
+			var router = this.getRouter();
+			var roomID = this.meeting.RoomID;
+			if( roomID === undefined ) {
+				roomID = "1a775e79-c1e1-479b-be90-6704d16b48b1";   // Adelaide
+			}
+//			var roomName = this.selectedRoom.RoomName;
+			router.navTo("RoomDetails", {
+					"room" : roomID
+//					"roomName" : roomName
+			}, true);
 		}
+
 
 	});
 });
