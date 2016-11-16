@@ -7,6 +7,8 @@ sap.ui.define([
 
 	return Controller.extend("fusion.controller.Calendar", {
 
+        meetingStartDateFormat: "HH:mm",
+
 		//event handlers
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -51,7 +53,7 @@ sap.ui.define([
 
 		onSelectedDateChanged: function(oEvent) {
 			var selectedDate = oEvent.getParameter("value");
-			this.showDayliMeetings(new Date(selectedDate));
+			this.showDailyMeetings(new Date(selectedDate));
 		},
 
 		onCalendarSelected: function(oEvent) {
@@ -97,20 +99,16 @@ sap.ui.define([
 		loadMeetings: function() {
 			var myMeetings = this.getMyMeetings();
 			var calendarModel = new sap.ui.model.json.JSONModel();
+            var date = Date.today();
 			calendarModel.setData({
-				today: (new Date()).toLocaleDateString(),
-				meetings: myMeetings,
-				people: [{
-					name: "Me",
-					appointments: myMeetings,
-					headers: myMeetings
-				}]
+				today: date,
+				meetings: myMeetings
 			});
 
 			this.getView().setModel(calendarModel);
 
-			var date = Date.today();
-			this.showDayliMeetings(date);
+
+			this.showDailyMeetings(date);
 			this.showWeekMeetings(date);
 			this.showMonthMeetings(date);
 		},
@@ -121,7 +119,14 @@ sap.ui.define([
 				bindingContext = oEvent.getSource().getBindingContext("dayMeetings");
 			}
 			var selectedMeet = bindingContext.getObject();
+			if(selectedMeet === undefined){
+				return;
+			}
 			var id = selectedMeet.AltID;
+			if(id === undefined){
+				return;
+			}
+
 			this.navigateToMeetingView(id);
 		},
 
@@ -143,14 +148,15 @@ sap.ui.define([
 			}, bReplace);
 		},
 
-		showDayliMeetings: function(date) {
+		showDailyMeetings: function(date) {
 			var myMeetings = this.getMyMeetings();
 
+			var tommorrow = new Date(date.getTime()).add(1).day();
 			var dateMeetings = Enumerable
 				.From(myMeetings)
 				.Where(function(x) {
-					var d1 = new Date(x.Date);
-					return d1.getFullYear() === date.getFullYear() && d1.getMonth() === date.getMonth() && d1.getDate() === date.getDate();
+					var d1 = new Date(+x.Epoch);
+					return d1.between(date, tommorrow);
 				})
 				.ToArray();
 
@@ -158,16 +164,15 @@ sap.ui.define([
 			var daysData = Enumerable
 				.RangeTo(7, 23, 1)
 				.Select(function(x) {
-					var result = date;
+					var result = new Date(date.getTime());
 					result.setHours(x, 0, 0);
 					return {
-						"Date": result.toLocaleDateString(),
-						"Start": result.toLocaleTimeString()
+						"Epoch" : result.getTime().toString()
 					};
 				})
 				.Union(dateMeetings)
 				.OrderBy(function(x) {
-					return new Date(Date.parse(x.Date + " " + x.Start));
+					return new Date(+x.Epoch);
 				})
 				.ToArray();
 			dayModel.setData(daysData);
@@ -257,8 +262,12 @@ sap.ui.define([
 				.ToArray();
 
 			return myMeetings;
-		}
+		},
 
+        formatStart: function (oDate) {
+            var date = new Date(+oDate);
+            return date.toString(this.meetingStartDateFormat);
+        }
 	});
 
 });

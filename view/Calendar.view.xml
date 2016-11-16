@@ -25,10 +25,10 @@
 							</IconTabFilter>
 							<IconTabFilter text="Daily" iconColor="Neutral" icon="sap-icon://time-entry-request" id="__filter1">
 								<content>
-									<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{/today}" change="onSelectedDateChanged"/>
+									<DatePicker width="100%" secondaryCalendarType="Gregorian" id="__picker2" value="{path:'/today', type:'sap.ui.model.type.Date', formatOptions: { style: 'short', strictParsing: true}}" valueFormat="MM/DD/YYYY" displayFormat="short" change="onSelectedDateChanged"/>
 									<List noDataText="No data" id="_lstDayMeetings" items="{dayMeetings>/}" selectionChange="onMeetingSelected">
 										<items>
-											<ObjectListItem title="{dayMeetings>Start} {dayMeetings&gt;MeetingSubject}" type="Active" press="onMeetingSelected"/>
+											<ObjectListItem title="{path: 'dayMeetings>Epoch', formatter: '.formatStart'} {dayMeetings>MeetingSubject}" type="Active" press="onMeetingSelected"/>
 										</items>
 									</List>
 								</content>
