@@ -179,6 +179,7 @@ sap.ui.define([
 			                      "Epoch" : epoch,
 			                      "End" : end,
 			                      "Date": date,
+			                      "RoomID" : roomID,
 			                      "Organizer" : appData.Organizer,
 			                      "Image": roomImage,
 			                      "Path2Room": roomPath,			                      
