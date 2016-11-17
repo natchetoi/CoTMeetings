@@ -5,15 +5,15 @@
 	"Capacity": "10",
 	"x": "60",
 	"y": "45",
+	"Distance": 200,
 	"Image": "Images/MH15/Jarvis.jpg",
 	"Path2Room": "Images/MH15/Jarvis1.png",
+	"Path3D": "J",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
 	"Projector": true,
-	"Computer": false,
-	"Distance": 200,
-	"Path3D": "J"
+	"Computer": false
 }, {
 	"RoomName": "Adelaide",
 	"RoomID": "1a775e79-c1e1-479b-be90-6704d16b48b1",
@@ -21,17 +21,17 @@
 	"Capacity": "5",
 	"x": "",
 	"y": "",
+	"Distance": 500,
 	"Image": "Images/MH15/Adelaide.png",
 	"Path2Room": "Images/MH15/Adelaide1.png",
+	"Path3D": "A",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
 	"TV": true,
 	"Conference": true,
 	"WhiteBoard": true,
-	"Computer": true,
-	"Distance": 500,
-	"Path3D": "A"
+	"Computer": true
 }, {
 	"RoomName": "Berkeley",
 	"RoomID": "2fb16a9c-c4b2-4fa8-a0bc-f81f189acdb8",
@@ -39,15 +39,15 @@
 	"Capacity": "5",
 	"x": "",
 	"y": "",
+	"Distance": 800,
 	"Image": "Images/MH15/Berkeley.jpg",
 	"Path2Room": "Images/MH15/Berkeley.png",
+	"Path3D": "D",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
 	"TV": true,
-	"Computer": true,
-	"Distance": 800,
-	"Path3D": "D"
+	"Computer": true
 }, {
 	"RoomName": "Duncan",
 	"RoomID": "adf3b026-9a85-494f-b69c-08e328ebdc8d",
@@ -55,16 +55,16 @@
 	"Capacity": "4",
 	"x": "",
 	"y": "",
+	"Distance": 300,
 	"Image": "Images/MH15/Duncan.png",
 	"Path2Room": "Images/MH15/Duncan1.png",
+	"Path3D": "D",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
 	"TV": true,
 	"WhiteBoard": true,
-	"Computer": true,
-	"Distance": 300,
-	"Path3D": "D"
+	"Computer": true
 }, {
 	"RoomName": "Frederick",
 	"RoomID": "e774d73c-ddbf-4195-8125-2077f005c2e4",
@@ -72,15 +72,15 @@
 	"Capacity": "4",
 	"x": "",
 	"y": "",
+	"Distance": 400,
 	"Image": "Images/MH15/Frederick.jpg",
 	"Path2Room": "Images/MH15/Frederick.png",
+	"Path3D": "R",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
 	"TV": true,
-	"Computer": true,
-	"Distance": 400,
-	"Path3D": "R"
+	"Computer": true
 }, {
 	"RoomName": "Richmond",
 	"RoomID": "cab41bd6-a74e-4bde-acf8-cb38295c0b64",
@@ -88,17 +88,17 @@
 	"Capacity": "12",
 	"x": "460",
 	"y": "145",
+	"Distance": 700,
 	"Image": "Images/MH15/Richmond.jpg",
 	"Path2Room": "Images/MH15/Richmond1.png",
+	"Path3D": "R",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
 	"TV": true,
 	"Conference": true,
 	"WhiteBoard": true,
-	"Computer": true,
-	"Distance": 700,
-	"Path3D": "R"
+	"Computer": true
 }, {
 	"RoomName": "Simcoe",
 	"RoomID": "28cb401b-2ddc-4dec-84c4-70e425460e10",
@@ -106,8 +106,10 @@
 	"Capacity": "14",
 	"x": "830",
 	"y": "260",
+	"Distance": 150,
 	"Image": "Images/MH15/Simcoe.jpg",
 	"Path2Room": "Images/MH15/Simcoe1.png",
+	"Path3D": "S",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
@@ -115,9 +117,7 @@
 	"TV": true,
 	"Conference": true,
 	"WhiteBoard": true,
-	"Computer": true,
-	"Distance": 150,
-	"Path3D": "S"
+	"Computer": true
 }, {
 	"RoomName": "Wellington",
 	"RoomID": "860ae2ee-2620-4035-b36b-c4ff67d1124a",
@@ -125,17 +125,17 @@
 	"Capacity": "8",
 	"x": "80",
 	"y": "480",
+	"Distance": 250,
 	"Image": "Images/MH15/Wellington.jpg",
 	"Path2Room": "Images/MH15/Wellington.png",
+	"Path3D": "R",
 	"Building": "MH",
 	"Floor": "15",
 	"WiFi": true,
 	"Projector": true,
 	"TV": true,
 	"Conference": true,
-	"Computer": true,
-	"Distance": 250,
-	"Path3D": "R"
+	"Computer": true
 }, {
 	"RoomName": "York",
 	"RoomID": "1da79737-2c76-40b8-a63c-b304251269da",
@@ -143,11 +143,11 @@
 	"Capacity": "2",
 	"x": "500",
 	"y": "370",
+	"Distance": 380,
 	"Image": "Images/MH15/York.jpg",
 	"Path2Room": "Images/MH15/York.png",
+	"Path3D": "R",
 	"Building": "MH",
 	"Floor": "15",
-	"WiFi": true,
-	"Distance": 380,
-	"Path3D": "R"
+	"WiFi": true
 }]
