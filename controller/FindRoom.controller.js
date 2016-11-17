@@ -298,8 +298,8 @@ sap.ui.define([
 			}
 //			var roomName = this.selectedRoom.RoomName;
 			router.navTo("RoomDetails", {
-					"room" : roomID
-//					"roomName" : roomName
+					"room" : roomID,
+					"back" : "FindRoom"
 			}, true);
 		},
 

@@ -1,12 +1,14 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function (Controller) {
+    "sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History"
+], function (Controller, History) {
     "use strict";
 
     return Controller.extend("fusion.controller.RoomDetails", {
 
         model: {},
         room: {},
+        navigateBack: "Detail",
 
         meetingStartDateFormat: "MMM dd HH:mm",
 
@@ -76,9 +78,9 @@ sap.ui.define([
             var src = this.room.Path3D;
             src = src + ".html";
             this.room.iFrame = '<iframe id="floor" src="' + src + '" width="100%" height="530px" class="coTMapIframe" />';
-            var floorId = sap.ui.getCore().byId("floor");
-            var floor = jQuery( floorId );
-            floor.attr("src", src);
+//            var floorId = sap.ui.getCore().byId("floor");
+//            var floor = jQuery( floorId );
+//            floor.attr("src", src);
             
 //            var floor = $("#__xmlview6--floor");
 //            floor.attr("src", src);
@@ -114,6 +116,8 @@ sap.ui.define([
                         var appmodel = new sap.ui.model.json.JSONModel();
                         appmodel.setData(appointments);
                         sap.ui.getCore().setModel(appmodel, "appointments");
+                        
+                        this.navigateBack = oEvent.getParameter("arguments").back;
                     }
                     return;
                 }
@@ -164,15 +168,15 @@ sap.ui.define([
         },
 
         onNavBack: function (oEvent) {
-            // var oHistory, sPreviousHash;
-            // oHistory = History.getInstance();
-            // sPreviousHash = oHistory.getPreviousHash();
-            // if (sPreviousHash !== undefined) {
-            // 	window.history.go(-1);
-            // } else {
             var router = this.getRouter();
-            router.navTo("FindRoom", {}, true);
-            //}
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+//			if (sPreviousHash !== undefined) {
+//				window.history.go(-1);
+//			} else {
+	           router.navTo(this.navigateBack, {}, true);
+//			}
         },
 
         bookRoom: function (oEvent) {

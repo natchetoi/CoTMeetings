@@ -33,7 +33,7 @@
 							</List>
 						</content>
 					</IconTabFilter>
-					<IconTabFilter text="Room details" icon="sap-icon://meeting-room" iconColor="Neutral" id="__filter2">
+					<!-- IconTabFilter text="Room details" icon="sap-icon://meeting-room" iconColor="Neutral" id="__filter2">
 						<content>
 							<Carousel activePage="addressImage" showBusyIndicator="false" id="carouselRoomDetails">
 								<pages>
@@ -42,7 +42,7 @@
 								</pages>
 							</Carousel>
 						</content>
-					</IconTabFilter>
+					</IconTabFilter -->
 				</items>
 			</IconTabBar>
 		</content>

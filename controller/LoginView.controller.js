@@ -131,7 +131,13 @@ sap.ui.define([
 		addMeeting2Room: function( meeting ) {
 			var roomID = meeting.RoomID;
 			if(roomID !== undefined ) {
-				if( window.coTRooms[roomID].Appointments === undefined ) {
+				var i = roomID.indexOf(',');
+				if(i !== -1) {
+					var list = roomID.split(',');
+					roomID = list[0];
+				}
+				var room = window.coTRooms[roomID];
+				if( room.Appointments === undefined ) {
 					window.coTRooms[roomID].Appointments = [];
 				}
 				window.coTRooms[roomID].Appointments.push( meeting );
@@ -188,7 +194,7 @@ sap.ui.define([
 		                      this.appointments.push(_appointment);
 					}
 	              } catch(err) {
-	                  		sap.m.MessageToast.show(err);
+//	                  		sap.m.MessageToast.show(err);
 	              }
 				}
 			

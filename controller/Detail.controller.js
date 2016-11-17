@@ -142,7 +142,7 @@ sap.ui.define([
 		 * Detail view icon tab bar select event handler
 		 */
 		onDetailSelect: function(oEvent) {
-			sap.ui.core.UIComponent.getRouterFor(this).navTo("detail", {
+			sap.ui.core.UIComponent.getRouterFor(this).navTo("Detail", {
 				entity: oEvent.getSource().getBindingContext().getPath().slice(1),
 				tab: oEvent.getParameter("selectedKey")
 			}, true);
@@ -165,6 +165,7 @@ sap.ui.define([
         },
 		
 		showRoom: function( oEvent ) {
+			var bReplace = jQuery.device.is.phone ? false : true;
 			var router = this.getRouter();
 			var roomID = this.meeting.RoomID;
 			if( roomID === undefined ) {
@@ -172,9 +173,11 @@ sap.ui.define([
 			}
 //			var roomName = this.selectedRoom.RoomName;
 			router.navTo("RoomDetails", {
-					"room" : roomID
+					"room" : roomID,
+					"back" : "Detail"
+
 //					"roomName" : roomName
-			}, true);
+			}, bReplace );
 		}
 
 
