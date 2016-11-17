@@ -14,6 +14,8 @@
 	<path fill="#6E91FF" d="M309.633,197.733c0,0-10.799-8.897-16.2-24.467c-5.4-15.568,10.298-18.431,16.2-18.414"/>
 	<path fill="#6E91FF" d="M309.633,154.853c5.907-0.287,21.599,2.846,16.199,18.414c-5.4,15.569-16.199,24.467-16.199,24.467"/>
 </g>
-<text transform="matrix(0.9932 0 0 1 208.8828 84.166)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">YOU </tspan><tspan x="0.707" y="7.227" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">ARE </tspan><tspan x="-0.256" y="14.453" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">HERE</tspan></text>
-<text transform="matrix(0.9932 0 0 1 301.8853 175.2637)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">Pearl1</text>
+<text transform="matrix(0.9932 0 0 1 208.8828 84.166)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">YOU </tspan>
+<tspan x="0.707" y="7.227" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">ARE </tspan>
+<tspan x="-0.256" y="14.453" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">HERE</tspan></text>
+<text transform="matrix(0.9932 0 0 1 301.8853 175.2637)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="6.0216">Pearl</text>
 </svg>

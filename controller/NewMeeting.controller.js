@@ -84,25 +84,31 @@ sap.ui.define([
 
 		initMeeting: function() {
 			var date = Date.today();
-			var dt = this.getFormattedDate(date);
+//			var dt = this.getFormattedDate(date);
 			var organizer = window.coTRooms.Organizer;
+			var startTime = date.addHours(12).addMinutes(30);
+			startTime = startTime.getHours();
+			startTime = startTime.toString() + ":00";
+			var endTime = date.addHours(12).addMinutes(60);
+			endTime = endTime.getHours();
+			endTime = endTime.toString() + ":00";
 
-            var timeFormat = 'HH:mm';
+//            var timeFormat = 'HH:mm';
             this.newMeeting = {
                 "AltID" : "",
                 "MeetingSubject" : "",
                 "MeetingComment" : "",
                 "Location" : "",
-                "Start" : Date.now().toString(timeFormat),
+                "Start" : startTime,
                 "Epoch" : 0,
-                "End" : Date.now().addMinutes(30).toString(timeFormat),
+                "End" : endTime,
                 "Date": date,
                 "Organizer" : organizer,
                 "Image": "",
                 "Path2Room": "",
                 "Attendees" : [],
                 "RoomID": "",
-                "CallNumber": "",
+                "CallNumber": ""
 			};
 		},
 
@@ -229,9 +235,11 @@ sap.ui.define([
 
 			if (this.newMeeting.RoomID === "") {
 				this.showError("Need a location");
+				result = false;
 			}
 			if (this.newMeeting.MeetingSubject === "") {
 				this.showError("Missing meeting subject");
+				result = false;
 			}
 			if (attendees.length === 0) {
 				this.showError("Meeting should have attendees");
@@ -257,7 +265,7 @@ sap.ui.define([
 		},
 
 		fillRoomInfo: function(roomId, newMeeting) {
-			if(roomId === undefined || roomId === "") return;
+			if(roomId === undefined || roomId === "") { return; }
 
 			newMeeting.RoomID = window.coTShared.NewMeeting.RoomID;
 			var roomsModel = this.getView().getModel("all_rooms");
