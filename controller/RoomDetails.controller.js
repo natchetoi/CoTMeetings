@@ -49,7 +49,7 @@ sap.ui.define([
          * @memberOf fusion.view.RoomDetails
          */
         onAfterRendering: function () {
-            this.set3dModel();
+            //this.set3dModel();
         },
 
         /**
@@ -79,6 +79,7 @@ sap.ui.define([
             var src = this.room.Path3D;
             src = src + ".html";
             this.room.iFrame = '<iframe id="floor" src="' + src + '" width="100%" height="530px" class="coTMapIframe" />';
+            this.byId("map3d").setDOMContent(this.room.iFrame);
 //            var floorId = sap.ui.getCore().byId("floor");
 //            var floor = jQuery( floorId );
 //            floor.attr("src", src);
@@ -112,7 +113,7 @@ sap.ui.define([
                         this.model.setData(this.room);
                         oView.setModel(this.model, "room");
                         sap.ui.getCore().setModel(this.model, "room");
-                        this.bindView(this.model);
+                        //this.bindView(this.model);
 
                         var appointments = this.room.Appointments;
                         var appmodel = new sap.ui.model.json.JSONModel();

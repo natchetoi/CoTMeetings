@@ -289,19 +289,20 @@ sap.ui.define([
             oModel.setData(shortList);
             this.getView().setModel(oModel, "rooms");
         },
-		
-		showRoom: function( oEvent ) {
-			var router = this.getRouter();
-			var roomID = this.selectedRoom.RoomID;
-			if( roomID === undefined ) {
-				roomID = "1a775e79-c1e1-479b-be90-6704d16b48b1";   // Adelaide
-			}
+
+        showRoom: function (oEvent) {
+            var router = this.getRouter();
+            var roomID = this.selectedRoom.RoomID;
+            if (roomID === undefined) {
+                roomID = "1a775e79-c1e1-479b-be90-6704d16b48b1";   // Adelaide
+            }
 //			var roomName = this.selectedRoom.RoomName;
-			router.navTo("RoomDetails", {
-					"room" : roomID,
-					"back" : "FindRoom"
-			}, true);
-		},
+            router.navTo("RoomDetails", {
+                "room": roomID,
+                "back": "FindRoom",
+                "entity": "000000-0000-0000-0000-0000000000"
+            }, true);
+        },
 
         createImageMap: function () {
             /*       	var oMap = new sap.ui.commons.ImageMap();
@@ -361,6 +362,6 @@ sap.ui.define([
             //}
         }
 
-	});
+    });
 
 });
