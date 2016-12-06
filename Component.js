@@ -67,7 +67,7 @@ sap.ui.core.UIComponent.extend("fusion.Component", {
 					viewLevel: "4",
 					targetAggregation: "detailPages"
 				}, {
-					pattern: "RoomDetails/{room}/{back}",
+					pattern: "RoomDetails/{room}/{back}/{entity}",
 					name: "RoomDetails",
 					view: "RoomDetails",
 					viewLevel: "5",

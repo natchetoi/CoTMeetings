@@ -1,14 +1,15 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History"
+    "sap/ui/core/routing/History"
 ], function (Controller, History) {
     "use strict";
 
     return Controller.extend("fusion.controller.RoomDetails", {
 
         model: {},
+        meetId: "",
         room: {},
-        navigateBack: "Detail",
+        navigateBack: "",
 
         meetingStartDateFormat: "MMM dd HH:mm",
 
@@ -81,7 +82,7 @@ sap.ui.define([
 //            var floorId = sap.ui.getCore().byId("floor");
 //            var floor = jQuery( floorId );
 //            floor.attr("src", src);
-            
+
 //            var floor = $("#__xmlview6--floor");
 //            floor.attr("src", src);
         },
@@ -106,17 +107,18 @@ sap.ui.define([
                     if (roomID !== undefined) {
                         this.model = new sap.ui.model.json.JSONModel();
                         this.room = window.coTRooms[roomID];
+                        this.meetId = oParameters.arguments.entity;
                         this.set3dModel();
                         this.model.setData(this.room);
                         oView.setModel(this.model, "room");
                         sap.ui.getCore().setModel(this.model, "room");
                         this.bindView(this.model);
-                        
+
                         var appointments = this.room.Appointments;
                         var appmodel = new sap.ui.model.json.JSONModel();
                         appmodel.setData(appointments);
                         sap.ui.getCore().setModel(appmodel, "appointments");
-                        
+
                         this.navigateBack = oEvent.getParameter("arguments").back;
                     }
                     return;
@@ -169,14 +171,7 @@ sap.ui.define([
 
         onNavBack: function (oEvent) {
             var router = this.getRouter();
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-//			if (sPreviousHash !== undefined) {
-//				window.history.go(-1);
-//			} else {
-	           router.navTo(this.navigateBack, {}, true);
-//			}
+            router.navTo(this.navigateBack, {"entity": this.meetId}, true);
         },
 
         bookRoom: function (oEvent) {
