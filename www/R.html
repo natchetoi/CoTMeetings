@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<title>Mapplic - Custom Interactive Map Plugin - Mall Example</title>
+
+		<!-- Viewport for Responsivity -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="description" content="Map of a shopping mall, an example of using Mapplic, a premium custom interactive map plugin to display custom image or vector (SVG) maps. Touchscreen kiosk map compatible.">
+
+		<!-- Stylesheets -->
+		<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/mstyle.css">
+		<link rel="stylesheet" type="text/css" href="mapplic/mapplic.css">
+		<link rel="stylesheet" type="text/css" href="css/map.css">
+		<!-- Internet Explorer -->
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="mapplic/mapplic-ie.css">
+			<script type="text/javascript" src="js/html5shiv.js"></script>
+		<![endif]-->
+<script type="text/javascript">
+		var QueryString = function () {
+		    var query_string = {};
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+    			var pair = vars[i].split("=");
+        		// If first entry with this name
+    		if (typeof query_string[pair[0]] === "undefined") {
+    			query_string[pair[0]] = decodeURIComponent(pair[1]);
+		        // If second entry with this name
+		    } else if (typeof query_string[pair[0]] === "string") {
+    		var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+    		query_string[pair[0]] = arr;
+		        // If third or later entry with this name
+	    } else {
+    		  query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    	}
+	  } 
+	  return query_string;
+	};   //();
+</script>		
+		
+	</head>
+	<body>
+		<div id="wrap">
+
+			<!-- Site header -->
+			<header id="header" style="display:none" >
+				<div class="inner">
+					<nav>
+						<ul id="main-menu">
+							<li><a href="#" class="usage">Usage</a></li>
+						</ul>
+					</nav>
+
+					<a id="logo" href="./"></a>
+
+					<h1>The most <strong>advanced</strong> custom interactive map<br> plugin on the web</h1>
+
+					<div class="clear"></div>
+				</div>
+			</header>
+
+			<!-- Site content -->
+			<div id="content">
+				
+				<section id="map-section" class="inner over"  >
+					<div class="editor-window">
+						<div class="window-mockup brown"></div>
+						<div class="editor-body"  >
+							<code>
+								{<br>
+								&nbsp;&nbsp;&nbsp;"id": "newlandmark",<br>
+								&nbsp;&nbsp;&nbsp;"title": "New Landmark",<br>
+								&nbsp;&nbsp;&nbsp;"description": "Creating a new landmark is that easy!",<br>
+								&nbsp;&nbsp;&nbsp;"x": "<span class="mapplic-coordinates-x">0.0000</span>",<br>
+								&nbsp;&nbsp;&nbsp;"y": "<span class="mapplic-coordinates-y">0.0000</span>",<br>
+								&nbsp;&nbsp;&nbsp;...<br>
+								}
+							</code>
+						</div>
+					</div>
+
+					<div class="map-container">
+						<div class="window-mockup">
+							<div class="window-bar"></div>
+						</div>
+						<!-- Map -->
+						<div id="mapplic"></div>
+					</div>
+
+					<ul id="examples" style="display:none" >
+						<li class="active"><a href="./">Mall Map</a></li>
+						<li><a href="apartment.html">Apartment</a></li>
+						<li><a href="world.html">World</a></li>
+						<li><a href="continents.html">Continents</a></li>
+						<li><a href="europe.html">Europe</a></li>
+						<li><a href="usa.html">USA</a></li>
+						<li><a href="canada.html">Canada</a></li>
+					</ul>
+				</section>
+
+				<section class="purple" style="display:none" >
+					<div class="inner">
+						<h1>Bring your <strong>images</strong> and <strong>vector graphics</strong> to life!</h1>
+						<p>It can be used for multi storey buildings, airports, shopping malls, department stores, resorts, hospitals, harbors, campings or festivals, ski tracks, sport stadiums, cruise ships or anything you can think of, your imagination is the limit. It's also perfectly suitable for touchscreen kiosk maps.</p>
+					</div>
+				</section>
+
+				<section class="inner features" style="display:none" >
+					<div class="container">
+						<div class="one-third icon landmark">
+							<h3>Unlimited landmarks</h3>
+							<p>Any number of locations with unique pins and various actions</p>
+						</div>
+						<div class="one-third icon layer">
+							<h3>Unlimited floors</h3>
+							<p>Multiple floors are supported without any limitation</p>
+						</div>
+						<div class="one-third icon link">
+							<h3>Deeplinking</h3>
+							<p>Every location can be referenced by it's own URL</p>
+						</div>
+					</div>
+					<div class="container">
+						<div class="one-third icon browser">
+							<h3>Browser support</h3>
+							<p>Works great in every major browser (even Internet Explorer 8)</p>
+						</div>
+						<div class="one-third  icon responsive">
+							<h3>Responsive design</h3>
+							<p>Provides optimal experience across a wide range of devices</p>
+						</div>
+						<div class="one-third icon mobile">
+							<h3>Touch optimised</h3>
+							<p>Touchscreen devices, like tablets and smartphones are also supported</p>
+						</div>					
+					</div>
+				</section>
+
+				<section class="blue" style="display:none" >
+					<div class="inner">
+					</div>
+				</section>
+
+			</div>
+
+			<!-- Site footer -->
+			<footer id="footer" style="display:none" >
+				<div class="inner">
+				</div>
+			</footer>
+		</div>
+
+		<!-- Scripts -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/hammer.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="mapplic/mapplic.js"></script>
+		<script type="text/javascript">
+		var QueryString = function () {
+		    var query_string = {};
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+    			var pair = vars[i].split("=");
+        		// If first entry with this name
+    		if (typeof query_string[pair[0]] === "undefined") {
+    			query_string[pair[0]] = decodeURIComponent(pair[1]);
+		        // If second entry with this name
+		    } else if (typeof query_string[pair[0]] === "string") {
+    		var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+    		query_string[pair[0]] = arr;
+		        // If third or later entry with this name
+	    } else {
+    		  query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    	}
+	  } 
+	  return query_string;
+	}();
+		
+			$(document).ready(function() {
+				var mapplic = $('#mapplic').mapplic({
+					source: 'R.json',	// Using mall.json file as map data
+					sidebar: false, 			// Enable sidebar
+					minimap: true, 			// Enable minimap
+					markers: false, 		// Disable markers
+					fillcolor: false, 		// Disable default fill color
+					fullscreen: true, 		// Enable fullscreen 
+					maxscale: 3 			// Setting maxscale to 3
+				});
+			});
+		</script>
+	</body>
+</html>
